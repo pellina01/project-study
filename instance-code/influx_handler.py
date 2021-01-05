@@ -30,6 +30,8 @@ class handler:
                 self.influxClient.write_points(
                     self.serializer.serialize(recieved_list),
                     time_precision='ms', protocol='json')
+            else:
+                print("error occured at topic: %s" % self.topic)
         except Exception as e:
             print("failed to write to DB topic %s" % self.topic)
             print(self.traceback.format_exc())
