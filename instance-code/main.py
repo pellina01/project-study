@@ -4,7 +4,7 @@ import json
 import logging
 import traceback
 
-with open('config.json', 'r') as file:
+with open('../config.json', 'r') as file:
     data = json.loads(file.read())
 
 cloud = {}

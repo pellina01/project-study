@@ -8,11 +8,12 @@ class mqtt:
         import logging
         import traceback
 
+        self.json = json
         self.topic = topic
         self.client = mqtt.Client()
 
         self.client.will_set(
-            topic, json.dumps({"status": "disconnected"}), qos, retain)
+            topic, self.json.dumps({"status": "disconnected"}), qos, retain)
 
         # run code until connect
         print(host)
@@ -49,5 +50,6 @@ class mqtt:
         self.client.disconnect()
         self.client.loop_stop()
 
-    def on_connect(client, userdata, flags, rc):
-        self.client.publish(self.topic, json.dumps({"status": "connected"}))
+    def on_connect(self, client, userdata, flags, rc):
+        self.client.publish(
+            self.topic, self.json.dumps({"status": "connected"}))

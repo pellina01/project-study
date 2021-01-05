@@ -1,5 +1,6 @@
-from mqtt import mqtt
 import time
+import json
+from mqtt import mqtt
 
 
 time.sleep(5)
@@ -9,9 +10,9 @@ with open('config.json', 'r') as file:
 
 raspi = {}
 for key, value in data["raspi"].items():
-	raspi.update({key: value})
+    raspi.update({key: value})
 
 rpi = mqtt("rpi", raspi["mqtt_url"])
 
 while True:
-	time.sleep(100)
+    time.sleep(100)
