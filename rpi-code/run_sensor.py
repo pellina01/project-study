@@ -25,12 +25,12 @@ if __name__ == "__main__":
 
     sensor_list = []
     for sensor_listed in raspi["sensors"]:
-        sensor_list.append(sensor(raspi["mqtt_url"], sensor_listed))
+        sensor_list.append(sensor(raspi["mqtt_url"], sensor_listed).process)
 
     processes = []
     try:
         for sensor in sensor_list:
-            sensor.process()
+            sensor()
         #     process = Process(target=sensor.process)
         #     process.start()
         #     processes.append(process)
