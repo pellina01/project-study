@@ -18,6 +18,7 @@ class listen:
         self.logging = logging
         self.traceback = traceback
         self.logging.basicConfig(filename="error.log")
+        #for logging
 
         self.jsonParser = json.loads
 
