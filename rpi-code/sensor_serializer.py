@@ -23,11 +23,11 @@ class sensor:
         from mqtt import mqtt
 
         self.logging.basicConfig(filename="error.log")
-        self.topic = topic
         sensor_type = sensor_parameters[3]
         slave_addr = sensor_parameters[2]
         sensor_function = sensor_parameters[1]
         topic = sensor_parameters[0]
+        self.topic = topic
         switch = {
             "read_arduino": self.read_arduino,
             "read_value": self.read_value,
