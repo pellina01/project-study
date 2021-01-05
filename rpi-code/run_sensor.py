@@ -12,7 +12,7 @@ from multiprocessing import Process
 
 time.sleep(5)
 
-with open('../config.json', 'r') as file:
+with open('config.json', 'r') as file:
     data = json.loads(file.read())
 
 raspi = {}
