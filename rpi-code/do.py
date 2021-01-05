@@ -105,16 +105,19 @@ def read_do(*args):
         5.79
     ]
     try:
-            xin = read_value()
-        if xin < d_o[0] or xin > d_o[45]:
+        status , value = read_value()
+        if status == "error":
+            return status, value
+
+        if value < d_o[0] or value > d_o[45]:
             return "error", "Cannot interpolate. Limit reached"
-        elif xin in temp:
-            index = temp.index(xin)
+        elif value in temp:
+            index = temp.index(value)
             return "ok" ,d_o[index]
         else:
-            max_index = temp.index(math.trunc(xin))
+            max_index = temp.index(math.trunc(value))
             min_index = max_index + 1
-            yout = d_o[min_index] + ((xin - temp[min_index]) * (
+            yout = d_o[min_index] + ((value - temp[min_index]) * (
                 d_o[max_index] - d_o[min_index]) / (temp[max_index] - temp[min_index]))
             return "ok" ,round(yout, 2)
     except Exception as e:
