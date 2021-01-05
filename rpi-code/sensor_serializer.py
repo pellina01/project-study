@@ -44,7 +44,7 @@ class sensor:
             validity
         )
 
-    def process(self):
+    def Process(self):
         try:
             print(self.topic)
             self.process.send()
