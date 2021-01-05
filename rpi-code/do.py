@@ -2,7 +2,7 @@ from wire1 import read_value
 import math
 
 
-def read_do(self, *args):
+def read_do(*args):
     temp = [
         0,
         1,
