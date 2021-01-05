@@ -11,13 +11,12 @@ class sensor:
         return self.json.dumps({"status": status, "value": str(value)})
 
     def __serialize(self, mqtt_send, mqtt_disconnect, topic, value, validity):
-        def get_send():
-            def send():
-                mqtt_send(format(topic, validity, value))
+        def send():
+            mqtt_send(format(topic, validity, value))
 
-            def disconnect():
-                mqtt_disconnect()
-        return(get_send)
+        def disconnect():
+            mqtt_disconnect()
+        return(send, disconnect)
 
     def __init__(self, url, sensor_parameters):
         from mqtt import mqtt
@@ -36,7 +35,7 @@ class sensor:
         sensor = mqtt(topic, url)
         validity, return_value = switch.get(
             sensor_function)(slave_addr, sensor_type)
-        self.process = self.__serialize(
+        self.send, self.disconnect = self.__serialize(
             sensor.send,
             sensor.disconnect,
             topic,
@@ -47,8 +46,8 @@ class sensor:
     def Process(self):
         try:
             print(self.topic)
-            self.process.send()
-            self.process.disconnect()
+            self.send()
+            self.disconnect()
         except Exception as e:
             self.logging.error(self.traceback.format_exc())
             print(e)
