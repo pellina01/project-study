@@ -30,12 +30,13 @@ if __name__ == "__main__":
     processes = []
     try:
         for sensor in sensor_list:
-            process = Process(target=sensor.process)
-            process.start()
-            processes.append(process)
-        for process in processes:
-            process.join()
-            processes.remove(process)
+            sensor.process()
+        #     process = Process(target=sensor.process)
+        #     process.start()
+        #     processes.append(process)
+        # for process in processes:
+        #     process.join()
+        #     processes.remove(process)
     except Exception as e:
         logging.error(traceback.format_exc())
         time.sleep(5)

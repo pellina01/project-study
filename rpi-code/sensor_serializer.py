@@ -23,7 +23,7 @@ class sensor:
         from mqtt import mqtt
 
         self.logging.basicConfig(filename="error.log")
-
+        self.topic = topic
         sensor_type = sensor_parameters[3]
         slave_addr = sensor_parameters[2]
         sensor_function = sensor_parameters[1]
@@ -46,6 +46,7 @@ class sensor:
 
     def process(self):
         try:
+            print(self.topic)
             self.process.send()
             self.process.disconnect()
         except Exception as e:
