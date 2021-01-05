@@ -1,7 +1,4 @@
 class sensor:
-    from i2c import read_arduino
-    from wire1 import read_value
-    from do import read_do
     import logging
     import traceback
     import json
@@ -20,6 +17,9 @@ class sensor:
 
     def __init__(self, url, sensor_parameters):
         from mqtt import mqtt
+        from i2c import read_arduino
+        from wire1 import read_value
+        from do import read_do
 
         self.logging.basicConfig(filename="error.log")
         sensor_type = sensor_parameters[3]
@@ -28,9 +28,9 @@ class sensor:
         topic = sensor_parameters[0]
         self.topic = topic
         switch = {
-            "read_arduino": self.read_arduino,
-            "read_value": self.read_value,
-            "read_do": self.read_do
+            "read_arduino": read_arduino,
+            "read_value": read_value,
+            "read_do": read_do
         }
         sensor = mqtt(topic, url)
         validity, return_value = switch.get(
