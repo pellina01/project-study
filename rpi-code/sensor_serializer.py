@@ -10,10 +10,11 @@ class sensor:
         print({"topic": topic, "status": status, "value": str(value)})
         return self.json.dumps({"status": status, "value": str(value)})
 
-    def __serialize(self, mqtt_send, mqtt_disconnect,topic, value, validity):
+    def __serialize(self, mqtt_send, mqtt_disconnect, topic, value, validity):
         def get_send():
             def send():
                 mqtt_send(format(topic, validity, value))
+
             def disconnect():
                 mqtt_disconnect()
         return(get_send)
@@ -28,12 +29,13 @@ class sensor:
         sensor_function = sensor_parameters[1]
         topic = sensor_parameters[0]
         switch = {
-            "read_arduino": read_arduino,
-            "read_value": read_value,
-            "read_do": read_do
+            "read_arduino": self.read_arduino,
+            "read_value": self.read_value,
+            "read_do": self.read_do
         }
         sensor = mqtt(topic, url)
-        validity, return_value = switch.get(sensor_function)(slave_addr, sensor_type)
+        validity, return_value = switch.get(
+            sensor_function)(slave_addr, sensor_type)
         self.process = self.__serialize(
             sensor.send,
             sensor.disconnect,
@@ -49,4 +51,3 @@ class sensor:
         except Exception as e:
             self.logging.error(self.traceback.format_exc())
             print(e)
-
