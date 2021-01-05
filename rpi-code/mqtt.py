@@ -13,7 +13,7 @@ class mqtt:
         self.client = mqtt.Client()
 
         # only rpi topic(the status of the main device) will have will_set and on_connect method set
-        if self.topic == "rpi":
+        if topic == "rpi":
             self.client.on_connect = self.on_connect
             self.client.will_set(
                 topic, self.json.dumps({"status": "disconnected"}), qos, retain)
@@ -51,5 +51,6 @@ class mqtt:
         self.client.loop_stop()
 
     def on_connect(self, client, userdata, flags, rc):
+        print("here at on_connect")
         self.client.publish(
             self.topic, self.json.dumps({"status": "connected"}))
