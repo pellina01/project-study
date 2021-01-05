@@ -23,11 +23,11 @@ for key, value in data["raspi"].items():
 if __name__ == "__main__":
     logging.basicConfig(filename=raspi["error_file"])
 
-    processes = []
+    sensor_list = []
     for sensor_listed in raspi["sensors"]:
         sensor_list.append(sensor(raspi["mqtt_url"], sensor_listed))
 
-    sensors = []
+    processes = []
     try:
         for sensor in sensor_list:
             process = Process(target=sensor.process)
