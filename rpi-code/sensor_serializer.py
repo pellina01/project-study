@@ -12,7 +12,7 @@ class sensor:
 
     def __serialize(self, mqtt_send, mqtt_disconnect, topic, value, validity):
         def send():
-            mqtt_send(format(topic, validity, value))
+            mqtt_send(self.__formatter(topic, validity, value))
 
         def disconnect():
             mqtt_disconnect()
