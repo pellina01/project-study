@@ -7,7 +7,8 @@ class aggregator:
     import logging
     from influxdb import InfluxDBClient
 
-    def __init__(self, topic, host, user, pw, db, db_aggregate):
+    def __init__(self, topic, host, user, pw, db, db_aggregate, unit):
+        self.unit = unit
         self.topic = topic
         self.db_aggregate = db_aggregate
         self.client = self.InfluxDBClient(host=host, port=8086,
@@ -38,7 +39,7 @@ class aggregator:
             {
                 "measurement": "{}_aggregated".format(self.topic),
                 "tags": {
-                    "user": self.topic,
+                    "unit": self.unit,
                 },
                 "fields": {
                     "value": float(self.math.round(self.average, 2))
