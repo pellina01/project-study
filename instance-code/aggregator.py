@@ -5,7 +5,7 @@ class aggregator:
     import math
     import json
 
-    def __init__(self, topic, host, user, pw, db, db_aggreggate):
+    def __init__(self, topic, host, user, pw, db, db_aggregate):
         self.topic = topic
         self.db_aggregate = db_aggregate
         self.client = self.InfluxDBClient(host=host, port=8086,
