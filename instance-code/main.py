@@ -5,7 +5,7 @@ import logging
 import traceback
 
 with open("sample.txt", "w") as text_file:
-    text_file.write("rebooted")
+    text_file.write("python starts")
 
 
 with open('config.json', 'r') as file:
