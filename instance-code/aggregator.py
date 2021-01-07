@@ -1,21 +1,25 @@
 
 class aggregator:
-    from influxdb import InfluxDBClient
     import time
     import math
     import json
 
     def __init__(self, topic, host, user, pw, db, db_aggregate):
+        from influxdb import InfluxDBClient
         self.topic = topic
         self.db_aggregate = db_aggregate
-        self.client = self.InfluxDBClient(host=host, port=8086,
-                                          username=user, password=pw)
+        self.client = InfluxDBClient(host=host, port=8086,
+                                     username=user, password=pw)
         self.client.switch_database(db)
 
     def aggregate(self):
         try:
             query_result = list(self.client.query(
                 'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic)).get_points(measurement=self.topic))
+            # query_result = self.client.query(
+            #     'SELECT * FROM {} WHERE time > now() - 1d'.format(topic))
+
+            # data_points = list(query_result.get_points(measurement=topic))
 
             self.aggregated_data = 0
             n = 0
