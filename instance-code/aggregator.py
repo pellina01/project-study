@@ -41,6 +41,6 @@ class aggregator:
                     "user": self.topic,
                 },
                 "fields": {
-                    "value": self.average
+                    "value": float(self.math.round(self.average, 2))
                 }
             }]
