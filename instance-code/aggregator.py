@@ -22,7 +22,7 @@ class aggregator:
             # data_points = list(query_result.get_points(measurement=self.topic))
             self.aggregated_data = 0
             n = 0
-            for lists in data_points:
+            for lists in query_result:
                 self.aggregated_data += lists["value"]
                 n += 1
             self.aggregated_data /= n
