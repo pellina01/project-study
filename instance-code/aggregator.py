@@ -14,13 +14,12 @@ class aggregator:
 
     def aggregate(self):
         try:
-            # query_result = list(self.client.query(
-            #     'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic)).get_points(measurement=self.topic))
-            query_result = self.client.query(
-                'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic))
+            query_result = list(self.client.query(
+                'SELECT * FROM {} WHERE time > now() - 10d'.format(self.topic)).get_points(measurement=self.topic))
+            # query_result = self.client.query(
+            #     'SELECT * FROM {} WHERE time > now() - 10d'.format(self.topic))
 
-            data_points = list(query_result.get_points(measurement=self.topic))
-            print(data_points)
+            # data_points = list(query_result.get_points(measurement=self.topic))
             self.aggregated_data = 0
             n = 0
             for lists in data_points:
