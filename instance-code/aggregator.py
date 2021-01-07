@@ -28,7 +28,7 @@ class aggregator:
                 n += 1
             self.aggregated_data /= n
 
-            json_body = __serializer()
+            json_body = self.__serializer()
             self.client.switch_database(self.db_aggregate)
 
             self.client.write_points(json_body)
