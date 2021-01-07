@@ -3,6 +3,7 @@ class aggregator:
     import time
     import math
     import json
+    import traceback
 
     def __init__(self, topic, host, user, pw, db, db_aggregate):
         from influxdb import InfluxDBClient
@@ -33,6 +34,7 @@ class aggregator:
             self.client.write_points(json_body)
         except Exception as e:
             print(e)
+            print(self.traceback.format_exc())
 
     def __serializer(self):
         return [
