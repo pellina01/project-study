@@ -19,7 +19,7 @@ class aggregator:
     def aggregate(self):
         try:
             query_result = list(self.client.query(
-                'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic)).get_points(measurement=self.topic))
+                'SELECT * FROM {} WHERE time > now() - 10d'.format(self.topic)).get_points(measurement=self.topic))
 
             for lists in query_result:
                 self.average += lists["value"]
