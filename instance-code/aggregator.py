@@ -20,7 +20,7 @@ class aggregator:
                 'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic))
 
             data_points = list(query_result.get_points(measurement=self.topic))
-
+            print(data_points)
             self.aggregated_data = 0
             n = 0
             for lists in data_points:
