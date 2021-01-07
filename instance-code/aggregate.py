@@ -10,4 +10,4 @@ for key, value in data["cloud"].items():
 
 for topic in cloud["topics_aggregated"]:
     aggregator(topic, cloud["influxHost"], cloud["username"],
-               cloud["password"], cloud["database_aggregated"]).aggregate()
+               cloud["password"], cloud["database"], cloud["database_aggregated"]).aggregate()

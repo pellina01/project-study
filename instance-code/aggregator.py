@@ -5,8 +5,9 @@ class aggregator:
     import math
     import json
 
-    def __init__(self, topic, host, user, pw, db):
+    def __init__(self, topic, host, user, pw, db, db_aggreggate):
         self.topic = topic
+        self.db_aggregate = db_aggregate
         self.client = self.InfluxDBClient(host=host, port=8086,
                                           username=user, password=pw)
         self.client.switch_database(db)
@@ -24,6 +25,7 @@ class aggregator:
             self.aggregated_data /= n
 
             json_body = __serializer()
+            self.client.switch_database(self.db_aggregate)
 
             self.client.write_points(json_body)
         except Exception as e:
