@@ -43,6 +43,6 @@ class aggregator:
                 },
                 "time": self.math.trunc(time.time())-86400,
                 "fields": {
-                    "value": aggregated_data
+                    "value": self.aggregated_data
                 }
             }]
