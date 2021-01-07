@@ -14,16 +14,16 @@ class aggregator:
 
     def aggregate(self):
         try:
-            query_result = list(self.client.query(
-                'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic)).get_points(measurement=self.topic))
-            # query_result = self.client.query(
-            #     'SELECT * FROM {} WHERE time > now() - 1d'.format(topic))
+            # query_result = list(self.client.query(
+            #     'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic)).get_points(measurement=self.topic))
+            query_result = self.client.query(
+                'SELECT * FROM {} WHERE time > now() - 1d'.format(topic))
 
-            # data_points = list(query_result.get_points(measurement=topic))
+            data_points = list(query_result.get_points(measurement=topic))
 
             self.aggregated_data = 0
             n = 0
-            for lists in query_result:
+            for lists in data_points:
                 self.aggregated_data += lists["value"]
                 n += 1
             self.aggregated_data /= n
