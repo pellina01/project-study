@@ -4,6 +4,10 @@ import json
 import logging
 import traceback
 
+with open("sample.txt", "w") as text_file:
+    text_file.write("rebooted")
+
+
 with open('config.json', 'r') as file:
     data = json.loads(file.read())
 
