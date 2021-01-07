@@ -22,6 +22,8 @@ class aggregator:
             query_result = list(self.client.query(
                 'SELECT * FROM {} WHERE time > now() - 10d'.format(self.topic)).get_points(measurement=self.topic))
 
+            print(len(query_result))
+
             for lists in query_result:
                 self.average += lists["value"]
             self.average /= len(query_result)
@@ -42,6 +44,6 @@ class aggregator:
                     "unit": self.unit,
                 },
                 "fields": {
-                    "value": float(self.math.round(self.average, 2))
+                    "value": float(round(self.average, 2))
                 }
             }]
