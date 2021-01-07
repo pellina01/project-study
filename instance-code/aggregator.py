@@ -17,9 +17,9 @@ class aggregator:
             # query_result = list(self.client.query(
             #     'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic)).get_points(measurement=self.topic))
             query_result = self.client.query(
-                'SELECT * FROM {} WHERE time > now() - 1d'.format(topic))
+                'SELECT * FROM {} WHERE time > now() - 1d'.format(self.topic))
 
-            data_points = list(query_result.get_points(measurement=topic))
+            data_points = list(query_result.get_points(measurement=self.topic))
 
             self.aggregated_data = 0
             n = 0
