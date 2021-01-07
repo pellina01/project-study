@@ -43,7 +43,7 @@ class aggregator:
                 "tags": {
                     "user": self.topic,
                 },
-                "time": self.math.trunc(time.time())-86400,
+                "time": self.math.trunc(self.time.time())-86400,
                 "fields": {
                     "value": self.aggregated_data
                 }
