@@ -2,8 +2,9 @@ class listen:
 
     def __message_callback_add(self, client, userdata, msg):
         try:
-            self.influxHandler.dbsend(
-                self.jsonParser(msg.payload.decode("utf-8")))
+            self.influxHandler.dbsend(self.jsonParser(msg.payload.decode("utf-8")))
+            print(self.jsonParser(msg.payload.decode("utf-8"))
+            
         except Exception as e:
             print("error occured: %s" % self.traceback.format_exc())
             self.logging.error(self.traceback.format_exc())
