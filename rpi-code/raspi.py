@@ -1,3 +1,4 @@
+#!/bin/env python3
 import time
 import json
 from mqtt import mqtt

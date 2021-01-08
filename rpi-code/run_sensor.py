@@ -1,3 +1,4 @@
+#!/bin/env python3
 # edited for actual application
 import time
 import json
