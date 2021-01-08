@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# edited for actual application
+#!/bin/bash
 import time
 import json
 import logging
