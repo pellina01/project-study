@@ -3,13 +3,13 @@ import time
 import json
 from mqtt import mqtt
 import schedule
-import run_sensor
+from run_sensor import main
 
 
 time.sleep(5)
 
 
-schedule.every(1).minutes.do(run_sensor.main())
+schedule.every(1).minutes.do(main())
 
 
 with open('config.json', 'r') as file:
@@ -25,4 +25,4 @@ for key, value in data["raspi"].items():
 rpi = mqtt("rpi", raspi["mqtt_url"])
 
 while True:
-    time.sleep(100)
+    schedule.run_pending()
