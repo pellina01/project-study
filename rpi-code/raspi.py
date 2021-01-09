@@ -9,7 +9,7 @@ from run_sensor import main
 time.sleep(5)
 
 
-schedule.every(1).minutes.do(main())
+schedule.every(1).minutes.do(main)
 
 
 with open('config.json', 'r') as file:
