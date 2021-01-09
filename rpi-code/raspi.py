@@ -1,10 +1,16 @@
-#!/bin/bash
+#!/usr/bin/python3
 import time
 import json
 from mqtt import mqtt
+import schedule
+import run_sensor
 
 
 time.sleep(5)
+
+
+schedule.every(1).minutes.do(run_sensor.main())
+
 
 with open('config.json', 'r') as file:
     data = json.loads(file.read())

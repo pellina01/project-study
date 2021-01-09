@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import time
 import json
 import logging
@@ -9,6 +8,8 @@ from mqtt import mqtt
 from wire1 import read_value
 from sensor_serializer import sensor
 from multiprocessing import Process
+import logging
+import traceback
 
 time.sleep(5)
 
@@ -24,14 +25,21 @@ raspi = {}
 for key, value in data["raspi"].items():
     raspi.update({key: value})
 
+def main():
+    logging.basicConfig(filename="error.log")
+
+    try:
+        for sensor_listed in raspi["sensors"]:
+            sensor(raspi["mqtt_url"], sensor_listed).Process()
+    except:
+        print(traceback.format_exc())
+        logging.error(traceback.format_exc())
+
+
 
 if __name__ == "__main__":
-    logging.basicConfig(filename=raspi["error_file"])
-
-    sensor_list = []
-    for sensor_listed in raspi["sensors"]:
+    main()
         # sensor_list.append(sensor(raspi["mqtt_url"], sensor_listed).process)
-        sensor(raspi["mqtt_url"], sensor_listed).Process()
 
     # processes = []
     # try:
