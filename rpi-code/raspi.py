@@ -12,7 +12,7 @@ time.sleep(5)
 schedule.every(1).minutes.do(main)
 
 
-with open('config.json', 'r') as file:
+with open('home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
     data = json.loads(file.read())
 
 with open("sample2.txt", "w") as text_file:
