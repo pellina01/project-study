@@ -27,3 +27,14 @@ class status_validate:
 
     def __error(self):
         return True
+
+    def __is_on(self):
+        self.counter += 1
+        return True if self.counter == 1 else False
+
+    def __is_off(self):
+        if self.counter > 0:
+            self.counter -= 1
+            return True if self.counter == 0 else False
+        else:
+            return False

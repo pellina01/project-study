@@ -42,9 +42,11 @@ class mqtt:
     def send(self, payload, retain=False):
         try:
             self.client.publish(self.topic, payload, retain)
+            return True
         except Exception as e:
             print("error occured: %s" % e)
             self.logging.error(self.traceback.format_exc())
+            return False
 
     def disconnect(self):
         self.client.disconnect()

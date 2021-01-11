@@ -5,11 +5,18 @@ class listen:
             self.influxHandler.dbsend(self.jsonParser(msg.payload.decode("utf-8")))
         except Exception as e:
             print(e)
+
+    def __message_callback_add_calibration(self, client, userdata, msg):
+        try:
+            self.influxHandler.dbsend(self.jsonParser(msg.payload.decode("utf-8")))
+        except Exception as e:
+            print(e)
  
 
-    def __init__(self, topic, mqtturl, influxHost, database, username, password, influxPort=8086, mqttport=1883, keepalive=60):
+    def __init__(self, topic, mqtturl, influxHost, database, username, password, influxPort=8086, mqttport=1883, keepalive=60, type="sensor"):
         import paho.mqtt.client as mqtt
         from influx_handler import handler
+        from influx_handler_calibration import calibration_handler
         import json
 
         import logging
@@ -21,8 +28,6 @@ class listen:
 
         self.jsonParser = json.loads
 
-        self.influxHandler = handler(
-            influxHost, username, password, database, topic)
 
         mqttClient = mqtt.Client()
 
@@ -42,7 +47,23 @@ class listen:
 
         mqttClient.subscribe(topic)
 
-        mqttClient.message_callback_add(
-            topic, self.__message_callback_add)
+        if type == "calibration":
+            self.influxHandler = handler(
+                influxHost, username, password, database, topic)
+            mqttClient.message_callback_add(
+                topic, self.__message_callback_add_calibration)
+
+        elif type == "feedback":
+            self.influxHandler = handler(
+                influxHost, username, password, database, topic)
+            mqttClient.message_callback_add(
+                topic, self.__message_callback_add_calibration)
+
+        else:
+            self.calibrate_influxHandler = calibration_handler(
+                influxHost, username, password, database, topic)
+            mqttClient.message_callback_add(
+                topic, self.__message_callback_add)
+            
 
         print("Connected and subscribed to topic: %s" % topic)
