@@ -11,7 +11,7 @@ with open("sample.txt", "w") as text_file:
     text_file.write("python starts")
 
 
-with open('config.json', 'r') as file:
+with open('/home/ubuntu/project-study/instance-code/config.json', 'r') as file:
     data = json.loads(file.read())
 
 cloud = {}
