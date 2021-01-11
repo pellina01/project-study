@@ -32,9 +32,9 @@ for topic in topics:
 
 
  switch = { "ph": "pH",
-        "tb": "NTU",
-        "temp": "Celsius",
-        "do": "mg/L"
+            "tb": "NTU",
+            "temp": "Celsius",
+            "do": "mg/L"
         }
        
  
