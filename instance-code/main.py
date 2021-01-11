@@ -31,11 +31,11 @@ for topic in topics:
                           cloud["database"], cloud["username"], cloud["password"]))
 
 
- switch = { "ph": "pH",
+switch =   { "ph": "pH",
             "tb": "NTU",
             "temp": "Celsius",
             "do": "mg/L"
-        }
+            }
        
  
 
