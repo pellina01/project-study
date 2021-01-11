@@ -8,6 +8,7 @@ class aggregator:
     from influxdb import InfluxDBClient
 
     def __init__(self, topic, host, user, pw, db, db_aggregate, unit):
+        self.db = db
         self.unit = unit
         self.topic = topic
         self.db_aggregate = db_aggregate
