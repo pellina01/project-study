@@ -39,7 +39,7 @@ class feedback:
         else:
             return self.json.dumps({"status": "off", "value": "{} is {}".format(self.device,"off")})
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     from do import read_do
     from aerator import aerate
     import json
