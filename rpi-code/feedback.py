@@ -28,9 +28,9 @@ class feedback:
                 self.correction(self.feedback_is_on)
                 if self.mq_client.send(self.__feedback_serializer()):
                     self.sent = True
-                    delay_time = 600
+                    delay_time = 10
                 else:
-                    delay_time = 60
+                    delay_time = 5
             self.time.sleep(delay_time)
 
     def __feedback_serializer(self):
