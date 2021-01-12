@@ -35,28 +35,22 @@ class feedback:
 
     def __feedback_serializer(self):
         if self.feedback_is_on:
-            return self.json.dumps({"status": status, "value": "{} is {}".format(self.device,"on")})
+            return self.json.dumps({"status": "on", "value": "{} is {}".format(self.device,"on")})
         else:
-            return self.json.dumps({"status": status, "value": "{} is {}".format(self.device,"off")}
+            return self.json.dumps({"status": "off", "value": "{} is {}".format(self.device,"off")})
 
-
-import json
-from do import read_do
-from aerator import aerate
-    
-if __name__ == "__main__" :
-
+if __name__ == "__main__"
+    from do import read_do
+    from aerator import aerate
+    import json
     with open('/home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
         data = json.loads(file.read())
 
     raspi = {}
     for key, value in data["raspi"].items():
         raspi.update({key: value})
-   
-    aerator = (raspi["mqtt_url"], read_do, aerate,8.25, 7.56, "aerator")
+
+    aerator = feedback(raspi["mqtt_url"], read_do, aerate,8.25, 7.56, "aerator")
     aerator.start()
-
-
-
 
 
