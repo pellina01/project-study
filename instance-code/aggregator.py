@@ -33,7 +33,7 @@ class aggregator:
             self.client.switch_database(self.db_aggregate)
 
             self.client.write_points(json_body)
-        except Exception as e:
+        except:
             print(self.traceback.format_exc())
             self.logging.error(self.traceback.format_exc())
 

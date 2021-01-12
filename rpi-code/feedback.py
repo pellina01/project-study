@@ -15,32 +15,33 @@ class feedback:
         self.mq_client = self.mqtt("rpi", mqtt_url)
         self.prev_status = False
 
-    def start(self):
-        while True:
-            print(self.read_sensor_value()[1])
-            if (self.read_sensor_value()[1] > self.HL) or (self.read_sensor_value()[1] < self.LL):
-                self.feedback_is_on = True
-            else: 
-                self.feedback_is_on = False
+    def check(self):
+        print(self.read_sensor_value()[1])
+        if self.read_sensor_value()[1] not in range(self.LL, self.HL):
+            self.feedback_is_on = True
+        else: 
+            self.feedback_is_on = False
 
-            if not self.sent or self.feedback_is_on != self.prev_status:
-                self.sent = False
-                self.prev_status = self.feedback_is_on
-                self.correction(self.feedback_is_on)
-                if self.mq_client.send(self.__feedback_serializer()):
-                    self.sent = True
-                    delay_time = 10
-                else:
-                    delay_time = 5
+        if not self.sent or self.feedback_is_on != self.prev_status:
+            self.sent = False
+            self.prev_status = self.feedback_is_on
+            self.correction(self.feedback_is_on)
+            if self.mq_client.send(self.__feedback_serializer()):
+                self.sent = True
+                delay_time = 10
+            else:
+                delay_time = 5
 
-            print(self.feedback_is_on)
-            self.time.sleep(delay_time)
+        print("feedback is on: " + self.feedback_is_on)
+        print("sent: " + self.sent)
+        self.time.sleep(delay_time)
 
     def __feedback_serializer(self):
-        if self.feedback_is_on:
-            return self.json.dumps({"status": "on", "value": "{} is {}".format(self.device,"on")})
-        else:
-            return self.json.dumps({"status": "off", "value": "{} is {}".format(self.device,"off")})
+        return self.json.dumps({
+                "status": "ok", 
+                "value": "{} is {}".format(self.device,"on" if self.feedback_is_on else "off")
+                })
+ 
 
 
 
@@ -66,7 +67,11 @@ if __name__ == "__main__":
 
     function = serialize(read_arduino, 11, 3, 4)
     aerator = feedback(raspi["mqtt_url"], read_do, function, 8.25, 7.56, "aerator")
-    aerator.start()
+    while True:
+        try:
+            aerator.check()
+        except Exception as e:
+            print(e)
 
 
 

@@ -37,15 +37,13 @@ for topic in cloud["topics_aggregated"]:
     data_to_aggregate.append(aggregator(topic, cloud["influxHost"], cloud["username"],
             cloud["password"], cloud["database"], cloud["database_aggregated"], switch.get(topic, "no unit")))
 
-
-
 def aggregating():
     for data in data_to_aggregate:
         data.aggregate()
 
-schedule.every(1440/cloud["per_day"]).minutes.do(aggregating)
 
 
+schedule.every(1).minutes.do(aggregating)
 
 listening = True
 while True:
