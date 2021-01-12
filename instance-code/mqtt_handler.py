@@ -9,6 +9,7 @@ class listen:
     def __message_callback_add_calibration(self, client, userdata, msg):
         try:
             self.calibrate_influxHandler.dbsend(str(msg.payload.decode("utf-8")))
+            print(str(msg.payload.decode("utf-8")))
         except Exception as e:
             print(e)
  
