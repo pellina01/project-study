@@ -42,9 +42,20 @@ class feedback:
         else:
             return self.json.dumps({"status": "off", "value": "{} is {}".format(self.device,"off")})
 
+
+
+def serialize(read, address, cmd_on, cmd_off):
+    def switch(is_on):
+        if is_on:
+            read(address, cmd_on)
+        else:
+            read(address, cmd_off)
+    return switch
+
+
 if __name__ == "__main__":
     from do import read_do
-    from aerator import aerate
+    from i2c import read_arduino
     import json
     with open('/home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
         data = json.loads(file.read())
@@ -53,7 +64,11 @@ if __name__ == "__main__":
     for key, value in data["raspi"].items():
         raspi.update({key: value})
 
-    aerator = feedback(raspi["mqtt_url"], read_do, aerate,8.25, 7.56, "aerator")
+    function = serialize(read_arduino, 11, 3, 4)
+    aerator = feedback(raspi["mqtt_url"], read_do, function, 8.25, 7.56, "aerator")
     aerator.start()
+
+
+
 
 
