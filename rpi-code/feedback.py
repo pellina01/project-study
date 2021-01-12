@@ -39,11 +39,12 @@ class feedback:
         else:
             return self.json.dumps({"status": status, "value": "{} is {}".format(self.device,"off")}
 
-            
-if __name__ == "__main__":
-    import json
-    from do import read_do
-    from aerator import aerate
+
+import json
+from do import read_do
+from aerator import aerate
+    
+if __name__ == "__main__" :
 
     with open('/home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
         data = json.loads(file.read())
