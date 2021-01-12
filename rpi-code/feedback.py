@@ -34,10 +34,10 @@ class feedback:
             self.time.sleep(delay_time)
 
     def __feedback_serializer(self):
-        status = "off"
         if self.feedback_is_on:
-            status = "on"
-        return self.json.dumps({"status": status, "value": "{} is {}".format(self.device,status)})
+            return self.json.dumps({"status": status, "value": "{} is {}".format(self.device,"on")})
+        else:
+            return self.json.dumps({"status": status, "value": "{} is {}".format(self.device,"off")}
 
             
 if __name__ == "__main__":
@@ -53,6 +53,7 @@ if __name__ == "__main__":
         raspi.update({key: value})
    
     aerator = (raspi["mqtt_url"], read_do, aerate,8.25, 7.56, "aerator")
+    aerator.start()
 
 
 
