@@ -23,7 +23,7 @@ for topic in cloud["topics"]:
                           cloud["database"], cloud["username"], cloud["password"]))
 calibrate = []
 for items in cloud["calibration"]:
-    calibrate.append(listen(cloud["calibration"], cloud["url"], cloud["influxHost"],
+    calibrate.append(listen(items, cloud["url"], cloud["influxHost"],
         cloud["database"], cloud["username"], cloud["password"], type="calibration"))
 
 switch =   { "ph": "pH",

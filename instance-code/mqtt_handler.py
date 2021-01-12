@@ -15,8 +15,6 @@ class listen:
 
     def __init__(self, topic, mqtturl, influxHost, database, username, password, influxPort=8086, mqttport=1883, keepalive=60, type="sensor"):
         import paho.mqtt.client as mqtt
-        from influx_handler import handler
-        from influx_handler_calibration import calibration_handler
         import json
 
         import logging
@@ -48,14 +46,16 @@ class listen:
         mqttClient.subscribe(topic)
 
         if type == "calibration":
-            self.calibrate_influxHandler = handler(
+            from influx_handler_calibration import calibration_handler
+            self.calibrate_influxHandler = calibration_handler(
                 influxHost, username, password, database, topic)
             mqttClient.message_callback_add(
                 topic, self.__message_callback_add_calibration)
 
 
         else:
-            self.influxHandler = calibration_handler(
+            from influx_handler import handler
+            self.influxHandler = handler(
                 influxHost, username, password, database, topic)
             mqttClient.message_callback_add(
                 topic, self.__message_callback_add)
