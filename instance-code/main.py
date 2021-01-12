@@ -43,7 +43,7 @@ def aggregating():
     for data in data_to_aggregate:
         data.aggregate()
 
-schedule.every(1).minutes.do(aggregating)
+schedule.every(1440/cloud["per_day"]).minutes.do(aggregating)
 
 
 
