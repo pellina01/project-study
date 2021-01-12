@@ -17,15 +17,14 @@ for key, value in data["cloud"].items():
 
 logging.basicConfig(filename=cloud["error_file"])
 
-topics = []
-for topic in cloud["topics"]:
-    topics.append(topic)
-
 sensors = []
-for topic in topics:
+for topic in cloud["topics"]:
     sensors.append(listen(topic, cloud["url"], cloud["influxHost"],
                           cloud["database"], cloud["username"], cloud["password"]))
-
+calibrate = []
+for items in cloud["calibration"]:
+    calibrate.append(listen(cloud["calibration"], cloud["url"], cloud["influxHost"],
+        cloud["database"], cloud["username"], cloud["password"], type="calibration"))
 
 switch =   { "ph": "pH",
             "tb": "NTU",
@@ -33,8 +32,6 @@ switch =   { "ph": "pH",
             "do": "mg/L"
             }
        
- 
-
 data_to_aggregate = []
 for topic in cloud["topics_aggregated"]:
     data_to_aggregate.append(aggregator(topic, cloud["influxHost"], cloud["username"],

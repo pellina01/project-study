@@ -15,8 +15,6 @@ schedule.every(1).minutes.do(main)
 with open('home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
     data = json.loads(file.read())
 
-with open("sample2.txt", "w") as text_file:
-    text_file.write("python starts")
 
 raspi = {}
 for key, value in data["raspi"].items():

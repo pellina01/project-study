@@ -17,7 +17,7 @@ class feedback:
 
     def start(self):
         while True:
-            if self.read_sensor_value > self.HL or self.read_sensor_value < self.LL:
+            if self.read_sensor_value() > self.HL or self.read_sensor_value() < self.LL:
                 self.feedback_is_on = True
             else: 
                 self.feedback_is_on = False
@@ -26,7 +26,7 @@ class feedback:
                 self.sent = False
                 self.prev_status = self.feedback_is_on
                 self.correction(self.feedback_is_on)
-                if self.mq_client.send(self.__feedback_serializer):
+                if self.mq_client.send(self.__feedback_serializer()):
                     self.sent = True
                     delay_time = 600
                 else:
@@ -34,8 +34,27 @@ class feedback:
             self.time.sleep(delay_time)
 
     def __feedback_serializer(self):
-        return self.json.dumps({"status": "ok", "value": "{} is {}".format(self.device,self.feedback_is_on)})
+        status = "off"
+        if self.feedback_is_on:
+            status = "on"
+        return self.json.dumps({"status": status, "value": "{} is {}".format(self.device,status)})
 
             
-                
+if __name__ == "__main__":
+    import json
+    from do import read_do
+    from aerator import aerate
+
+    with open('home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
+        data = json.loads(file.read())
+
+    raspi = {}
+    for key, value in data["raspi"].items():
+        raspi.update({key: value})
+   
+    aerator = (raspi["mqtt_url"], read_do, aerate,8.25, 7.56, "aerator")
+
+
+
+
 

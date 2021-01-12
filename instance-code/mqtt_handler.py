@@ -8,7 +8,7 @@ class listen:
 
     def __message_callback_add_calibration(self, client, userdata, msg):
         try:
-            self.influxHandler.dbsend(self.jsonParser(msg.payload.decode("utf-8")))
+            self.calibrate_influxHandler.dbsend(str(msg.payload.decode("utf-8")))
         except Exception as e:
             print(e)
  
@@ -48,19 +48,14 @@ class listen:
         mqttClient.subscribe(topic)
 
         if type == "calibration":
-            self.influxHandler = handler(
+            self.calibrate_influxHandler = handler(
                 influxHost, username, password, database, topic)
             mqttClient.message_callback_add(
                 topic, self.__message_callback_add_calibration)
 
-        elif type == "feedback":
-            self.influxHandler = handler(
-                influxHost, username, password, database, topic)
-            mqttClient.message_callback_add(
-                topic, self.__message_callback_add_calibration)
 
         else:
-            self.calibrate_influxHandler = calibration_handler(
+            self.influxHandler = calibration_handler(
                 influxHost, username, password, database, topic)
             mqttClient.message_callback_add(
                 topic, self.__message_callback_add)
