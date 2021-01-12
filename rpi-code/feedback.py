@@ -17,8 +17,8 @@ class feedback:
 
     def start(self):
         while True:
-            comparator = self.read_sensor_value()[1]
-            if (comparator > self.HL) or (comparator < self.LL):
+            print(self.read_sensor_value()[1])
+            if (self.read_sensor_value()[1] > self.HL) or (self.read_sensor_value()[1] < self.LL):
                 self.feedback_is_on = True
             else: 
                 self.feedback_is_on = False
