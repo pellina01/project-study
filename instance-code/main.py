@@ -43,7 +43,8 @@ def aggregating():
 
 
 
-schedule.every(1).minutes.do(aggregating)
+# schedule.every(1).minutes.do(aggregating)
+schedule.every().day.at("23:59").do(aggregating)
 
 listening = True
 while True:
