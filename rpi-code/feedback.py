@@ -17,7 +17,7 @@ class feedback:
 
     def check(self):
         print(self.read_sensor_value()[1])
-        if self.read_sensor_value()[1] not in range(self.LL, self.HL):
+        if self.LL > self.read_sensor_value()[1] or self.read_sensor_value()[1] > self.HL:
             self.feedback_is_on = True
         else: 
             self.feedback_is_on = False
