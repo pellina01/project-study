@@ -1,6 +1,6 @@
 class calibration_handler:
     def __init__(self, influxHost, username, password, database, topic, influxPort=8086):
-        from influxdb import influxDBClient
+        from influxdb import InfluxDBClient
         import logging
         import traceback
         import time
