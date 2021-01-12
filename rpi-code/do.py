@@ -15,7 +15,7 @@ def read_do(*args):
         status, value = read_value()
         if status == "error":
             return status, value
-        if value not in range(temp[0],temp[45]):
+        if int(value) not in range(temp[0],temp[46]):
             print(value)
             return "error", "Cannot interpolate. Limit reached"
         elif value in temp:
