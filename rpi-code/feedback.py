@@ -45,7 +45,7 @@ if __name__ == "__main__":
     from do import read_do
     from aerator import aerate
 
-    with open('home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
+    with open('/home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
         data = json.loads(file.read())
 
     raspi = {}
