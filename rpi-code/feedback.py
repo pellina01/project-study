@@ -32,6 +32,8 @@ class feedback:
                     delay_time = 10
                 else:
                     delay_time = 5
+
+            print(self.feedback_is_on)
             self.time.sleep(delay_time)
 
     def __feedback_serializer(self):
