@@ -28,13 +28,13 @@ class feedback:
             self.correction(self.feedback_is_on)
             if self.mq_client.send(self.__feedback_serializer()):
                 self.sent = True
-                delay_time = 10
             else:
-                delay_time = 5
+                return 5
+        return 30
 
-        print("feedback is on: " + str(self.feedback_is_on))
-        print("sent: " + str(self.sent))
-        self.time.sleep(delay_time)
+        # print("feedback is on: " + str(self.feedback_is_on))
+        # print("sent: " + str(self.sent))
+        # self.time.sleep(delay_time)
 
     def __feedback_serializer(self):
         return self.json.dumps({
@@ -55,6 +55,7 @@ def serialize(read, address, cmd_on, cmd_off):
 
 
 if __name__ == "__main__":
+    import time
     from do import read_do
     from i2c import read_arduino
     import json
@@ -69,7 +70,8 @@ if __name__ == "__main__":
     aerator = feedback(raspi["mqtt_url"], read_do, function, 8.25, 7.56, "aerator")
     while True:
         try:
-            aerator.check()
+            delay = aerator.check()
+            time.sleep(delay)
         except Exception as e:
             print(e)
 
