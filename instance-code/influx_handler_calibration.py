@@ -28,7 +28,7 @@ class calibration_handler:
                 "data type": "string"
             },
             "fields":   {
-                "messege": recieved_messege,
-                "next calibration": self.datetime.fromtimestamp(self.time.time() + 7889231).strftime('%Y-%m-%d %H:%M:%S') # +3months
+                "message": recieved_messege,
+                "next calibration date": self.datetime.fromtimestamp(self.time.time() + 7889231).strftime('%Y-%m-%d %H:%M:%S') # +3months
             }
         }]
