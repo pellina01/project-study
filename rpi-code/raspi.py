@@ -40,7 +40,7 @@ period = math.trunc(1440/raspi["schedule_per_day"])
 for i in range(0, raspi["schedule_per_day"]):
     print(schedules.append(schedule.every().day.at(sched(period*i)).do(main)))
 
-rpi = mqtt("rpi", raspi["mqtt_url"])
+# rpi = mqtt("rpi", raspi["mqtt_url"])
 
 while True:
     schedule.run_pending()

@@ -67,7 +67,7 @@ if __name__ == "__main__":
         raspi.update({key: value})
 
     function = serialize(read_arduino, 11, 3, 4)
-    aerator = feedback(raspi["mqtt_url"], read_do, function, 8.25, 7.56, "feedback")
+    aerator = feedback(raspi["mqtt_url"], read_do, function, 8.25, 7.56, "rpi")
     while True:
         try:
             delay = aerator.check()
