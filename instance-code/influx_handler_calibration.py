@@ -4,6 +4,8 @@ class calibration_handler:
         import logging
         import traceback
         import time
+        from datetime import datetime
+        self.datetime = datetime
         self.time = time
         self.topic = topic
         self.influxClient = InfluxDBClient(
@@ -27,6 +29,6 @@ class calibration_handler:
             },
             "fields":   {
                 "messege": recieved_messege,
-                "next calibration": int(self.time.time_ns() + 7776000000000000) # +3months in nanosecond
+                "next calibration": self.datetime.fromtimestamp(self.time.time() + 7889231).strftime('%Y-%m-%d %H:%M:%S') # +3months
             }
         }]
