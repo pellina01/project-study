@@ -28,13 +28,14 @@ class feedback:
             self.correction(self.feedback_is_on)
             if self.mq_client.send(self.__feedback_serializer()):
                 self.sent = True
-            else:
-                return 5
+            # else:
+                
+
+        print("feedback is on: " + str(self.feedback_is_on))
+        print("sent: " + str(self.sent))
+        self.time.sleep(delay_time)
         return 5
 
-        # print("feedback is on: " + str(self.feedback_is_on))
-        # print("sent: " + str(self.sent))
-        # self.time.sleep(delay_time)
 
     def __feedback_serializer(self):
         return self.json.dumps({
