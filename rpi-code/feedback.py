@@ -12,7 +12,7 @@ class feedback:
 
         self.feedback_is_on = False
         self.sent = False
-        self.mq_client = self.mqtt("rpi", mqtt_url)
+        self.mq_client = self.mqtt(device_name, mqtt_url)
         self.prev_status = False
 
     def check(self):
@@ -33,7 +33,7 @@ class feedback:
 
         print("feedback is on: " + str(self.feedback_is_on))
         print("sent: " + str(self.sent))
-        return 5
+        return 300
 
 
     def __feedback_serializer(self):
