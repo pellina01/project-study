@@ -33,7 +33,6 @@ class feedback:
 
         print("feedback is on: " + str(self.feedback_is_on))
         print("sent: " + str(self.sent))
-        self.time.sleep(delay_time)
         return 5
 
 
