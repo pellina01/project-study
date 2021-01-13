@@ -30,7 +30,7 @@ class feedback:
                 self.sent = True
             else:
                 return 5
-        return 30
+        return 5
 
         # print("feedback is on: " + str(self.feedback_is_on))
         # print("sent: " + str(self.sent))
