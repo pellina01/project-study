@@ -1,20 +1,18 @@
-from flask import Flask
-from jinja2 import Environment, FileSystemLoader
-from weasyprint import HTML
+from flask import Flask, make_response, render_template
+import pdfkit
 
 app = Flask(__name__)
 
-file_loader = FileSystemLoader(
-    'C:/assorted-projects/thesis/flask-pdf/html-to-pdf/templates')
-env = Environment(loader=file_loader)
-template = env.get_template('hello-world.html')
+@app.route('/<name>')
+def main(name):
+    rendered = render_template('hello-world.html',name=name) #embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
+    pdf = pdfkit.from_string(rendered, False)
 
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=output.pdf'
 
-@app.route('/')
-def main():
-    html_out = template.render(name='johny')
-    return HTML(string=html_out).write_pdf()
-
+    return response
 
 if __name__ == "__main__":
     app.run()
