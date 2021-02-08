@@ -16,17 +16,17 @@ def plot():
     # giving a title to my graph 
     plt.title('My first graph!') 
     # function to show the plot 
-    plt.savefig('report-generator/static-files/chart1.png')
+    plt.savefig('report-generator/images/chart1.png')
 
-@app.route('/static-files/chart1')
+@app.route('/images/chart1')
 def psample():
-    return send_file('static-files/chart1.png')
+    return send_file('images/chart1.png')
 
 
 @app.route('/<name>')
 def main(name):
     plot()
-    rendered = render_template('hello-world.html',name=name) #embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
+    rendered = render_template('report.html',name=name) #embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
     pdf = pdfkit.from_string(rendered, False)
 
     response = make_response(pdf)
