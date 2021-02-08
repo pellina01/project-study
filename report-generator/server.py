@@ -16,11 +16,11 @@ def plot():
     # giving a title to my graph 
     plt.title('My first graph!') 
     # function to show the plot 
-    plt.savefig('report-generator/templates/psample.png')
+    plt.savefig('report-generator/static-files/chart1.png')
 
-@app.route('/img/psample')
+@app.route('/static-files/chart1')
 def psample():
-    return send_file('templates/psample.png')
+    return send_file('static-files/chart1.png')
 
 
 @app.route('/<name>')
