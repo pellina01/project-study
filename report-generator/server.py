@@ -26,7 +26,7 @@ def psample():
 @app.route('/<name>')
 def main(name):
     plot()
-    rendered = render_template('report.html',name=name) #embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
+    rendered = render_template('report.html',name=name, image="report-generator/images/chart1.png") #embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
     pdf = pdfkit.from_string(rendered, False)
 
     response = make_response(pdf)
