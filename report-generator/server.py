@@ -16,7 +16,7 @@ def plot():
     # giving a title to my graph 
     plt.title('My first graph!') 
     # function to show the plot 
-    plt.savefig('report-generator/images/chart1.png')
+    plt.savefig('images/chart1.png')
 
 @app.route('/images/chart1')
 def psample():
