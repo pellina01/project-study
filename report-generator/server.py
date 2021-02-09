@@ -38,7 +38,7 @@ def main(name):
 
 @app.route('/api/<fromm>/<to>')
 def api(fromm, to):
-    return "from:{fromm} to:{to}"
+    return "from:{fromm} to:{to}".format(fromm=fromm, to=to)
 
 
 if __name__ == "__main__":
