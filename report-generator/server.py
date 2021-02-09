@@ -36,7 +36,7 @@ def main(name):
     return response
     # return rendered
 
-@app.route('/api/<fromm>&<to>')
+@app.route('/api/<fromm>/<to>')
 def api(fromm, to):
     return "from:{fromm} to:{to}"
 
