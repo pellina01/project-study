@@ -39,7 +39,7 @@ def main(name):
 @app.route('/api/<fromm>/<to>')
 def api(fromm, to):
     return "from:{fromm} to:{to}".format(fromm=fromm, to=to)
-
+# grafana include to url some global variables (ex: {__to}, {__from})
 
 if __name__ == "__main__":
     app.run(host= '0.0.0.0')
