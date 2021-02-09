@@ -36,5 +36,10 @@ def main(name):
     return response
     # return rendered
 
+@app.route('/<fromm>&<to>')
+def api(fromm, to):
+    return "from:{fromm} to:{to}"
+
+
 if __name__ == "__main__":
     app.run()
