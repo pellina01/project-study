@@ -4,43 +4,38 @@ from matplotlib import pyplot as plt
 
 app = Flask(__name__)
 
-def plot():
-    x = [1,2,3] 
-    y = [2,4,1] 
-    # plotting the points  
-    plt.plot(x, y) 
-    # naming the x axis 
-    plt.xlabel('x - axis') 
-    # naming the y axis 
-    plt.ylabel('y - axis') 
-    # giving a title to my graph 
-    plt.title('My first graph!') 
-    # function to show the plot 
-    plt.savefig('report-generator/images/chart1.png')
+def plot(time, amplitude, name):
+    plt.plot(time, amplitude) 
+    plt.xlabel('time') 
+    plt.ylabel('amplitude') 
+    plt.title(name) 
+    plt.savefig('report-generator/images/{}.png'.format(name))
 
-@app.route('/images/chart1')
-def psample():
-    return send_file('report-generator/images/chart1.png')
+@app.route('/sensor/<sensor>')
+def psample(sensor):
+    return send_file('images/{}.png'.format(sensor))
 
 
-@app.route('/<name>')
-def main(name):
-    plot()
-    rendered = render_template('report.html',name=name) #embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
-    # options = {'enable-local-file-access': None}
-    pdf = pdfkit.from_string(rendered, False)
+@app.route('/api/<frm>/<to>/<title>')
+def api(frm, to, title):
+    sensor_to_render = []
+    for sensor in sensors:
+        plot( [1,2,3], [2,4,1], sensor)
+        sensor_to_render.append(sensor)
+
+    rendered = render_template('report.html',title=title, sensors=sensor_to_render) #embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
+    options = {'enable-local-file-access': None}
+    css = "report-generator/templates/stylesheet.css"
+    pdf = pdfkit.from_string(rendered, False, options=options, css=css)
 
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = 'inline; filename=output.pdf'
 
+    sensor_to_render = []
     return response
     # return rendered
 
-@app.route('/api/<fromm>/<to>')
-def api(fromm, to):
-    return "from:{fromm} to:{to}".format(fromm=fromm, to=to)
-# grafana include to url some global variables (ex: {__to}, {__from})
-
 if __name__ == "__main__":
+    sensors = ["ph", "tb", "temp", "do"]
     app.run(host= '0.0.0.0')
