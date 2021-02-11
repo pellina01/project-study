@@ -6,10 +6,14 @@ class chart:
         self.influxClient = self.InfluxDBClient(
             influxHost, influxPort, username, password)
         self.influxClient.switch_database(database)
-        self.influxClient.query(
-            'SELECT "duration" FROM "pyexample"."autogen"."brushEvents" WHERE time > now() - 4d GROUP BY "user"')
+        self. data = self.influxClient.query(
+            'SELECT {topic} FROM {measurement} WHERE time > {time}'.format(
+                topic=topic, measurement=measurement,time=to-frm))
 
-    def plot(self, time, amplitude, name):
+    def generate_plot(self):
+        pass
+
+    def __plot(self, time, amplitude, name):
         self.plt.plot(time, amplitude) 
         self.plt.xlabel('time') 
         self.plt.ylabel('amplitude') 
