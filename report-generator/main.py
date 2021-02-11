@@ -1,6 +1,6 @@
 from flask import Flask, make_response, render_template, send_file
 import pdfkit
-import chart
+import chart_dbquery_handler
 
 app = Flask(__name__)
 
@@ -14,6 +14,7 @@ def psample(sensor):
 def api(frm, to, title):
     sensor_to_render = []
     for sensor in sensors:
+        pass
         plot( [1,2,3], [2,4,1], sensor)
         sensor_to_render.append(sensor)
 
