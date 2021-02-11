@@ -6,7 +6,7 @@ class chart:
         self.influxClient = self.InfluxDBClient(
             influxHost, influxPort, username, password)
         self.influxClient.switch_database(database)
-        self. data = self.influxClient.query(
+        self.data = self.influxClient.query(
             'SELECT {topic} FROM {measurement} WHERE time > {time}'.format(
                 topic=topic, measurement=measurement,time=to-frm))
 
