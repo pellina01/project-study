@@ -2,8 +2,9 @@
 <html>
     <body>
         <h1 class="center-txt">{{title}}</h1><br>
-        {% for sensor in sensors %}
-            <img src="http://0.0.0.0:5000/sensor/{{sensor}}" alt={{sensor}} class="center"><br>
+        <h1 class="center-txt">from: {{frm}} to {{to}}</h1>
+        {% for sensor in variables['sensors'] %}
+            <img src="http://0.0.0.0:5000/sensor/{{sensor}}/{{frm}}/{{to}}" alt={{sensor}} class="center"><br>
         {% endfor %}
     </body>
 </html>

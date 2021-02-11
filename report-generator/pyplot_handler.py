@@ -1,0 +1,25 @@
+class chart:
+    from matplotlib import pyplot as plt 
+
+    def __init__(self, measurement, dbase):
+        self.dbase = dbase
+        self.measurement = measurement
+        self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
+
+    def generate_plot(self, frm, to):
+        try:
+            self.time, self.amplitude = self.dbase.query(frm, to)
+            self.plt.plot(self.time, self.amplitude) 
+            self.plt.gca.set_xlim([min(self.time),max(self.time)])
+            self.plt.gca.set_ylim([min(self.amplitude),max(self.amplitude)])
+            self.plt.xlabel('time') 
+            self.plt.ylabel('{} value'.format(self.measurement)) 
+            self.plt.title(self.measurement) 
+            self.plt.savefig('/home/ubuntu/project-study/report-generator/images/{}.png'.format(self.measurement))
+            self.image_link = '/home/ubuntu/project-study/report-generator/images/{}.png'.format(self.measurement)
+
+        except:
+            self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
+
+        finally:
+            return self.image_link
