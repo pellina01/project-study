@@ -1,15 +1,9 @@
 from flask import Flask, make_response, render_template, send_file
 import pdfkit
-from matplotlib import pyplot as plt 
+import chart
 
 app = Flask(__name__)
 
-def plot(time, amplitude, name):
-    plt.plot(time, amplitude) 
-    plt.xlabel('time') 
-    plt.ylabel('amplitude') 
-    plt.title(name) 
-    plt.savefig('report-generator/images/{}.png'.format(name))
 
 @app.route('/sensor/<sensor>')
 def psample(sensor):
