@@ -1,5 +1,6 @@
 class chart:
     from matplotlib import pyplot as plt
+    import traceback
 
     def __init__(self, measurement, dbase):
         self.dbase = dbase
@@ -23,6 +24,7 @@ class chart:
 
         except Exception as e:
             print(e)
+            print(self.traceback.format_exc())
             self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
         finally:
             self.generated = True
