@@ -15,7 +15,7 @@ def psample(sensor, frm, to):
 @app.route('/api/<frm>/<to>/<title>')
 def api(frm, to, title):
     variables = {
-        'frm ': frm,
+        'frm': frm,
         'to': to,
         'title': title,
         'sensors': sensors
