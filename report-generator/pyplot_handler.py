@@ -21,7 +21,8 @@ class chart:
             self.image_link = '/home/ubuntu/project-study/report-generator/images/{}.png'.format(
                 self.measurement)
 
-        except:
+        except Exception as e:
+            print(e)
             self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
         finally:
             self.generated = True
