@@ -11,6 +11,7 @@ class chart:
     def generate_plot(self, frm, to):
         try:
             self.time, self.amplitude = self.dbase.query(frm, to)
+            print(self.time, self.amplitude)
             self.plt.plot(self.time, self.amplitude)
             # self.plt.gca.set_xlim([min(self.time), max(self.time)])
             # self.plt.gca.set_ylim([min(self.amplitude), max(self.amplitude)])
