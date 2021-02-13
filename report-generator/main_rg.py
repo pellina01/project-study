@@ -15,12 +15,13 @@ def psample(sensor, frm, to):
 @app.route('/api/<frm>/<to>/<title>')
 def api(frm, to, title):
     variables = {
-    'frm ': frm,
-    'to' : to,
-    'title' : title,
-    'sensors' : sensors
+        'frm ': frm,
+        'to': to,
+        'title': title,
+        'sensors': sensors
     }
-    rendered = render_template('report.html', variables = variables ) #embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
+    # embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
+    rendered = render_template('report.html', variables=variables)
     options = {'enable-local-file-access': None}
     css = "report-generator/templates/stylesheet.css"
     pdf = pdfkit.from_string(rendered, False, options=options, css=css)
@@ -32,17 +33,18 @@ def api(frm, to, title):
     return response
     # return rendered
 
+
 if __name__ == "__main__":
 
-    with open('/home/ubuntu/project-study/report-generator/config.json', 'r') as file:
+    with open('home/ubuntu/project-study/report-generator/config.json', 'r') as file:
         data = json.loads(file.read())
     sensors = ["ph", "tb", "temp", "do"]
     sensor_objs = {}
 
     for sensor in sensors:
-        sensor_objs[sensor]=chart(
-                sensor, dbase(sensor, data['cloud']['database'], 
-                data['cloud']['username'], data['cloud']['password'], 
-                data['cloud']['influxHost']))
+        sensor_objs[sensor] = chart(
+            sensor, dbase(sensor, data['cloud']['database'],
+                          data['cloud']['username'], data['cloud']['password'],
+                          data['cloud']['influxHost']))
 
-    app.run(host= '0.0.0.0')
+    app.run(host='0.0.0.0')
