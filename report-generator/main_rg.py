@@ -20,6 +20,8 @@ def api(frm, to, title):
         'title': title,
         'sensors': sensors
     }
+    print(frm)
+    print(to)
     # embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
     rendered = render_template('report.html', variables=variables)
     options = {'enable-local-file-access': None}
