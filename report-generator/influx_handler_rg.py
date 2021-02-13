@@ -11,7 +11,7 @@ class dbase:
     def query(self, frm, to):
         self.data = self.influxClient.query(
             'SELECT * FROM {measurement} WHERE time > {time}'.format(
-                measurement=self.measurement, time=int(to)-int(frm)))
+                measurement=self.measurement, time=(int(to)-int(frm))*1000000000))
         self.datapoints = self.data.get_points(measurement=self.measurement)
 
         self.time = []
