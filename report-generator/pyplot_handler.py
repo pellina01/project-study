@@ -12,8 +12,8 @@ class chart:
         try:
             self.time, self.amplitude = self.dbase.query(frm, to)
             self.plt.plot(self.time, self.amplitude)
-            self.plt.gca.set_xlim([min(self.time), max(self.time)])
-            self.plt.gca.set_ylim([min(self.amplitude), max(self.amplitude)])
+            # self.plt.gca.set_xlim([min(self.time), max(self.time)])
+            # self.plt.gca.set_ylim([min(self.amplitude), max(self.amplitude)])
             self.plt.xlabel('time')
             self.plt.ylabel('{} value'.format(self.measurement))
             self.plt.title(self.measurement)
