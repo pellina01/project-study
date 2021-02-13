@@ -36,7 +36,7 @@ def api(frm, to, title):
 
 if __name__ == "__main__":
 
-    with open('home/ubuntu/project-study/report-generator/config.json', 'r') as file:
+    with open('/home/ubuntu/project-study/report-generator/config.json', 'r') as file:
         data = json.loads(file.read())
     sensors = ["ph", "tb", "temp", "do"]
     sensor_objs = {}
