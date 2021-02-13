@@ -21,4 +21,4 @@ class dbase:
             self.time.append(point['time'])
             self.amplitude.append(['value'])
 
-        return self.time, self.amplitude
+        return int(self.time), self.amplitude
