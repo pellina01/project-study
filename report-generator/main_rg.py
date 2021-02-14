@@ -1,4 +1,4 @@
-from flask import Flask, make_response, render_template, send_file
+from flask import Flask, make_response, render_template, send_file, request
 import pdfkit
 from pyplot_handler import chart
 from influx_handler_rg import dbase
