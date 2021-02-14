@@ -1,5 +1,6 @@
 class dbase:
     from influxdb import InfluxDBClient
+    @staticmethod
     from tz_correction import tz_correction as tz
 
     def __init__(self, measurement, database, username, password, influxHost, influxPort=8086):
@@ -21,7 +22,7 @@ class dbase:
         self.amplitude = []
 
         for point in self.datapoints:
-            self.time.append(self.tz(point['time']))
+            self.time.append(tz(point['time']))
             self.amplitude.append(point['value'])
 
         return self.time, self.amplitude
