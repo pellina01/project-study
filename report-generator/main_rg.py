@@ -13,7 +13,7 @@ def psample(sensor, frm, to):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
 
-@app.route('/api/<title>')
+@app.route('/api/<title>/')
 def api(title):
     frm = request.args.get('from')
     to = request.args.get('to')
