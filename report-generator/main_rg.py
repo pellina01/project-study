@@ -7,13 +7,23 @@ from tz_correction import tz_correction as tz
 
 app = Flask(__name__)
 
+
 @app.route('/sensor/<sensor>/<frm>/<to>')
 def psample(sensor, frm, to):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
 
-@app.route('/api/<title>/<utc_frm>/<utc_to>')
-def api(title, utc_frm, utc_to):
+# @app.route('/api/<title>/<utc_frm>/<utc_to>')
+# def api(title, utc_frm, utc_to):
+# http://3.236.45.125:5000/api/fishpond/${__from:date:iso}/${__to:date:iso}
+
+# http://hostname:5000/api?title=fishpond&from=${__from:date:iso}&to=${__to:date:iso}
+@app.route('/api')
+def api():
+    utc_frm = request.args.get('from')
+    utc_to = request.args.get('to')
+    title = request.args.get('title')
+
     for sensor in sensors:
         sensor_objs[sensor].generate_plot(utc_frm, utc_to)
 
@@ -46,7 +56,7 @@ if __name__ == "__main__":
     sensors = ["ph", "tb", "temp", "do"]
     sensor_objs = {}
 
-    tz_corrector = tz()
+    tz_corrector = tz("Asia/Manila")
 
     for sensor in sensors:
         sensor_objs[sensor] = chart(
