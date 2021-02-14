@@ -13,8 +13,10 @@ def psample(sensor, frm, to):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
 
-@app.route('/api/<frm>/<to>/<title>/')
-def api(frm, to, title):
+@app.route('/api/<title>')
+def api(title):
+    frm = request.args.get('from')
+    to = request.args.get('to')
     for sensor in sensors:
         sensor_objs[sensor].generate_plot(frm, to)
 

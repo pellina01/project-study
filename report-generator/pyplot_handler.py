@@ -11,8 +11,9 @@ class chart:
         self.plt.style.use('seaborn')
 
     def generate_plot(self, frm, to):
+        self.frm, self.to = self.__argument_validator(frm, to)
         try:
-            self.time, self.amplitude = self.dbase.query(frm, to)
+            self.time, self.amplitude = self.dbase.query(self.frm, self.to)
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
                 self.plt.plot_date(self.time, self.amplitude)
@@ -38,3 +39,10 @@ class chart:
         if self.generated:
             self.generated = False
             return self.image_link
+
+    def __argument_validator(self, frm, to):
+        if frm.find('now'):
+            frm = frm.replace('now', 'now()')
+        if to.find('now'):
+            to = to.replace('now', 'now()')
+        return frm, to
