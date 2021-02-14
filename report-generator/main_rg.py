@@ -21,7 +21,7 @@ def psample(sensor, frm, to):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
 
-@app.route('/api/<title>/<zfrm>/<to>')
+@app.route('/api/<title>/<zfrm>/<zto>')
 def api(title, zfrm, zto):
     frm = tz_correction(zfrm)
     to = tz_correction(zto)
