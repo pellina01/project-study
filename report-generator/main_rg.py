@@ -23,11 +23,11 @@ def psample(sensor, frm, to):
 
 @app.route('/api/<title>/<zfrm>/<zto>')
 def api(title, zfrm, zto):
+    for sensor in sensors:
+        sensor_objs[sensor].generate_plot(zfrm, zto)
+
     frm = tz_correction(zfrm)
     to = tz_correction(zto)
-    for sensor in sensors:
-        sensor_objs[sensor].generate_plot(frm, to)
-
     variables = {
         'frm': frm,
         'to': to,
