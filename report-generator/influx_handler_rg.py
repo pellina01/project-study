@@ -1,7 +1,7 @@
 class dbase:
     from influxdb import InfluxDBClient
 
-    def __init__(self, measurement, database, username, password, influxHost, influxPort=8086, tz_corrector):
+    def __init__(self, tz_corrector, measurement, database, username, password, influxHost, influxPort=8086):
         self.measurement = measurement
         self.tz_corrector = tz_corrector
         self.influxClient = self.InfluxDBClient(

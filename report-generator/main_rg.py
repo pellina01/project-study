@@ -50,8 +50,8 @@ if __name__ == "__main__":
 
     for sensor in sensors:
         sensor_objs[sensor] = chart(
-            sensor, dbase(sensor, data['cloud']['database'],
+            sensor, dbase(sensor, tz_corrector, data['cloud']['database'],
                           data['cloud']['username'], data['cloud']['password'],
-                          data['cloud']['influxHost'], tz_corrector))
+                          data['cloud']['influxHost']))
 
     app.run(host='0.0.0.0')
