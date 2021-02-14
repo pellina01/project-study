@@ -13,7 +13,7 @@ def tz_correction(time_in_z):
     # from_zone = tz.gettz('UTC')
     # to_zone = tz.gettz('Philippines/Manila')
     timezone = pytz.timezone("Asia/Manila")
-    utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ') + datetime.timedelta(hours=+8)
+    utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ')
     datetime_manila = utc.astimezone(timezone)
     # utc = utc.replace(tzinfo=from_zone)
     # central = utc.astimezone(to_zone)
