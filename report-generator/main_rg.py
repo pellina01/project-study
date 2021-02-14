@@ -19,7 +19,7 @@ def api(frm, to, title):
         sensor_objs[sensor].generate_plot(to, frm)
 
     variables = {
-        'frm': datetime.utcfromtimestamp(int(frm).strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'frm': datetime.utcfromtimestamp(int(frm)).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'to': datetime.utcfromtimestamp(int(to)).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'title': title,
         'sensors': sensors
