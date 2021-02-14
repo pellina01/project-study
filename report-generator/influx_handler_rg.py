@@ -9,12 +9,6 @@ class dbase:
         self.influxClient.switch_database(database)
 
     def query(self, frm, to):
-        print(frm)
-        print(to)
-
-        print("SELECT * FROM {measurement} WHERE time >= '{frm}' AND time <= '{to}'".format(
-                measurement=self.measurement,to=to,frm=frm))
-        
         self.data = self.influxClient.query(
             "SELECT * FROM {measurement} WHERE time >= '{frm}' AND time <= '{to}'".format(
                 measurement=self.measurement,to=to,frm=frm))
