@@ -11,7 +11,7 @@ app = Flask(__name__)
 def tz_correction(time_in_z):
     from_zone = tz.gettz('UTC')
     to_zone = tz.gettz('Philippines/Manila')
-    utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%pZ')
+    utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%p')
     utc = utc.replace(tzinfo=from_zone)
     central = utc.astimezone(to_zone)
     return central
