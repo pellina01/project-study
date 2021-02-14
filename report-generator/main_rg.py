@@ -13,16 +13,12 @@ def psample(sensor, frm, to):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
 
-@app.route('/api/<title>/')
-def api(title):
-    frm = request.args.get('from')
-    to = request.args.get('to')
+@app.route('/api/<title>/<frm>/<to>')
+def api(title, frm, to):
     for sensor in sensors:
         sensor_objs[sensor].generate_plot(frm, to)
 
     variables = {
-        # 'frm': datetime.utcfromtimestamp(int(frm)).strftime('%Y-%m-%dT%H:%M:%SZ'),
-        # 'to': datetime.utcfromtimestamp(int(to)).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'frm': frm,
         'to': to,
         'title': title,
