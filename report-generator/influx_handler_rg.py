@@ -10,7 +10,7 @@ class dbase:
 
     def query(self, frm, to):
         self.data = self.influxClient.query(
-            "SELECT * FROM {measurement} WHERE time >= '{frm}' AND time <= '{to}'".format(
+            "SELECT * FROM {measurement} WHERE time >= {frm} AND time <= {to}".format(
                 measurement=self.measurement,to=to,frm=frm))
         print("SELECT * FROM {measurement} WHERE time >= '{frm}' AND time <= '{to}'".format(
                 measurement=self.measurement,to=to,frm=frm))
@@ -20,7 +20,7 @@ class dbase:
         self.amplitude = []
 
         for point in self.datapoints:
-            self.time.append(self.tz_corrector.set_ph(point['time']))
+            self.time.append(self.tz_corrector.set_to_ph(point['time']))
             self.amplitude.append(point['value'])
 
         return self.time, self.amplitude
