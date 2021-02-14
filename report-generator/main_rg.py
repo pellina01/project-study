@@ -16,7 +16,7 @@ def psample(sensor, frm, to):
 @app.route('/api/<frm>/<to>/<title>/')
 def api(frm, to, title):
     for sensor in sensors:
-        sensor_objs[sensor].generate_plot(to, frm)
+        sensor_objs[sensor].generate_plot(frm, to)
 
     variables = {
         # 'frm': datetime.utcfromtimestamp(int(frm)).strftime('%Y-%m-%dT%H:%M:%SZ'),
