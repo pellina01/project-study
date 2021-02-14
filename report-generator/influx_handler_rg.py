@@ -21,7 +21,7 @@ class dbase:
         self.amplitude = []
 
         for point in self.datapoints:
-            self.time.append(tz(point['time']))
+            self.time.append(self.tz(point['time']))
             self.amplitude.append(point['value'])
 
         return self.time, self.amplitude
