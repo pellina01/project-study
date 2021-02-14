@@ -17,8 +17,8 @@ def api(title, utc_frm, utc_to):
     for sensor in sensors:
         sensor_objs[sensor].generate_plot(utc_frm, utc_to)
 
-    frm = tz_corrector(utc_frm)
-    to = tz_corrector(utc_to)
+    frm = tz_corrector.set_to_ph(utc_frm)
+    to = tz_corrector.set_to_ph(utc_to)
     variables = {
         'frm': frm,
         'to': to,

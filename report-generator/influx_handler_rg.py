@@ -20,7 +20,7 @@ class dbase:
         self.amplitude = []
 
         for point in self.datapoints:
-            self.time.append(self.tz_corrector(point['time']))
+            self.time.append(self.tz_corrector.set_ph(point['time']))
             self.amplitude.append(point['value'])
 
         return self.time, self.amplitude
