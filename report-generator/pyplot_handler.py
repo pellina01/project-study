@@ -8,6 +8,7 @@ class chart:
         self.measurement = measurement
         self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
         self.generated = False
+        self.plt.style.use('seaborn')
 
     def generate_plot(self, frm, to):
         try:
@@ -19,6 +20,7 @@ class chart:
             self.plt.xlabel('time')
             self.plt.ylabel('{} value'.format(self.measurement))
             self.plt.title(self.measurement)
+            self.plt.tight_layout()
             self.plt.savefig(
                 '/home/ubuntu/project-study/report-generator/images/{}.png'.format(self.measurement))
             self.image_link = '/home/ubuntu/project-study/report-generator/images/{}.png'.format(
