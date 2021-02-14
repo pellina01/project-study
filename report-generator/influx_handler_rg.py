@@ -1,5 +1,14 @@
 class dbase:
     from influxdb import InfluxDBClient
+    from datetime import datetime
+    import pytz
+
+    @staticmethod
+    def tz_correction(time_in_z):
+        timezone = pytz.timezone("Asia/Manila")
+        utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ')
+        datetime_manila = utc.astimezone(timezone)
+        return datetime_manila
 
     def __init__(self, measurement, database, username, password, influxHost, influxPort=8086):
         self.measurement = measurement
@@ -20,7 +29,7 @@ class dbase:
         self.amplitude = []
 
         for point in self.datapoints:
-            self.time.append(point['time'])
+            self.time.append(dbase.tz_correction(point['time']))
             self.amplitude.append(point['value'])
 
         return self.time, self.amplitude

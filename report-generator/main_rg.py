@@ -3,34 +3,21 @@ import pdfkit
 from pyplot_handler import chart
 from influx_handler_rg import dbase
 import json
-from datetime import datetime
-# from dateutil import tz
-import pytz
 
 app = Flask(__name__)
-
-def tz_correction(time_in_z):
-    # from_zone = tz.gettz('UTC')
-    # to_zone = tz.gettz('Philippines/Manila')
-    timezone = pytz.timezone("Asia/Manila")
-    utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ')
-    datetime_manila = utc.astimezone(timezone)
-    # utc = utc.replace(tzinfo=from_zone)
-    # central = utc.astimezone(to_zone)
-    return datetime_manila
 
 @app.route('/sensor/<sensor>/<frm>/<to>')
 def psample(sensor, frm, to):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
 
-@app.route('/api/<title>/<zfrm>/<zto>')
-def api(title, zfrm, zto):
+@app.route('/api/<title>/<utc_frm>/<utc_to>')
+def api(title, utc_frm, utc_to):
     for sensor in sensors:
-        sensor_objs[sensor].generate_plot(zfrm, zto)
+        sensor_objs[sensor].generate_plot(utc_frm, utc_to)
 
-    frm = tz_correction(zfrm)
-    to = tz_correction(zto)
+    frm = dbase.tz_correction(utc_frm)
+    to = dbase.tz_correction(utc_to)
     variables = {
         'frm': frm,
         'to': to,
