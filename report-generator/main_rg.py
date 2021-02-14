@@ -3,6 +3,7 @@ import pdfkit
 from pyplot_handler import chart
 from influx_handler_rg import dbase
 import json
+from tz_correction import tz_correction as tz
 
 app = Flask(__name__)
 
@@ -16,8 +17,8 @@ def api(title, utc_frm, utc_to):
     for sensor in sensors:
         sensor_objs[sensor].generate_plot(utc_frm, utc_to)
 
-    frm = dbase.tz_correction(utc_frm)
-    to = dbase.tz_correction(utc_to)
+    frm = tz(utc_frm)
+    to = tz(utc_to)
     variables = {
         'frm': frm,
         'to': to,
