@@ -3,6 +3,7 @@ import pdfkit
 from pyplot_handler import chart
 from influx_handler_rg import dbase
 import json
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -18,8 +19,8 @@ def api(frm, to, title):
         sensor_objs[sensor].generate_plot(to, frm)
 
     variables = {
-        'frm': frm,
-        'to': to,
+        'frm': datetime.utcfromtimestamp(frm).strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'to': datetime.utcfromtimestamp(to).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'title': title,
         'sensors': sensors
     }
