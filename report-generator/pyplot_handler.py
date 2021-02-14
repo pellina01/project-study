@@ -14,17 +14,18 @@ class chart:
         try:
             self.time, self.amplitude = self.dbase.query(frm, to)
             print(self.measurement, self.time, self.amplitude)
-            self.plt.plot_date(self.time, self.amplitude)
-            # self.plt.gca.set_xlim([min(self.time), max(self.time)])
-            # self.plt.gca.set_ylim([min(self.amplitude), max(self.amplitude)])
-            self.plt.xlabel('time')
-            self.plt.ylabel('{} value'.format(self.measurement))
-            self.plt.title(self.measurement)
-            self.plt.tight_layout()
-            self.plt.savefig(
-                '/home/ubuntu/project-study/report-generator/images/{}.png'.format(self.measurement))
-            self.image_link = '/home/ubuntu/project-study/report-generator/images/{}.png'.format(
-                self.measurement)
+            if len(self.time) > 0:
+                self.plt.plot_date(self.time, self.amplitude)
+                self.plt.xlabel('time')
+                self.plt.ylabel('{} value'.format(self.measurement))
+                self.plt.title(self.measurement)
+                self.plt.tight_layout()
+                self.plt.savefig(
+                    '/home/ubuntu/project-study/report-generator/images/{}.png'.format(self.measurement))
+                self.image_link = '/home/ubuntu/project-study/report-generator/images/{}.png'.format(
+                    self.measurement)
+            else:
+                self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
 
         except Exception as e:
             print(e)
