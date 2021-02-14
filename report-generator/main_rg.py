@@ -4,17 +4,20 @@ from pyplot_handler import chart
 from influx_handler_rg import dbase
 import json
 from datetime import datetime
-from dateutil import tz
+# from dateutil import tz
+import pytz
 
 app = Flask(__name__)
 
 def tz_correction(time_in_z):
-    from_zone = tz.gettz('UTC')
-    to_zone = tz.gettz('Philippines/Manila')
-    utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ')
-    utc = utc.replace(tzinfo=from_zone)
-    central = utc.astimezone(to_zone)
-    return central
+    # from_zone = tz.gettz('UTC')
+    # to_zone = tz.gettz('Philippines/Manila')
+    timezone = pytz.timezone("Asia/Manila")
+    utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ') + datetime.timedelta(hours=+8)
+    datetime_manila = utc.astimezone(timezone)
+    # utc = utc.replace(tzinfo=from_zone)
+    # central = utc.astimezone(to_zone)
+    return datetime_manila
 
 @app.route('/sensor/<sensor>/<frm>/<to>')
 def psample(sensor, frm, to):
