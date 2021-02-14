@@ -1,9 +1,11 @@
-from datetime import datetime
-import pytz
+class tz_correction:
+	from datetime import datetime
+	import pytz
 
-timezone = pytz.timezone("Asia/Manila")
+	def __init__(self):
+		self.timezone = self.pytz.timezone("Asia/Manila")
 
-def tz_correction(self, time_in_z):
-    utc = datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ')
-    datetime_manila = utc.astimezone(timezone)
-    return datetime_manila
+	def tz_corrector(self, time_in_z):
+	    utc = self.datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ')
+	    datetime_manila = utc.astimezone(self.timezone)
+	    return datetime_manila

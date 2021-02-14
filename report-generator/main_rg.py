@@ -17,8 +17,8 @@ def api(title, utc_frm, utc_to):
     for sensor in sensors:
         sensor_objs[sensor].generate_plot(utc_frm, utc_to)
 
-    frm = tz(utc_frm)
-    to = tz(utc_to)
+    frm = tz_corrector(utc_frm)
+    to = tz_corrector(utc_to)
     variables = {
         'frm': frm,
         'to': to,
@@ -46,10 +46,12 @@ if __name__ == "__main__":
     sensors = ["ph", "tb", "temp", "do"]
     sensor_objs = {}
 
+    tz_corrector = tz()
+
     for sensor in sensors:
         sensor_objs[sensor] = chart(
             sensor, dbase(sensor, data['cloud']['database'],
                           data['cloud']['username'], data['cloud']['password'],
-                          data['cloud']['influxHost']))
+                          data['cloud']['influxHost'], tz_corrector))
 
     app.run(host='0.0.0.0')
