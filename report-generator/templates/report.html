@@ -37,8 +37,10 @@ body {
         <h1 class="center-txt">from: {{variables['frm']}} GMT</h1> 
     	<h1 class="center-txt">to: {{variables['to']}} GMT</h1>
         {% for sensor in variables['sensors'] %}
-        	<h1 class="center-txt">{{sensor}}</h1><br>
-            <img src="http://3.236.45.125:5000/sensor/{{sensor}}/{{variables['frm']}}/{{variables['to']}}" alt={{sensor}} class="center"><br>
+        <div class="container">
+        	<h1 class="title-{{sensor}}">{{sensor}}</h1>
+        	<div class="div-{{sensor}}"><img src="http://{{host}}/sensor/{{sensor}}" alt={{sensor}} class="center"></div>
+        </div>
         {% endfor %}
     </body>
 </html>

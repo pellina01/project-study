@@ -8,7 +8,7 @@ from tz_correction import tz_correction as tz
 app = Flask(__name__)
 
 
-@app.route('/sensor/<sensor>/<frm>/<to>')
+@app.route('/sensor/<sensor>')
 def psample(sensor, frm, to):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
@@ -27,7 +27,8 @@ def api():
         'frm': frm,
         'to': to,
         'title': title,
-        'sensors': sensors
+        'sensors': sensors,
+        'host' : reporter_host
     }
     # embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
     rendered = render_template('report.html', variables=variables)
@@ -58,5 +59,5 @@ if __name__ == "__main__":
             sensor, dbase(tz_corrector, sensor, data['cloud']['database'],
                           data['cloud']['username'], data['cloud']['password'],
                           data['cloud']['influxHost']))
-
+    reporter_host = "3.236.45.125:5000"
     app.run(host='0.0.0.0')
