@@ -55,6 +55,7 @@ if __name__ == "__main__":
     tz_corrector = tz("Asia/Manila")
 
     for key in sensors:
+        print('key: ', key)
         sensor_objs[key] = chart(
             key, dbase(tz_corrector, key, data['cloud']['database'],
                           data['cloud']['username'], data['cloud']['password'],
