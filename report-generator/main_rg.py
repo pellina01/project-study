@@ -2,7 +2,7 @@ from flask import Flask, make_response, render_template, send_file, request
 import pdfkit
 from pyplot_handler import chart
 from influx_handler_rg import dbase
-import json
+import json, time
 from tz_correction import tz_correction as tz
 
 app = Flask(__name__)
@@ -21,6 +21,7 @@ def api():
     for key in sensors:
         sensor_objs[key].generate_plot(utc_frm, utc_to)
 
+    time.sleep(2)
     frm = tz_corrector.set_to_ph(utc_frm)
     to = tz_corrector.set_to_ph(utc_to)
     variables = {
