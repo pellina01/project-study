@@ -5,8 +5,9 @@ class chart:
 
     def __init__(self, measurement, dbase):
         self.dbase = dbase
+        self.no_data_link = '/home/ubuntu/project-study/report-generator/static/images/no_data.png'
         self.measurement = measurement
-        self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
+        self.image_link = self.no_data_link
         self.generated = False
         self.plt.style.use('seaborn')
 
@@ -21,16 +22,16 @@ class chart:
                 self.plt.title(self.measurement)
                 self.plt.tight_layout()
                 self.plt.savefig(
-                    '/home/ubuntu/project-study/report-generator/images/{}.png'.format(self.measurement))
-                self.image_link = '/home/ubuntu/project-study/report-generator/images/{}.png'.format(
+                    '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(self.measurement))
+                self.image_link = '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                     self.measurement)
             else:
-                self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
+                self.image_link = self.no_data_link
 
         except Exception as e:
             print(e)
             print(self.traceback.format_exc())
-            self.image_link = '/home/ubuntu/project-study/report-generator/images/no_data.png'
+            self.image_link = self.no_data_link
         finally:
             self.generated = True
 

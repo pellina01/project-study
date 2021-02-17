@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}"> -->
+</head>
     <body>
         <h1 class="center-txt">{{variables['title']}} GMT</h1><br>
         <h1 class="center-txt">from: {{variables['frm']}} GMT</h1> 
     	<h1 class="center-txt">to: {{variables['to']}}</h1>
         {% for sensor in variables['sensors'] %}
         	<h1 class="center-txt">{{sensor}}</h1><br>
-            <img src="http://3.236.45.125:5000/sensor/{{sensor}}/{{variables['frm']}}/{{variables['to']}}" alt={{sensor}} class="center"><br>
+        	<img src="{{ url_for('static',filename='images/{{sensor}}.png') }} class="center""><br>
+            <!-- <img src="http://3.236.45.125:5000/sensor/{{sensor}}/{{variables['frm']}}/{{variables['to']}}" alt={{sensor}} class="center"><br> -->
         {% endfor %}
     </body>
 </html>
