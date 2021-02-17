@@ -20,7 +20,8 @@ class chart:
                 self.plt.ylabel('{} value'.format(self.measurement))
                 self.plt.title(self.measurement)
                 self.plt.tight_layout()
-                self.plt.figure().set_size_inches(30.,18.)
+                fig = self.plt.figure()
+                fig.set_size_inches(3.,4.)
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(self.measurement), 
                     dpi=100)
