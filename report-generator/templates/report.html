@@ -39,7 +39,7 @@ body {
         {% for sensor in variables['sensors'] %}
         <div class="container">
         	<h1 class="title-{{sensor}}">{{sensor}}</h1>
-        	<div class="div-{{sensor}}"><img src="http://{{host}}/sensor/{{sensor}}" alt={{sensor}} class="center"></div>
+        	<div class="div-{{sensor}}"><img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="center"></div>
         </div>
         {% endfor %}
     </body>
