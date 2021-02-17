@@ -20,11 +20,15 @@ body {
 .center-txt {
     padding: 10px;
     text-align: center;
+  }
+
+.image{
+
   }    
 
 .title {
-    padding: 10px;
-	left: 50%;
+    margin-left: auto;
+    margin-right: auto;
 	transform: translateX(-50%);
 	position: relative;
   }    
@@ -79,7 +83,7 @@ body {
         {% for sensor in variables['sensors'] %}
         	<div class="div-{{sensor}}">
 	        	<h1 class="title">{{sensor}}</h1>
-	        	<img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="center-img">
+	        	<img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="image">
         	</div>
         {% endfor %}
         </div>
