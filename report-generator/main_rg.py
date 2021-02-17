@@ -12,7 +12,7 @@ app = Flask(__name__)
 def psample(sensor):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
-@app.route('/api')
+@app.route('/api') #http://host/api?title=fishpond monitoring&from=${__from:date}&to=${__to:date}
 def api():
     utc_frm = request.args.get('from')
     utc_to = request.args.get('to')
