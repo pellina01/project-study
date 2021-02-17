@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.route('/sensor/<sensor>')
-def psample(sensor):
+def sensor_image(sensor):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
 @app.route('/api') #http://host/api?title=fishpond monitoring&from=${__from:date}&to=${__to:date}
