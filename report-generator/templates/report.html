@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}"> -->
 	<style type="text/css">
 		@page {
     size: A4;   /* auto is the initial value */
@@ -22,7 +21,7 @@ body {
     padding: 10px;
     text-align: center;
   }
-.center {
+.center-img {
     padding: 20px;
     display: block;
     margin-left: auto;
@@ -80,8 +79,8 @@ body {
         <div class="container">
         {% for sensor in variables['sensors'] %}
         	<div class="div-{{sensor}}">
-	        	<h1 class="title-{{sensor}}">{{sensor}}</h1>
-	        	<img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="center">
+	        	<h1 class="title-{{sensor}}" class="center-txt">{{sensor}}</h1>
+	        	<img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="center-img">
         	</div>
         {% endfor %}
         </div>
