@@ -20,10 +20,10 @@ class chart:
                 self.plt.ylabel('{} value'.format(self.measurement))
                 self.plt.title(self.measurement)
                 self.plt.tight_layout()
-                self.plt.figure(figsize=(0.441, 0.355), dpi=100)
-                self.plt.savefig('myfig.png', dpi=1000)
+                self.plt.figure(figsize=(1.441, 1.355), dpi=100)
                 self.plt.savefig(
-                    '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(self.measurement))
+                    '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(self.measurement),
+                    dpi=1000)
                 self.image_link = '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                     self.measurement)
             else:
