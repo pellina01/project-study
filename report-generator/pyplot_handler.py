@@ -21,7 +21,7 @@ class chart:
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
                 self.plt.style.use('seaborn')
-                self.plt.figure().set_size_inches(4,2)
+                self.plt.figure().set_size_inches(3,4)
                 self.plt.xlabel('time')
                 self.plt.tight_layout()
                 self.plt.ylabel('{} value'.format(self.measurement))
