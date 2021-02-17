@@ -6,33 +6,34 @@ class chart:
     def __init__(self, measurement, dbase):
         self.dbase = dbase
         self.measurement = measurement
-        self.image_link = '/home/ubuntu/project-study/report-generator/static/images/no_data.png'
+        self.no_data = '/home/ubuntu/project-study/report-generator/static/images/no_data.png'
+        self.image_link = self.no_data
         self.generated = False
         self.plt.style.use('seaborn')
+        self.plt.figure().set_size_inches(4,2)
+        self.plt.xlabel('time')
+        self.plt.ylabel('{} value'.format(self.measurement))
+        self.plt.title(self.measurement)
+        self.plt.tight_layout()
 
     def generate_plot(self, frm, to):
         try:
             self.time, self.amplitude = self.dbase.query(frm, to)
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
-                self.plt.figure().set_size_inches(4,2)
                 self.plt.plot_date(self.time, self.amplitude)
-                self.plt.xlabel('time')
-                self.plt.ylabel('{} value'.format(self.measurement))
-                self.plt.title(self.measurement)
-                self.plt.tight_layout()
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(self.measurement), 
                     dpi=100)
                 self.image_link = '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                     self.measurement)
             else:
-                self.image_link = '/home/ubuntu/project-study/report-generator/static/images/no_data.png'
+                self.image_link = self.no_data
 
         except Exception as e:
             print(e)
             print(self.traceback.format_exc())
-            self.image_link = '/home/ubuntu/project-study/report-generator/static/images/no_data.png'
+            self.image_link = self.no_data
         finally:
             self.generated = True
 
@@ -40,4 +41,6 @@ class chart:
         if self.generated:
             self.generated = False
             return self.image_link
+        else:
+            return self.no_data
 
