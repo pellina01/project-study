@@ -17,8 +17,6 @@ class chart:
         self.plt.style.use('seaborn')
         self.plt.figure().set_size_inches(4,2)
         self.plt.xlabel('time')
-        self.plt.ylabel('{} value'.format(self.measurement))
-        self.plt.title(self.measurement)
         self.plt.tight_layout()
 
     def generate_plot(self, frm, to):
@@ -27,6 +25,8 @@ class chart:
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
                 self.plt.plot_date(self.time, self.amplitude)
+                self.plt.ylabel('{} value'.format(self.measurement))
+                self.plt.title(self.measurement)
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(self.measurement), 
                     dpi=100)
