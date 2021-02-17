@@ -14,7 +14,7 @@ header nav, footer {
     }
     
 body {
-    font: 12pt Georgia, "Times New Roman", Times, serif;
+    font: 12pt serif;
     line-height: 1.3;
     }
     
@@ -30,17 +30,23 @@ body {
     width: 50%;
   }
 
+.container {
+    width: 1000px;
+    height: 1000px;
+    border: 5px solid black;
+}
+
 	</style>
 </head>
     <body>
         <h1 class="center-txt">{{variables['title']}}</h1><br>
         <h1 class="center-txt">from: {{variables['frm']}} GMT</h1> 
     	<h1 class="center-txt">to: {{variables['to']}} GMT</h1>
-        {% for sensor in variables['sensors'] %}
         <div class="container">
+        {% for sensor in variables['sensors'] %}
         	<h1 class="title-{{sensor}}">{{sensor}}</h1>
         	<div class="div-{{sensor}}"><img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="center"></div>
-        </div>
         {% endfor %}
+        </div>
     </body>
 </html>
