@@ -15,13 +15,12 @@ class chart:
             self.time, self.amplitude = self.dbase.query(frm, to)
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
+                self.plt.figure().set_size_inches(4,3)
                 self.plt.plot_date(self.time, self.amplitude)
                 self.plt.xlabel('time')
                 self.plt.ylabel('{} value'.format(self.measurement))
                 self.plt.title(self.measurement)
                 self.plt.tight_layout()
-                fig = self.plt.figure()
-                fig.set_size_inches(3.,4.)
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(self.measurement), 
                     dpi=100)
