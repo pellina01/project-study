@@ -20,19 +20,8 @@ body {
 .center-txt {
     padding: 10px;
     text-align: center;
-  }    
-.center-txt-div {
-    padding: 10px;
-    text-align: center;
     position: absolute;
-  }
-.center-img {
-    padding: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
+  }    
 
 .container {
     width: 1000px;
@@ -84,7 +73,7 @@ body {
         <div class="container">
         {% for sensor in variables['sensors'] %}
         	<div class="div-{{sensor}}">
-	        	<h1 class="title-{{sensor}}" class="center-txt-div">{{sensor}}</h1>
+	        	<h1 class="center-txt">{{sensor}}</h1>
 	        	<img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="center-img">
         	</div>
         {% endfor %}
