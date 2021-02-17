@@ -12,12 +12,6 @@ app = Flask(__name__)
 def psample(sensor, frm, to):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
-
-# @app.route('/api/<title>/<utc_frm>/<utc_to>')
-# def api(title, utc_frm, utc_to):
-# http://3.236.45.125:5000/api/fishpond/${__from:date:iso}/${__to:date:iso}
-
-# http://hostname:5000/api?title=fishpond&from=${__from:date:iso}&to=${__to:date:iso}
 @app.route('/api')
 def api():
     utc_frm = request.args.get('from')
