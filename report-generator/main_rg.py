@@ -32,9 +32,10 @@ def api():
     # embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
     rendered = render_template('report.html', variables=variables)
     options = {'enable-local-file-access': None}
-    css = "/home/ubuntu/project-study/report-generator/static/styles/stylesheet.css"
-    pdf = pdfkit.from_string(rendered, False, options=options, css=css)
+    # css = "/home/ubuntu/project-study/report-generator/static/styles/stylesheet.css"
+    # pdf = pdfkit.from_string(rendered, False, options=options, css=css)
 
+    pdf = pdfkit.from_string(rendered, False, options=options)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = 'inline; filename=output.pdf'
