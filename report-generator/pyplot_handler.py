@@ -15,7 +15,7 @@ class chart:
             self.time, self.amplitude = self.dbase.query(frm, to)
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
-                self.plt.figure().set_size_inches(6,4)
+                self.plt.figure().set_size_inches(8,6)
                 self.plt.plot_date(self.time, self.amplitude)
                 self.plt.xlabel('time')
                 self.plt.ylabel('{} value'.format(self.measurement))
