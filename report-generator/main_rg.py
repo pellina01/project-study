@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.route('/sensor/<sensor>')
-def psample(sensor, frm, to):
+def psample(sensor):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
 @app.route('/api')
