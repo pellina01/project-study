@@ -1,6 +1,7 @@
 config.json
 rpi-code/__pycache__
 instance-code/__pycache__
+__pycache__
 sample.py
 chart1.png
 ph.png
