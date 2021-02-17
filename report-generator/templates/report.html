@@ -38,29 +38,29 @@ body {
 }
 
 .div-ph{
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     overflow:auto;
     position: absolute;
     top: 0px;
 }
 .div-tb{
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     overflow:auto;
     position: absolute;
     right: 0px;
 }
 .div-temp{
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     overflow:auto;
     position: absolute;
     left: 0px;
 }
 .div-do{
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     overflow:auto;
     position: absolute;
     bottom: 0px;
@@ -74,8 +74,10 @@ body {
     	<h1 class="center-txt">to: {{variables['to']}} GMT</h1>
         <div class="container">
         {% for sensor in variables['sensors'] %}
-        	<h1 class="title-{{sensor}}">{{sensor}}</h1>
-        	<div class="div-{{sensor}}"><img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="center"></div>
+        	<div class="div-{{sensor}}">
+	        	<h1 class="title-{{sensor}}">{{sensor}}</h1>
+	        	<img src="http://{{variables['host']}}/sensor/{{sensor}}" alt={{sensor}} class="center">
+        	</div>
         {% endfor %}
         </div>
     </body>
