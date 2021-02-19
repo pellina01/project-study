@@ -121,6 +121,6 @@ float turb()
 
 float doxy()
 {
-  float do_r = analogRead(A2)*5000/1024;
+  float do_r = analogRead(A2);
   return do_r;
   }
