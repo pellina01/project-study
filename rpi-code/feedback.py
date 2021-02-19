@@ -54,10 +54,15 @@ def serialize(read, address, cmd_on, cmd_off):
 
 
 if __name__ == "__main__":
-    import time
     from do_new import read_do
     from i2c import read_arduino
     import json
+    import logging
+    import traceback
+    import time
+
+    logging.basicConfig(filename="error.log")
+    
     with open('/home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
         data = json.loads(file.read())
 
@@ -70,7 +75,7 @@ if __name__ == "__main__":
                        switch, 8.25, 7.56, "aerator")
     while True:
         try:
-            delay = aerator.check()
-            time.sleep(delay)
+            time.sleep(aerator.check())
         except Exception as e:
+            logging.error(traceback.format_exc())
             print(e)
