@@ -34,7 +34,7 @@ void requestEvent()
   }
   else if (sensor == "do")
   {
-    response = do();
+    response = doxy();
   }
   dtostrf(response, 13, 2, buffer);
   Wire.write(buffer);
@@ -119,8 +119,8 @@ float turb()
   return ntu;
 }
 
-float do()
+float doxy()
 {
   float do_r = analogRead(A2)*5000/1024;
-  return do_r
+  return do_r;
   }
