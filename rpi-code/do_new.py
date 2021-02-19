@@ -17,12 +17,13 @@ do_table = [ 14.460, 14.220, 13.820, 13.440, 13.090, 12.740, 12.420, 12.110, 11.
 
 def read_do(self, slave_addr, sensor_type):
     try:
-        adc_raw = read_arduino(slave_addr, sensor_type)
+        adc_raw = round(read_arduino(slave_addr, sensor_type)[1])
         print(adc_raw)
-        adc_voltage  = round(adc_raw[1])*reference/resolution
+        adc_voltage  = adc_raw*reference/resolution
         temp = read_temp()
         rounded_temp = round(temp[1])
         V_saturation = (temp[1] - cal2_t) *(cal1_v - cal2_v) / (cal1_t - cal2_t) + cal2_v
+        print("do not converted: " , str(adc_voltage * do_table[rounded_temp] / V_saturation))
         return "ok", (adc_voltage * do_table[rounded_temp] / (V_saturation * convert))
     except Exception as e:
         return "error", e
