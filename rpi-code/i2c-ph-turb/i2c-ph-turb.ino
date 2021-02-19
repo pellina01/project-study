@@ -121,6 +121,5 @@ float turb()
 
 float doxy()
 {
-  float do_r = analogRead(A2);
-  return do_r;
+  return (float)analogRead(A2);
   }
