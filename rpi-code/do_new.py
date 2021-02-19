@@ -15,7 +15,7 @@ do_table = [ 14.460, 14.220, 13.820, 13.440, 13.090, 12.740, 12.420, 12.110, 11.
             9.080, 8.900, 8.730, 8.570, 8.410, 8.250, 8.110, 7.960, 7.820, 7.690,   
             7.560, 7.430, 7.300, 7.180, 7.070, 6.950, 6.840, 6.730, 6.630, 6.530, 6.410]
 
-def read_do(self, slave_addr, sensor_type):
+def read_do(slave_addr, sensor_type):
     try:
         adc_raw = round(read_arduino(slave_addr, sensor_type)[1])
         print(adc_raw)
