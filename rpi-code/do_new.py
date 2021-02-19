@@ -17,9 +17,9 @@ do_table = [ 14.460, 14.220, 13.820, 13.440, 13.090, 12.740, 12.420, 12.110, 11.
 
 def read_do(self, slave_addr, sensor_type):
     try:
-        adc_raw = round(read_arduino(slave_addr, sensor_type))
+        adc_raw = read_arduino(slave_addr, sensor_type)
         print(adc_raw)
-        adc_voltage  = adc_raw[1]*reference/resolution
+        adc_voltage  = round(adc_raw[1])*reference/resolution
         temp = read_temp()
         rounded_temp = round(temp[1])
         V_saturation = (temp[1] - cal2_t) *(cal1_v - cal2_v) / (cal1_t - cal2_t) + cal2_v
