@@ -32,6 +32,10 @@ void requestEvent()
   {
     response = turb();
   }
+  else if (sensor == "do")
+  {
+    response = do();
+  }
   dtostrf(response, 13, 2, buffer);
   Wire.write(buffer);
   Serial.println("responsed");
@@ -53,6 +57,10 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi
   if (request == "2")
   {
     sensor = "turbidity";
+  }
+  if (request == "3")
+  {
+    sensor = "do";
   }
 }
 
@@ -110,3 +118,9 @@ float turb()
   }
   return ntu;
 }
+
+float do()
+{
+  float do_r = analogRead(A2)*5000/1024;
+  return do_r
+  }
