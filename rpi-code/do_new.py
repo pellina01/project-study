@@ -8,6 +8,7 @@ cal2_t = 21 #℃
 
 resolution = 1024 #level
 reference = 5000 #mv
+convert = 1000 #mV per V
 
 do_table = [ 14.460, 14.220, 13.820, 13.440, 13.090, 12.740, 12.420, 12.110, 11.810, 11.530,
             11.260, 11.010, 10.770, 10.530, 10.300, 10.080, 9.860, 9.660, 9.460, 9.270, 
@@ -21,6 +22,6 @@ def read_do(self, slave_addr, sensor_type):
         temp = read_temp()
         rounded_temp = round(temp[1])
         V_saturation = (temp[1] - cal2_t) *(cal1_v - cal2_v) / (cal1_t - cal2_t) + cal2_v
-        return "ok", (adc_voltage * do_table[rounded_temp] / V_saturation)
+        return "ok", (adc_voltage * do_table[rounded_temp] / (V_saturation * convert))
     except Exception as e:
         return "error", e

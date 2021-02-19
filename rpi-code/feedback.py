@@ -56,7 +56,7 @@ def serialize(read, address, cmd_on, cmd_off):
 
 if __name__ == "__main__":
     import time
-    from do import read_do
+    from do_new import read_do
     from i2c import read_arduino
     import json
     with open('/home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
