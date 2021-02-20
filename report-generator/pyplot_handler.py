@@ -1,14 +1,9 @@
 class chart:
-    from matplotlib import pyplot as plt
-    from matplotlib import dates as mpl_dates
     import traceback
 
-    def __init__(self, measurement, dbase):
-
-        # self.plt = plt
-        # self.mpl_dates = mpl_dates
-        # self.traceback = traceback
-
+    def __init__(self, measurement, dbase, plt, mpl_dates):
+        self.plt = plt
+        self.mpl_dates = mpl_dates
         self.dbase = dbase
         self.measurement = measurement
         self.no_data = '/home/ubuntu/project-study/report-generator/static/images/no_data.png'

@@ -4,6 +4,8 @@ from pyplot_handler import chart
 from influx_handler_rg import dbase
 import json, time
 from tz_correction import tz_correction as tz
+from matplotlib import pyplot as plt
+from matplotlib import dates as mpl_dates
 
 app = Flask(__name__)
 
@@ -60,6 +62,6 @@ if __name__ == "__main__":
         sensor_objs[key] = chart(
             key, dbase(tz_corrector, key, data['cloud']['database'],
                           data['cloud']['username'], data['cloud']['password'],
-                          data['cloud']['influxHost']))
+                          data['cloud']['influxHost']), plt, mpl_dates)
     reporter_host = "3.236.45.125:5000"
     app.run(host='0.0.0.0')
