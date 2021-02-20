@@ -7,9 +7,8 @@ class tz_correction:
 
 	def set_to_ph(self, time_in_z):
 		utc = self.datetime.strptime(time_in_z, '%Y-%m-%dT%H:%M:%S.%fZ')
-		return utc.astimezone(self.timezone)
-	    # datetime_manila = utc.astimezone(self.timezone)
-	    # return datetime_manila.strftime('%Y-%m-%d %I:%M %p')
+	    datetime_manila = utc.astimezone(self.timezone)
+	    return datetime_manila.strftime('%Y-%m-%d %I:%M %p')
 
 	def get_datetime_obj(self, frm, to):
 	    new_frm = self.datetime.strptime(frm, '%Y-%m-%dT%H:%M:%S.%fZ')
