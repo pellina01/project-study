@@ -22,7 +22,6 @@ class chart:
                 self.plt.xlim([frm_dt, to_dt])
                 self.plt.figure().set_size_inches(3, 2)
                 self.plt.title(self.measurement)
-                self.plt.tight_layout()
                 self.plt.ylabel('{} value'.format(self.measurement))
                 self.plt.xlabel('time')
                 self.plt.xticks(rotation=90)
