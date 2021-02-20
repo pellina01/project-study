@@ -18,13 +18,15 @@ class chart:
             if len(self.time) > 0:
                 print("frm_dt: ", frm_dt)
                 print("to_dt", to_dt)
-                self.plt.plot_date(self.time, self.amplitude)
+                self.plt.plot_date(
+                    self.time, self.amplitude, linestyle="solid")
+                self.plt.gcf().autofmt_xdate()
                 self.plt.xlim([frm_dt, to_dt])
                 self.plt.figure().set_size_inches(3, 2)
                 self.plt.title(self.measurement)
                 self.plt.ylabel('{} value'.format(self.measurement))
                 self.plt.xlabel('time')
-                self.plt.xticks(rotation=90)
+                self.plt.tight_layout()
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                         self.measurement),
