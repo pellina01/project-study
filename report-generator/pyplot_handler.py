@@ -17,6 +17,8 @@ class chart:
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
                 self.plt.plot(self.time, self.amplitude)
+                print("frm_dt: ", frm_dt)
+                print("to_dt", to_dt)
                 self.plt.xlim([frm_dt, to_dt])
                 self.plt.figure().set_size_inches(3, 2)
                 self.plt.title(self.measurement)
