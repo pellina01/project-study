@@ -28,7 +28,7 @@ class chart:
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                         self.measurement),
-                    dpi=125)
+                    dpi=50)
                 self.image_link = '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                     self.measurement)
             else:
