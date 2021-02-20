@@ -23,7 +23,7 @@ class chart:
                 self.plt.tight_layout()
                 self.plt.ylabel('{} value'.format(self.measurement))
                 self.plt.xlabel('time')
-                plt.xticks(rotation=90)
+                self.plt.xticks(rotation=90)
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                         self.measurement),
