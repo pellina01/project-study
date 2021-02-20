@@ -12,18 +12,21 @@ class chart:
 
     def generate_plot(self, frm, to):
         try:
-            self.time, self.amplitude, frm_dt, to_dt = self.dbase.query(frm, to)
+            self.time, self.amplitude, frm_dt, to_dt = self.dbase.query(
+                frm, to)
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
+                self.plt.plot(self.time, self.amplitude)
                 self.plt.xlim([frm_dt, to_dt])
-                self.plt.figure().set_size_inches(3,2)
+                self.plt.figure().set_size_inches(3, 2)
                 self.plt.title(self.measurement)
                 self.plt.tight_layout()
                 self.plt.ylabel('{} value'.format(self.measurement))
                 self.plt.xlabel('time')
-                self.plt.plot(self.time, self.amplitude)
+                plt.xticks(rotation=90)
                 self.plt.savefig(
-                    '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(self.measurement), 
+                    '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
+                        self.measurement),
                     dpi=125)
                 self.image_link = '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                     self.measurement)
@@ -43,4 +46,3 @@ class chart:
             return self.image_link
         else:
             return self.no_data
-
