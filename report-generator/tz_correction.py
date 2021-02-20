@@ -10,7 +10,7 @@ class tz_correction:
 	    datetime_manila = utc.astimezone(self.timezone)
 	    return datetime_manila.strftime('%Y-%m-%d %I:%M %p')
 
-    def get_datetime_obj(self, frm, to):
+	def get_datetime_obj(self, frm, to):
 	    new_frm = self.datetime.strptime(frm, '%Y-%m-%dT%H:%M:%S.%fZ')
 	    new_frm = new_frm.astimezone(self.timezone)
 	    new_to = self.datetime.strptime(frm, '%Y-%m-%dT%H:%M:%S.%fZ')
