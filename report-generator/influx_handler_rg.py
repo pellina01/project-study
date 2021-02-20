@@ -1,6 +1,5 @@
 class dbase:
     from influxdb import InfluxDBClient
-    import numpy as np
 
     def __init__(self, tz_corrector, measurement, database, username, password, influxHost, influxPort=8086):
         self.measurement = measurement
@@ -19,8 +18,7 @@ class dbase:
         self.amplitude = []
 
         for point in self.datapoints:
-            # self.time.append(self.tz_corrector.get_string(point['time']))
-            self.time.append(point['time'])
-            self.amplitude.append(point['value'])
+            self.time.append(self.tz_corrector.get_datetime(point['time']))
+            self.amplitude.append(self.tz_corrector.get_datetime(point['value']))
 
-        return self.np.array(self.time), self.np.array(self.amplitude), self.tz_corrector.get_datetime(frm), self.tz_corrector.get_datetime(to)
+        return self.time, self.amplitude, self.tz_corrector.get_datetime(frm), self.tz_corrector.get_datetime(to)

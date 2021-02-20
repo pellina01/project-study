@@ -12,9 +12,14 @@ class chart:
 
     def generate_plot(self, frm, to):
         try:
-            self.time, self.amplitude, frm_dt, to_dt = self.dbase.query(
+            time, amplitude, frm_dt, to_dt = self.dbase.query(
                 frm, to)
+            self.time = self.mpl_dates.date2num(time)
+            self.amplitude = self.mpl_dates.date2num(amplitude)
+            frm_dt = self.mpl_dates.date2num([frm_dt])
+            to_dt = self.mpl_dates.date2num([to_dt])
             print(self.measurement, self.time, self.amplitude)
+            
             if len(self.time) > 0:
                 print("frm_dt: ", frm_dt)
                 print("to_dt", to_dt)
