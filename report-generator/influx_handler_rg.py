@@ -21,4 +21,4 @@ class dbase:
             self.time.append(self.tz_corrector.get_datetime(point['time']))
             self.amplitude.append(point['value'])
 
-        return self.time, self.amplitude
+        return self.time, self.amplitude, self.tz_corrector.get_datetime(frm), self.tz_corrector.get_datetime(to)

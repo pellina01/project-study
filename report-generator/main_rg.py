@@ -24,8 +24,8 @@ def api():
         sensor_objs[key].generate_plot(utc_frm, utc_to)
 
     time.sleep(2)
-    frm = tz_corrector.set_to_ph(utc_frm)
-    to = tz_corrector.set_to_ph(utc_to)
+    frm = tz_corrector.get_string(utc_frm)
+    to = tz_corrector.get_string(utc_to)
     variables = {
         'frm': frm,
         'to': to,
