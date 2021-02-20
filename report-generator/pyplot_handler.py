@@ -21,7 +21,7 @@ class chart:
                 self.plt.plot_date(
                     self.time, self.amplitude, linestyle="solid")
                 self.plt.gcf().autofmt_xdate()
-                self.plt.xlim([frm_dt, to_dt])
+                self.plt.gca().set_xlim([frm_dt, to_dt])
                 self.plt.figure().set_size_inches(3, 2)
                 self.plt.title(self.measurement)
                 self.plt.ylabel('{} value'.format(self.measurement))
