@@ -15,7 +15,8 @@ class chart:
             self.time, self.amplitude = self.dbase.query(frm, to)
             print(self.measurement, self.time, self.amplitude)
             if len(self.time) > 0:
-                self.plt.plot_date(self.time, self.amplitude)
+                # self.plt.plot_date(self.time, self.amplitude)
+                self.plt.plot(self.time, self.amplitude)
                 self.plt.xlim([frm,to])
                 # self.plt.style.use('seaborn')
                 self.plt.figure().set_size_inches(3,2)
