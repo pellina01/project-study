@@ -30,4 +30,4 @@ class dbase:
         if len(self.amplitude) > 0:
             return self.amplitude, self.time_string
         else:
-            return "no data", "no data"
+            return ["no data"], ["no data"]
