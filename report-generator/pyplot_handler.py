@@ -15,7 +15,7 @@ class chart:
             time, amplitude, frm_dt, to_dt = self.dbase.query(
                 frm, to)
             self.time = self.mpl_dates.date2num(time)
-            self.amplitude = self.mpl_dates.date2num(amplitude)
+            self.amplitude = amplitude
             frm_dt = self.mpl_dates.date2num([frm_dt])
             to_dt = self.mpl_dates.date2num([to_dt])
             print(self.measurement, self.time, self.amplitude)
