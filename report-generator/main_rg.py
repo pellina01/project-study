@@ -36,7 +36,8 @@ def api():
         'to': to,
         'title': title,
         'sensors': sensors,
-        'host': reporter_host
+        'host': reporter_host,
+        'for_table': {}
     }
 
     for key in sensors:
