@@ -27,10 +27,10 @@ def api():
     to = tz_corrector.get_string(utc_to)
     variables = {
         'page-size': 'A4',
-        'margin-top': '0.75in',
-        'margin-right': '0.75in',
-        'margin-bottom': '0.75in',
-        'margin-left': '0.75in',
+        'margin-top': '2cm',
+        'margin-right': '2cm',
+        'margin-bottom': '2cm',
+        'margin-left': '2cm',
         'footer-right': '[page]',
         'frm': frm,
         'to': to,
