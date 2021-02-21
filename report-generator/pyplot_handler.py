@@ -35,9 +35,9 @@ class chart:
                         self.measurement), dpi=70)
                 self.image_link = '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                     self.measurement)
+                self.plt.close()
             else:
                 self.image_link = self.no_data
-
         except Exception as e:
             print(e)
             print(self.traceback.format_exc())
