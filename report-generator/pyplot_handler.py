@@ -12,13 +12,10 @@ class chart:
 
     def generate_plot(self, frm, to):
         try:
-            self.time, self.values, frm_dt, to_dt= self.dbase.query(
-                frm, to)
-
+            self.time, self.values, frm_dt, to_dt= self.dbase.query(frm, to)
             self.time = self.mpl_dates.date2num(self.time)
             frm_dt = self.mpl_dates.date2num([frm_dt])
             to_dt = self.mpl_dates.date2num([to_dt])
-            print(self.measurement, self.time, self.values)
 
             if len(self.time) > 0:
                 self.plt.plot_date(
