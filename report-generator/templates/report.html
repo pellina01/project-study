@@ -12,16 +12,9 @@ header nav, footer {
     display: none;
     }
     
-h1 {
-    font-family: "Times New Roman", Times, serif;
-    line-height: 1.3;
-    }
-    
 .center-txt {
     padding: 10px;
     text-align: center;
-    font-family: "Times New Roman", Times, serif;
-    line-height: 1.3;
   }
 
 .image{
@@ -82,16 +75,16 @@ h1 {
 </head>
     <body>
         <h1 class="center-txt">{{variables['title']}}</h1><br>
-        <h1 class="center-txt">from: {{variables['frm']}}</h1> 
-    	<h1 class="center-txt">to: {{variables['to']}}</h1>
+        <p class="center-txt">from: {{variables['frm']}}</p> 
+    	<p class="center-txt">to: {{variables['to']}}</p>
         <div class="container">
         {% for key, value in variables['sensors'].items() %}
         	<div class="div-{{key}}">
-	        	<h1 class="title">{{value}}</h1>
+	        	<p class="title">{{value}}</p>
 	        	<img src="http://{{variables['host']}}/sensor/{{key}}" alt={{key}} class="image">
         	</div>
         {% endfor %}
         </div>
-        <h1 class="center-txt">------------------------- end -------------------------</h1>
+        <p class="center-txt">------------------------- end -------------------------</p>
     </body>
 </html>
