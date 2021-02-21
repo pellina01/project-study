@@ -27,4 +27,7 @@ class dbase:
         return self.time, self.amplitude, self.tz_corrector.get_datetime(frm), self.tz_corrector.get_datetime(to)
 
     def date_value_string_list(self):
-        return self.amplitude, self.time_string
+        if len(self.amplitude) > 0:
+            return self.amplitude, self.time_string
+        else:
+            return "no data", "no data"
