@@ -2,7 +2,8 @@ from flask import Flask, make_response, render_template, send_file, request
 import pdfkit
 from pyplot_handler import chart
 from influx_handler_rg import dbase
-import json, time
+import json
+import time
 from tz_correction import tz_correction as tz
 from matplotlib import pyplot as plt, dates as mpl_dates
 
@@ -13,18 +14,15 @@ app = Flask(__name__)
 def sensor_image(sensor):
     return send_file(sensor_objs[sensor].retrieve_plot_dir())
 
-@app.route('/api') #http://host/api?title=fishpond monitoring&from=${__from:date}&to=${__to:date}
+
+# http://host/api?title=fishpond monitoring&from=${__from:date}&to=${__to:date}
+@app.route('/api')
 def api():
     utc_frm = request.args.get('from')
     utc_to = request.args.get('to')
     title = request.args.get('title')
     # time_string_sensor_lists = []
 
-    for key in sensors:
-        sensor_objs[key].generate_plot(utc_frm, utc_to)
-        print(sensor_objs[key].generate_table())
-
-    time.sleep(2)
     frm = tz_corrector.get_string(utc_frm)
     to = tz_corrector.get_string(utc_to)
     variables = {
@@ -34,8 +32,14 @@ def api():
         'to': to,
         'title': title,
         'sensors': sensors,
-        'host' : reporter_host
+        'host': reporter_host
     }
+
+    for key in sensors:
+        sensor_objs[key].generate_plot(utc_frm, utc_to)
+        variables[key] = sensor_objs[key].generate_table()
+
+    time.sleep(2)
     # embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
     rendered = render_template('report.html', variables=variables)
     options = {'enable-local-file-access': None}
@@ -55,7 +59,8 @@ if __name__ == "__main__":
 
     with open('/home/ubuntu/project-study/report-generator/config.json', 'r') as file:
         data = json.loads(file.read())
-    sensors = {"ph":"pH", "tb":"turbidity", "temp":"temperature", "do":"dissolved oxygen"}
+    sensors = {"ph": "pH", "tb": "turbidity",
+               "temp": "temperature", "do": "dissolved oxygen"}
     sensor_objs = {}
 
     tz_corrector = tz("Asia/Manila")
@@ -63,7 +68,7 @@ if __name__ == "__main__":
     for key in sensors:
         sensor_objs[key] = chart(
             key, dbase(tz_corrector, key, data['cloud']['database'],
-                          data['cloud']['username'], data['cloud']['password'],
-                          data['cloud']['influxHost']), plt, mpl_dates)
+                       data['cloud']['username'], data['cloud']['password'],
+                       data['cloud']['influxHost']), plt, mpl_dates)
     reporter_host = "3.236.45.125:5000"
     app.run(host='0.0.0.0')

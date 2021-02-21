@@ -12,7 +12,7 @@ class chart:
 
     def generate_plot(self, frm, to):
         try:
-            self.time, self.values, frm_dt, to_dt= self.dbase.query(frm, to)
+            self.time, self.values, frm_dt, to_dt = self.dbase.query(frm, to)
             self.time = self.mpl_dates.date2num(self.time)
             frm_dt = self.mpl_dates.date2num([frm_dt])
             to_dt = self.mpl_dates.date2num([to_dt])
@@ -47,12 +47,11 @@ class chart:
             return self.no_data
 
     def generate_table(self):
-        self.container = self.dbase.date_value_string_list()
+        self.value, self.timestring = self.dbase.date_value_string_list()
         self.arranged_container = []
-        for i in range(0,len(self.container[0])):
+        for i in range(0, len(self.self.timestring)):
             self.arranged_container.append({
-                "sensor":self.measurement,
-                "value":self.container[0][i],
-                "time":self.container[1][i]
+                "value": self.value[i],
+                "time": self.timestring[i]
             })
         return self.arranged_container
