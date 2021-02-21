@@ -49,7 +49,7 @@ class chart:
     def generate_table(self):
         self.value, self.timestring = self.dbase.date_value_string_list()
         self.arranged_container = []
-        for i in range(0, len(self.self.timestring)):
+        for i in range(0, len(self.timestring)):
             self.arranged_container.append({
                 "value": self.value[i],
                 "time": self.timestring[i]
