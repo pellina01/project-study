@@ -58,3 +58,4 @@ class chart:
                 "value":self.container[0][i],
                 "time":self.container[1][i]
             })
+        return self.arranged_container

@@ -18,7 +18,7 @@ def api():
     utc_frm = request.args.get('from')
     utc_to = request.args.get('to')
     title = request.args.get('title')
-    time_string_sensor_lists = []
+    # time_string_sensor_lists = []
 
     for key in sensors:
         sensor_objs[key].generate_plot(utc_frm, utc_to)
@@ -61,7 +61,6 @@ if __name__ == "__main__":
     tz_corrector = tz("Asia/Manila")
 
     for key in sensors:
-        print('key: ', key)
         sensor_objs[key] = chart(
             key, dbase(tz_corrector, key, data['cloud']['database'],
                           data['cloud']['username'], data['cloud']['password'],
