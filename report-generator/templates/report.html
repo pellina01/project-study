@@ -99,6 +99,18 @@
         {% endfor %}
         </div>
         <p class="new-page">this is a new page</p>
+        <table>
+            <tr>
+                <th>time</th>
+                <th>value</th>
+            </tr>
+            {% for item in variables['ph'] %}
+                <tr>
+                    <td>{{ item['time'] }}</td>
+                    <td>{% item['value'] %}</td>
+                </tr>
+            {% endfor %}
+        </table>
         <p class="center-txt">-------------------------------------------------- end --------------------------------------------------</p>
     </body>
 </html>
