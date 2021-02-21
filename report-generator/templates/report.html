@@ -102,11 +102,11 @@
         	</div>
         {% endfor %}
         </div>
-        <p class="new-page">this is a new page</p>
+        <h3 class="new-page">tables of all values</h3>
 
         {% for sensor, data in variables['for_table'].items() %}
             <table>
-                <h3>{{sensor}} readings</h3>
+                <h5>{{sensor}} readings</h5>
                 <tr>
                     <th>time</th>
                     <th>value</th>
