@@ -99,18 +99,23 @@
         {% endfor %}
         </div>
         <p class="new-page">this is a new page</p>
-        <table>
-            <tr>
-                <th>time</th>
-                <th>value</th>
-            </tr>
-            {% for item in variables['ph'] %}
+
+        {% for sensor, data in variables['for_table'].items() %}
+            <table>
+                <h3>{{sensor}} readings</h3>
                 <tr>
-                    <td>{{ item['time'] }}</td>
-                    <td>{{ item['value'] }}</td>
+                    <th>time</th>
+                    <th>value</th>
                 </tr>
-            {% endfor %}
-        </table>
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item['time'] }}</td>
+                        <td>{{ item['value'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+
         <p class="center-txt">-------------------------------------------------- end --------------------------------------------------</p>
     </body>
 </html>

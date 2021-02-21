@@ -41,7 +41,7 @@ def api():
 
     for key in sensors:
         sensor_objs[key].generate_plot(utc_frm, utc_to)
-        variables[key] = sensor_objs[key].generate_table()
+        variables['for_table'][key] = sensor_objs[key].generate_table()
 
     time.sleep(2)
     # embedded jinja2 on flask default directory is templates/ . there is no need to indicate to the path
