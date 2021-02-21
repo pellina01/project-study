@@ -16,9 +16,14 @@ class dbase:
 
         self.time = []
         self.amplitude = []
+        self.time_string = []
 
         for point in self.datapoints:
             self.time.append(self.tz_corrector.get_datetime(point['time']))
             self.amplitude.append(point['value'])
+            self.time_string.append(self.tz_corrector.get_string(point['time']))
 
         return self.time, self.amplitude, self.tz_corrector.get_datetime(frm), self.tz_corrector.get_datetime(to)
+
+    def date_value_string_list(self):
+        return self.amplitude, self.time_string

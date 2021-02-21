@@ -18,9 +18,11 @@ def api():
     utc_frm = request.args.get('from')
     utc_to = request.args.get('to')
     title = request.args.get('title')
+    time_string_sensor_lists = []
 
     for key in sensors:
         sensor_objs[key].generate_plot(utc_frm, utc_to)
+        print(sensor_objs[key].generate_table())
 
     time.sleep(2)
     frm = tz_corrector.get_string(utc_frm)
