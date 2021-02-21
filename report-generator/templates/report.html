@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style type="text/css">
+    <head>
+        <style type="text/css">
 
-    @media print {
-    .new-page {
-        page-break-before: always;
-        padding-top: 100px;
-    }
-    }
-    @page {
-    size: A4;   /* auto is the initial value */
-    margin: 2cm 2cm 2cm 2cm;
-    marks: crop cross;
-    }
+            @media print {
+            .new-page {
+                page-break-before: always;
+                padding-top: 100px;
+            }
+            }
+            @page {
+            size: A4;   /* auto is the initial value */
+            margin: 2cm 2cm 2cm 2cm;
+            marks: crop cross;
+            }
 
-    header nav, footer {
-        display: none;
-        }
-        
-        
-    .title {
-        padding-top: 100px;
-        text-align: center;
-    }
+            header nav, footer {
+                display: none;
+                }
+                
+                
+            .title {
+                padding-top: 100px;
+                text-align: center;
+            }
 
-    .center-txt {
-        padding: 5px;
-        text-align: center;
-    }
+            .center-txt {
+                padding: 5px;
+                text-align: center;
+            }
 
-    .image{
-        /* padding-top: 30px; */
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        vertical-align: middle;
-    }    
+            .image{
+                /* padding-top: 30px; */
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                vertical-align: middle;
+            }    
 
-    .title {
-        padding-top: 20px;
-        text-align: center;
-        position: relative;
-    }    
-    .container {
-        width: 1000px;
-        height: 1000px;
-        /* border: 5px solid black; */
-        position: relative;
-    }
+            .title {
+                padding-top: 20px;
+                text-align: center;
+                position: relative;
+            }    
+            .container {
+                width: 1000px;
+                height: 1000px;
+                /* border: 5px solid black; */
+                position: relative;
+            }
 
-    .div-ph{
-        width: 490px;
-        height: 490px;
-        overflow:auto;
-        top: 0px;
-        /* border: 5px solid black; */
-        position: absolute;
-    }
-    .div-tb{
-        width: 490px;
-        height: 490px;
-        overflow:auto;
-        right: 0px;
-        /* border: 5px solid black; */
-        position: absolute;
-    }
-    .div-temp{
-        width: 490px;
-        height: 490px;
-        overflow:auto;
-        bottom: 0px;
-        /* border: 5px solid black; */
-        position: absolute;
-    }
-    .div-do{
-        width: 490px;
-        height: 490px;
-        overflow:auto;
-        bottom: 0px;
-        right: 0px;
-        /*border: 5px solid black;*/
-        position: absolute;
-    }
+            .div-ph{
+                width: 490px;
+                height: 490px;
+                overflow:auto;
+                top: 0px;
+                /* border: 5px solid black; */
+                position: absolute;
+            }
+            .div-tb{
+                width: 490px;
+                height: 490px;
+                overflow:auto;
+                right: 0px;
+                /* border: 5px solid black; */
+                position: absolute;
+            }
+            .div-temp{
+                width: 490px;
+                height: 490px;
+                overflow:auto;
+                bottom: 0px;
+                /* border: 5px solid black; */
+                position: absolute;
+            }
+            .div-do{
+                width: 490px;
+                height: 490px;
+                overflow:auto;
+                bottom: 0px;
+                right: 0px;
+                /*border: 5px solid black;*/
+                position: absolute;
+            }
 
-</style>
-</head>
+        </style>
+    </head>
     <body>
         <h1 class="title">{{variables['title']}}</h1><br>
         <p class="center-txt">from: {{variables['frm']}}</p> 
