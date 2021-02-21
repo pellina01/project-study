@@ -6,7 +6,7 @@
     @media print {
     .new-page {
         page-break-before: always;
-        padding-top: 200px;
+        padding-top: 100px;
     }
     }
     @page {
@@ -19,8 +19,14 @@
         display: none;
         }
         
+        
+    .title {
+        padding-top: 100px;
+        text-align: center;
+    }
+
     .center-txt {
-        padding: 10px;
+        padding: 5px;
         text-align: center;
     }
 
@@ -81,7 +87,7 @@
 </style>
 </head>
     <body>
-        <h1 class="center-txt">{{variables['title']}}</h1><br>
+        <h1 class="title">{{variables['title']}}</h1><br>
         <p class="center-txt">from: {{variables['frm']}}</p> 
     	<p class="center-txt">to: {{variables['to']}}</p>
         <div class="container">
