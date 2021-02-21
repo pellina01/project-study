@@ -19,6 +19,6 @@ class dbase:
 
         for point in self.datapoints:
             self.time.append(self.tz_corrector.get_datetime(point['time']))
-            self.amplitude.append(self.tz_corrector.get_datetime(point['value']))
+            self.amplitude.append(point['value'])
 
         return self.time, self.amplitude, self.tz_corrector.get_datetime(frm), self.tz_corrector.get_datetime(to)
