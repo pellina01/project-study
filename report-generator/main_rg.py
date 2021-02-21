@@ -4,8 +4,7 @@ from pyplot_handler import chart
 from influx_handler_rg import dbase
 import json, time
 from tz_correction import tz_correction as tz
-from matplotlib import pyplot as plt
-from matplotlib import dates as mpl_dates
+from matplotlib import pyplot as plt, dates as mpl_dates
 
 app = Flask(__name__)
 
@@ -27,6 +26,8 @@ def api():
     frm = tz_corrector.get_string(utc_frm)
     to = tz_corrector.get_string(utc_to)
     variables = {
+        'margin-bottom': '0.75in',
+        'footer-right': '[page]',
         'frm': frm,
         'to': to,
         'title': title,
