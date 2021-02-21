@@ -19,19 +19,17 @@ class chart:
             frm_dt = self.mpl_dates.date2num([frm_dt])
             to_dt = self.mpl_dates.date2num([to_dt])
             print(self.measurement, self.time, self.amplitude)
-            
+
             if len(self.time) > 0:
-                print("frm_dt: ", frm_dt)
-                print("to_dt", to_dt)
                 self.plt.plot_date(
                     self.time, self.amplitude, linestyle="solid")
                 self.plt.gcf().autofmt_xdate()
                 self.plt.gca().set_xlim([frm_dt, to_dt])
-                self.plt.figure().set_size_inches(3, 2)
-                self.plt.title(self.measurement)
-                self.plt.ylabel('{} value'.format(self.measurement))
-                self.plt.xlabel('time')
-                self.plt.tight_layout()
+                # self.plt.figure().set_size_inches(3, 2)
+                # self.plt.title(self.measurement)
+                # self.plt.ylabel('{} value'.format(self.measurement))
+                # self.plt.xlabel('time')
+                # self.plt.tight_layout()
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                         self.measurement),
