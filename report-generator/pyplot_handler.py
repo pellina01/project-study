@@ -25,15 +25,14 @@ class chart:
                     self.time, self.amplitude, linestyle="solid")
                 self.plt.gcf().autofmt_xdate()
                 self.plt.gca().set_xlim([frm_dt, to_dt])
-                # self.plt.figure().set_size_inches(3, 2)
-                # self.plt.title(self.measurement)
-                # self.plt.ylabel('{} value'.format(self.measurement))
-                # self.plt.xlabel('time')
-                # self.plt.tight_layout()
+                self.plt.figure().set_size_inches(3, 2)
+                self.plt.title(self.measurement)
+                self.plt.ylabel('{} value'.format(self.measurement))
+                self.plt.xlabel('time')
+                self.plt.tight_layout()
                 self.plt.savefig(
                     '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
-                        self.measurement))
-                    # dpi=125)
+                        self.measurement), dpi=50)
                 self.image_link = '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
                     self.measurement)
             else:
