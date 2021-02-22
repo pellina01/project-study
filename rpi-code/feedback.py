@@ -74,7 +74,7 @@ if __name__ == "__main__":
     for key, value in data["raspi"].items():
         raspi.update({key: value})
 
-    switch = serialize(read_arduino, 11, 4, 5)
+    switch = serialize(read_arduino, 11, 5, 4)
     sensor_function = sensor_func(read_do, 11, 3)
     aerator = feedback(raspi["mqtt_url"], sensor_function,
                        switch, 4, "aerator")
