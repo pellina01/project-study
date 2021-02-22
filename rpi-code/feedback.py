@@ -17,7 +17,7 @@ class feedback:
         print("successful establishing connection with mqtt")
 
     def check(self):
-        dummy, sensor_val = self.read_sensor_value()
+        sensor_val = self.read_sensor_value()[1]
         if self.lower_limit > sensor_val:
             self.feedback_is_on = True
         else:
@@ -75,13 +75,12 @@ if __name__ == "__main__":
 
     switch = serialize(read_arduino, 11, 4, 5)
     sensor_function = sensor_func(read_do, 11, 3)
-    print(sensor_function())
-    # aerator = feedback(raspi["mqtt_url"], sensor_function,
-    #                    switch, 4, "aerator")
+    aerator = feedback(raspi["mqtt_url"], sensor_function,
+                       switch, 4, "aerator")
                        
-    # while True:
-    #     try:
-    #         time.sleep(aerator.check())
-    #     except:
-    #         logging.error(traceback.format_exc())
-    #         print(traceback.format_exc())
+    while True:
+        try:
+            time.sleep(aerator.check())
+        except:
+            logging.error(traceback.format_exc())
+            print(traceback.format_exc())
