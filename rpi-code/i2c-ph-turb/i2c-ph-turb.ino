@@ -36,6 +36,14 @@ void requestEvent()
   {
     response = doxy();
   }
+  else if(sensor == "relay_on")
+  {
+    response = relay_on();
+  }
+  else if(sensor == "relay_off")
+  {
+    response = relay_off();
+  }
   dtostrf(response, 13, 2, buffer);
   Wire.write(buffer);
   Serial.println("responsed");
@@ -61,6 +69,13 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi
   if (request == "3")
   {
     sensor = "do";
+  }
+  
+  if(request == "4"){
+    sensor = "relay_on";
+  }
+  if(request == "5"){
+  sensor = "relay_off";
   }
 }
 
@@ -123,3 +138,16 @@ float doxy()
 {
   return (float)analogRead(A2);
   }
+
+
+float relay_on()
+{
+  digitalWrite(13, LOW);
+  return 1;
+}
+
+float relay_off()
+{
+  digitalWrite(13, HIGH);
+  return 0;
+}
