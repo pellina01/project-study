@@ -52,7 +52,7 @@ def serialize(read, address, cmd_on, cmd_off):
 
 def sensor_func(read, address, slave_address):
     def sens():
-        read(address, slave_address)
+        return read(address, slave_address)
     return sens
 
 
@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
     switch = serialize(read_arduino, 11, 4, 5)
     sensor_function = sensor_func(read_do, 11, 3)
-    print(read_do(11,3))
+    print(sensor_function())
     # aerator = feedback(raspi["mqtt_url"], sensor_function,
     #                    switch, 4, "aerator")
                        
