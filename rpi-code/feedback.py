@@ -17,8 +17,8 @@ class feedback:
         print("successful establishing connection with mqtt")
 
     def check(self):
-        sensor_val = self.read_sensor_value()
-        if self.lower_limit > sensor_val[1]:
+        dummy, sensor_val = self.read_sensor_value()
+        if self.lower_limit > sensor_val:
             self.feedback_is_on = True
         else:
             self.feedback_is_on = False
