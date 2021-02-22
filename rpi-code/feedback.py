@@ -45,9 +45,9 @@ class feedback:
 def serialize(read, address, cmd_on, cmd_off):
     def switch(is_on):
         if is_on:
-            read(address, cmd_on)
+            return read(address, cmd_on)
         else:
-            read(address, cmd_off)
+            return read(address, cmd_off)
     return switch
 
 def sensor_func(read, address, slave_address):
