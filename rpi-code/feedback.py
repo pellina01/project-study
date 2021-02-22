@@ -82,6 +82,6 @@ if __name__ == "__main__":
     while True:
         try:
             time.sleep(aerator.check())
-        except Exception as e:
+        except:
             logging.error(traceback.format_exc())
-            print(e)
+            print(traceback.format_exc())
