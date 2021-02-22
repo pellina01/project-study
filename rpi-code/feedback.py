@@ -34,13 +34,14 @@ class feedback:
 
         print("feedback status: " + str(self.feedback_is_on))
         print("sent: " + str(self.sent))
-        return 300
+        return 10
 
     def __feedback_serializer(self):
         return self.json.dumps({
             "status": "ok",
             "value": "{} is {}".format(self.device, "on" if self.feedback_is_on else "off")
         })
+    
 
 
 def serialize(read, address, cmd_on, cmd_off):
@@ -74,7 +75,7 @@ if __name__ == "__main__":
     for key, value in data["raspi"].items():
         raspi.update({key: value})
 
-    switch = serialize(read_arduino, 11, 5, 4)
+    switch = serialize(read_arduino, 11, 4, 5)
     sensor_function = sensor_func(read_do, 11, 3)
     aerator = feedback(raspi["mqtt_url"], sensor_function,
                        switch, 4, "aerator")
