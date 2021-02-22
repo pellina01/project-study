@@ -17,9 +17,8 @@ class feedback:
         print("successful establishing connection with mqtt")
 
     def check(self):
-        sensor_val = self.read_sensor_value()[1]
-        print(sensor_val)
-        if self.lower_limit > sensor_val:
+        sensor_val = self.read_sensor_value()
+        if self.lower_limit > sensor_val[1]:
             self.feedback_is_on = True
         else:
             self.feedback_is_on = False
@@ -52,9 +51,9 @@ def serialize(read, address, cmd_on, cmd_off):
     return switch
 
 def sensor_func(read, address, slave_address):
-    def switch():
+    def sens():
         read(address, slave_address)
-    return switch
+    return sens
 
 
 if __name__ == "__main__":
