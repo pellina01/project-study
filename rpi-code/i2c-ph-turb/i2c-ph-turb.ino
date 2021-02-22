@@ -15,6 +15,7 @@ void setup()
 
   Serial.begin(9600);
   Serial.println("Ready"); //Test the serial monitor
+  pinMode(13, OUTPUT);
 }
 void loop()
 {
