@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
     logging.basicConfig(filename="error.log")
     
-    with open('/home/pi/Desktop/project-study/rpi-code/config.json', 'r') as file:
+    with open('/home/pi/project-study/rpi-code/config.json', 'r') as file:
         data = json.loads(file.read())
 
     raspi = {}
