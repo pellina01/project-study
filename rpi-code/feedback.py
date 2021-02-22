@@ -75,12 +75,13 @@ if __name__ == "__main__":
 
     switch = serialize(read_arduino, 11, 4, 5)
     sensor_function = sensor_func(read_do, 11, 3)
-    aerator = feedback(raspi["mqtt_url"], sensor_function,
-                       switch, 4, "aerator")
+    print(sensor_function())
+    # aerator = feedback(raspi["mqtt_url"], sensor_function,
+    #                    switch, 4, "aerator")
                        
-    while True:
-        try:
-            time.sleep(aerator.check())
-        except:
-            logging.error(traceback.format_exc())
-            print(traceback.format_exc())
+    # while True:
+    #     try:
+    #         time.sleep(aerator.check())
+    #     except:
+    #         logging.error(traceback.format_exc())
+    #         print(traceback.format_exc())
