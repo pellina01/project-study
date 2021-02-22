@@ -27,7 +27,7 @@ class feedback:
         if not self.sent or self.feedback_is_on != self.prev_status:
             self.sent = False
             self.prev_status = self.feedback_is_on
-            self.correction(self.feedback_is_on)
+            self.correction(not self.feedback_is_on)
             if self.mq_client.send(self.__feedback_serializer()):
                 self.sent = True
             # else:
