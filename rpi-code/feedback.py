@@ -38,7 +38,7 @@ class feedback:
 
     def __feedback_serializer(self):
         return self.json.dumps({
-            "status": "ok",
+            "status": "note",
             "value": "{} is {}".format(self.device, "on" if self.feedback_is_on else "off")
         })
     

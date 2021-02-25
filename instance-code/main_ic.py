@@ -17,9 +17,9 @@ for key, value in data["cloud"].items():
 
 logging.basicConfig(filename=cloud["error_file"])
 
-sensors = []
+registered_topics = []
 for topic in cloud["topics"]:
-    sensors.append(listen(topic, cloud["url"], cloud["influxHost"],
+    registered_topics.append(listen(topic, cloud["url"], cloud["influxHost"],
                           cloud["database"], cloud["username"], cloud["password"]))
 calibrate = []
 for items in cloud["calibration"]:

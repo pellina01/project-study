@@ -5,7 +5,8 @@ class status_validate:
         "connected":self.__connected(),
         "disconnected":self.__disconnected(),
         "ok":self.__ok(),
-        "error":self.__error()
+        "error":self.__error(),
+        "note":self.__note(),
         }
 
     def is_valid(self, recieved_list):
@@ -26,6 +27,9 @@ class status_validate:
         return True
 
     def __error(self):
+        return True
+
+    def __note(self):
         return True
 
     def __is_on(self):

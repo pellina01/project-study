@@ -7,6 +7,7 @@ class serializer:
         "disconnected":self.__disconnected,
         "ok":self.__ok,
         "error":self.__error,
+        "note":self.__note
         }
 
     def serialize(self, recieved_list):
@@ -34,4 +35,7 @@ class serializer:
 
     def __connected(self, recieved_list):
         return self.__influx_serializer("rpi", "connected", "RasPi is connected")
+
+    def __note(self, recieved_list):
+        return self.__influx_serializer(self.topic, "note", str(self.topic+ " note: " + recieved_list["value"]))
 
