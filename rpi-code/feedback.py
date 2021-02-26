@@ -17,20 +17,23 @@ class feedback:
         print("successful establishing connection with mqtt")
 
     def check(self):
-        sensor_val = self.read_sensor_value()[1]
-        print(sensor_val)
-        if self.lower_limit > sensor_val:
+        try:
+            sensor_val = self.read_sensor_value()[1]
+            print(sensor_val)
+            if self.lower_limit > sensor_val:
+                self.feedback_is_on = True
+            else:
+                self.feedback_is_on = False
+        except:
             self.feedback_is_on = True
-        else:
-            self.feedback_is_on = False
+        finally:
+            if not self.sent or self.feedback_is_on != self.prev_status:
+                self.sent = False
+                self.prev_status = self.feedback_is_on
+                self.correction(not self.feedback_is_on)
+                if self.mq_client.send(self.__feedback_serializer()):
+                    self.sent = True
 
-        if not self.sent or self.feedback_is_on != self.prev_status:
-            self.sent = False
-            self.prev_status = self.feedback_is_on
-            self.correction(not self.feedback_is_on)
-            if self.mq_client.send(self.__feedback_serializer()):
-                self.sent = True
-            # else:
 
         print("feedback status: " + str(self.feedback_is_on))
         print("sent: " + str(self.sent))
@@ -78,7 +81,7 @@ if __name__ == "__main__":
     switch = serialize(read_arduino, 11, 4, 5)
     sensor_function = sensor_func(read_do, 11, 3)
     aerator = feedback(raspi["mqtt_url"], sensor_function,
-                       switch, 4, "aerator")
+                       switch, raspi["lower_limit"], "aerator")
                        
     while True:
         try:
