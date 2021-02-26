@@ -75,5 +75,5 @@ if __name__ == "__main__":
             key, dbase(tz_corrector, key, data['cloud']['database'],
                        data['cloud']['username'], data['cloud']['password'],
                        data['cloud']['influxHost']), plt, mpl_dates)
-    reporter_host = "3.236.45.125:5000"
+    reporter_host = data["grafana"]
     app.run(host='0.0.0.0')
