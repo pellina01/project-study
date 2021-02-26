@@ -1,7 +1,9 @@
 class chart:
     import traceback
+    import logging
 
     def __init__(self, measurement, dbase, plt, mpl_dates):
+        self.logging.basicConfig(filename="error.log")
         self.plt = plt
         self.mpl_dates = mpl_dates
         self.dbase = dbase
@@ -36,6 +38,7 @@ class chart:
         except:
             print(self.traceback.format_exc())
             self.image_link = self.no_data
+            self.logging.error(self.traceback.format_exc())
         finally:
             self.generated = True
 
