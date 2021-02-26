@@ -2,6 +2,8 @@ class feedback:
     from mqtt import mqtt
     import json
     import time
+    import logging
+    import traceback
 
     def __init__(self, mqtt_url, sensor_function, corrective_function, lower_limit, device_name):
         self.device = device_name
@@ -9,6 +11,7 @@ class feedback:
         self.correction = corrective_function
         self.read_sensor_value = sensor_function
 
+        self.logging.basicConfig(filename="error.log")
         self.feedback_is_on = False
         self.sent = False
         self.mq_client = self.mqtt(device_name, mqtt_url)
@@ -16,11 +19,15 @@ class feedback:
         print("successful establishing connection with mqtt")
 
     def check(self):
-        if self.lower_limit > self.read_sensor_value()[1]:
+        try:
+            if self.lower_limit < self.read_sensor_value()[1]:
+                self.feedback_is_on = False
+            else:
+                self.feedback_is_on = True
+        except:
             self.feedback_is_on = True
-        else:
-            self.feedback_is_on = False
-        self.feedback_is_on = True
+            self.logging.error(self.traceback.format_exc())
+            print(self.traceback.format_exc())
 
         if not self.sent or self.feedback_is_on != self.prev_status:
             self.sent = False
@@ -58,11 +65,8 @@ if __name__ == "__main__":
     from do_new import read_do
     from i2c import read_arduino
     import json
-    import logging
-    import traceback
     import time
 
-    logging.basicConfig(filename="error.log")
     
     with open('/home/pi/project-study/rpi-code/config.json', 'r') as file:
         data = json.loads(file.read())
@@ -81,5 +85,4 @@ if __name__ == "__main__":
             aerator.check()
             time.sleep(10)
         except:
-            logging.error(traceback.format_exc())
-            print(traceback.format_exc())
+            pass
