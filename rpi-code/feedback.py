@@ -16,21 +16,18 @@ class feedback:
         print("successful establishing connection with mqtt")
 
     def check(self):
-        try:
-            if self.lower_limit > self.read_sensor_value()[1]:
-                self.feedback_is_on = True
-            else:
-                self.feedback_is_on = False
-        except:
+        if self.lower_limit > self.read_sensor_value()[1]:
             self.feedback_is_on = True
-        finally:
-            if not self.sent or self.feedback_is_on != self.prev_status:
-                self.sent = False
-                self.prev_status = self.feedback_is_on
-                self.correction(not self.feedback_is_on)
-                if self.mq_client.send(self.__feedback_serializer()):
-                    self.sent = True
+        else:
+            self.feedback_is_on = False
+        self.feedback_is_on = True
 
+        if not self.sent or self.feedback_is_on != self.prev_status:
+            self.sent = False
+            self.prev_status = self.feedback_is_on
+            self.correction(not self.feedback_is_on)
+            if self.mq_client.send(self.__feedback_serializer()):
+                self.sent = True
 
         print("feedback status: " + str(self.feedback_is_on))
         print("sent: " + str(self.sent))
