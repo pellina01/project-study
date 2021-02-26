@@ -13,14 +13,11 @@ class feedback:
         self.sent = False
         self.mq_client = self.mqtt(device_name, mqtt_url)
         self.prev_status = False
-
         print("successful establishing connection with mqtt")
 
     def check(self):
         try:
-            sensor_val = self.read_sensor_value()[1]
-            print(sensor_val)
-            if self.lower_limit > sensor_val:
+            if self.lower_limit > self.read_sensor_value()[1]:
                 self.feedback_is_on = True
             else:
                 self.feedback_is_on = False
@@ -37,7 +34,6 @@ class feedback:
 
         print("feedback status: " + str(self.feedback_is_on))
         print("sent: " + str(self.sent))
-        return 10
 
     def __feedback_serializer(self):
         return self.json.dumps({
@@ -85,7 +81,8 @@ if __name__ == "__main__":
                        
     while True:
         try:
-            time.sleep(aerator.check())
+            aerator.check()
+            time.sleep(10)
         except:
             logging.error(traceback.format_exc())
             print(traceback.format_exc())
