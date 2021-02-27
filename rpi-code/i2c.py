@@ -15,6 +15,17 @@ def convert_bytes_to_list(src):
     return convert
 
 
+def read_arduino(slave_addr, sensor_type):
+    try:
+        SMBus(BUS).write_i2c_block_data(
+            slave_addr, MEMORY_ADDR, convert_bytes_to_list(bytes(str(sensor_type), "utf-8")))
+        return "ok", float(bytearray(SMBus(BUS).read_i2c_block_data(
+            slave_addr, MEMORY_ADDR, BYTE_LEN)).decode("utf-8", "ignore"))
+    except Exception as e:
+        print("failed to retrieve data from arduino...")
+        print(e)
+        return "error", e
+
 # def read_arduino(slave_addr, sensor_type):
 #     try:
 #         I2Cbus = smbus.SMBus(BUS)
@@ -27,17 +38,6 @@ def convert_bytes_to_list(src):
 #         print("failed to retrieve data from arduino...")
 #         print(e)
 #         return "error", e
-
-def read_arduino(slave_addr, sensor_type):
-    try:
-        SMBus(BUS).write_i2c_block_data(
-            slave_addr, MEMORY_ADDR, convert_bytes_to_list(bytes(str(sensor_type), "utf-8")))
-        return "ok", float(bytearray(SMBus(BUS).read_i2c_block_data(
-            slave_addr, MEMORY_ADDR, BYTE_LEN)).decode("utf-8", "ignore"))
-    except Exception as e:
-        print("failed to retrieve data from arduino...")
-        print(e)
-        return "error", e
 
 
 if __name__ == "__main__":
