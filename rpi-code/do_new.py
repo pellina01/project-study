@@ -24,6 +24,7 @@ def read_do(slave_addr, sensor_type):
         rounded_temp = round(temp[1])
         V_saturation = (temp[1] - cal2_t) * (cal1_v -
                                              cal2_v) / (cal1_t - cal2_t) + cal2_v
+        print("do" , round(adc_voltage * do_table[rounded_temp] / V_saturation, 2))
         return "ok", round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
     except Exception as e:
         return "error", e
