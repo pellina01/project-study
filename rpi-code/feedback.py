@@ -32,10 +32,11 @@ class feedback:
         if not self.sent or self.feedback_is_on != self.prev_status:
             self.sent = False
             self.prev_status = self.feedback_is_on
-            self.correction(not self.feedback_is_on)
             if self.mq_client.send(self.__feedback_serializer()):
                 self.sent = True
 
+
+        self.correction(not self.feedback_is_on) # aerator at relay normally closed 
         print("feedback status: " + str(self.feedback_is_on))
         print("sent: " + str(self.sent))
 
