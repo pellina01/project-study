@@ -1,5 +1,6 @@
 from i2c import read_arduino
 from wire1 import read_value as read_temp
+import traceback
 
 cal1_v = 908  # mv
 cal1_t = 33.125  # ℃
@@ -27,11 +28,8 @@ def read_do(slave_addr, sensor_type):
         print("do" , round(adc_voltage * do_table[rounded_temp] / V_saturation, 2))
         return "ok", round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
     except Exception as e:
+		print(traceback.format_exc())
         return "error", e
 
 if __name__ == "__main__":
-	import traceback
-	try:
-		print(read_do(11,3))
-	except:
-		print(traceback.format_exc())
+	print(read_do(11,3))
