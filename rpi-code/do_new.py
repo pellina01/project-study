@@ -30,4 +30,8 @@ def read_do(slave_addr, sensor_type):
         return "error", e
 
 if __name__ == "__main__":
-	print(read_do(11,3))
+	import traceback
+	try:
+		print(read_do(11,3))
+	except:
+		print(traceback.format_exc())
