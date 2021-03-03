@@ -29,7 +29,7 @@ def read_do(slave_addr, sensor_type):
         return "ok", round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
     except Exception as e:
     	print(traceback.format_exc())
-        return "error", e
+    	return "error", e
 
 if __name__ == "__main__":
 	print(read_do(11,3))
