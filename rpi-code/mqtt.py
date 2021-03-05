@@ -11,6 +11,9 @@ class mqtt:
         self.json = json
         self.topic = topic
         self.client = mqtt.Client()
+        self.host = host
+        self.port = port
+        self.keepalive = keepalive
 
         # only rpi topic(the status of the main device) will have will_set and on_connect method set
         if topic == "rpi":
@@ -18,21 +21,21 @@ class mqtt:
             self.client.will_set(
                 topic, self.json.dumps({"status": "disconnected"}), qos, retain)
 
-        # run code until connect
-        print(host)
-        self.connected = False
-        self.printed = False
-        while self.connected is False:
-            try:
-                self.client.connect(host, port, keepalive)
-                self.connected = True
-            except:
-                if self.printed is False:
-                    print(
-                        "unable to establish connection with topic:'%s', retrying...." % topic)
-                    self.printed = True
+            # run code until connect
+            print(host)
+            self.connected = False
+            self.printed = False
+            while self.connected is False:
+                try:
+                    self.client.connect(host, port, keepalive)
+                    self.connected = True
+                except:
+                    if self.printed is False:
+                        print(
+                            "unable to establish connection with topic:'%s', retrying...." % topic)
+                        self.printed = True
 
-        self.client.loop_start()
+            self.client.loop_start()
         print("done topic:'%s' connection setup." % topic)
 
         self.logging = logging
@@ -41,6 +44,7 @@ class mqtt:
 
     def send(self, payload, retain=False):
         try:
+            self.client.connect(self.host, self.port, self.keepalive)
             self.client.publish(self.topic, payload, retain)
             return True
         except Exception as e:
@@ -54,5 +58,6 @@ class mqtt:
 
     def on_connect(self, client, userdata, flags, rc):
         print("here at on_connect")
-        self.client.publish(
-            self.topic, self.json.dumps({"status": "connected"}))
+        if self.topic == "rpi":
+            self.client.publish(
+                self.topic, self.json.dumps({"status": "connected"}))

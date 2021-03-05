@@ -34,6 +34,7 @@ class feedback:
             self.prev_status = self.feedback_is_on
             if self.mq_client.send(self.__feedback_serializer()):
                 self.sent = True
+            self.mq_client.disconnect()
 
 
         self.correction(not self.feedback_is_on) # aerator at relay normally closed 
