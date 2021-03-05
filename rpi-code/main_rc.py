@@ -7,7 +7,6 @@ import math
 import schedule
 import logging
 import traceback
-#from run_sensor import main
 
 with open('/home/pi/project-study/rpi-code/config.json', 'r') as file:
     data = json.loads(file.read())
@@ -20,7 +19,6 @@ for key, value in data["raspi"].items():
 
 def main():
     logging.basicConfig(filename="error.log")
-
     try:
         for sensor_listed in raspi["sensors"]:
             sensor(raspi["mqtt_url"], sensor_listed).Process()
@@ -29,22 +27,33 @@ def main():
         logging.error(traceback.format_exc())
 
 
-def sched(mins):
-    hour = math.trunc(mins/60)
-    minute = mins - (60*hour)
-    formatted_hour = "0{}".format(hour) if hour < 10 else hour
-    formatted_minute = "0{}".format(minute) if minute < 10 else minute
-    return "{}:{}".format(formatted_hour, formatted_minute)
-
-
-# schedule.every(1).minutes.do(main)
 schedules = []
-period = math.trunc(1440/raspi["schedule_per_day"])
-for i in range(0, raspi["schedule_per_day"]):
-    schedules.append(schedule.every().day.at(sched(period*i)).do(main))
-    print("done scheduling time at: ", sched(period*i))
+
+if raspi["mode"] == "dev":
+# this code is for scheduling with interval in a day
+
+    def sched(mins):
+        hour = math.trunc(mins/60)
+        minute = mins - (60*hour)
+        formatted_hour = "0{}".format(hour) if hour < 10 else hour
+        formatted_minute = "0{}".format(minute) if minute < 10 else minute
+        return "{}:{}".format(formatted_hour, formatted_minute)
+
+
+    period = math.trunc(1440/raspi["schedule_per_day"])
+    for i in range(0, raspi["schedule_per_day"]):
+        schedules.append(schedule.every().day.at(sched(period*i)).do(main))
+        print("done scheduling time at: ", sched(period*i))
+
+elif raspi["mode"] == "prod":
+# this code is for schedule with specified time
+    schedules = []
+    for t in raspi["schedules"]:
+        schedules.append(schedule.every().day.at(t).do(main))
+        print("done scheduling time at: ", t)
 
 rpi = mqtt("rpi", raspi["mqtt_url"])
 
 while True:
     schedule.run_pending()
+    time.sleep(1)
