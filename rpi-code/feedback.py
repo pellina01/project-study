@@ -28,13 +28,14 @@ class feedback:
             self.feedback_is_on = True
             self.logging.error(self.traceback.format_exc())
             print(self.traceback.format_exc())
-
-        if not self.sent or self.feedback_is_on != self.prev_status:
-            self.sent = False
-            self.prev_status = self.feedback_is_on
-            if self.mq_client.send(self.__feedback_serializer()):
-                self.sent = True
-            self.mq_client.disconnect()
+            
+        finally:
+            if not self.sent or self.feedback_is_on != self.prev_status:
+                self.sent = False
+                self.prev_status = self.feedback_is_on
+                if self.mq_client.send(self.__feedback_serializer()):
+                    self.sent = True
+                self.mq_client.disconnect()
 
 
         self.correction(not self.feedback_is_on) # aerator at relay normally closed 
@@ -87,4 +88,4 @@ if __name__ == "__main__":
             aerator.check()
             time.sleep(10)
         except:
-            pass
+            time.sleep(10)
