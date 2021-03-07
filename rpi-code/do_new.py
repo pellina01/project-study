@@ -2,9 +2,9 @@ from i2c import read_arduino
 from wire1 import read_value as read_temp
 import traceback
 
-cal1_v = 880  # mv
+cal1_v = 891  # mv
 cal1_t = 18.69  # ℃
-cal2_v = 984  # mv
+cal2_v = 994  # mv
 cal2_t = 38.44  # ℃
 
 resolution = 1024  # level
