@@ -3,7 +3,7 @@ from wire1 import read_value as read_temp
 import traceback
 
 cal1_v = 776  # mv
-cal1_t = 22.69  # ℃
+cal1_t = 18.69  # ℃
 cal2_v = 834  # mv
 cal2_t = 34.44  # ℃
 
