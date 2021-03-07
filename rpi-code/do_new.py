@@ -5,7 +5,7 @@ import traceback
 cal1_v = 776  # mv
 cal1_t = 22.69  # ℃
 cal2_v = 834  # mv
-cal2_t = 36.44  # ℃
+cal2_t = 34.44  # ℃
 
 resolution = 1024  # level
 reference = 5000  # mv
