@@ -77,4 +77,4 @@ if __name__ == "__main__":
                        data['cloud']['influxHost']), plt, mpl_dates)
     reporter_host = data['cloud']['grafana']
     # app.run(host='0.0.0.0')
-    app.run(port=5000)
+    app.run(debug=True)
