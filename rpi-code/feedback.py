@@ -85,7 +85,7 @@ if __name__ == "__main__":
                        
     while True:
         try:
+            time.sleep(raspi["aerator_delay_s"])
             aerator.check()
-            time.sleep(300)
         except:
-            time.sleep(300)
+            time.sleep(raspi["aerator_delay_s"])
