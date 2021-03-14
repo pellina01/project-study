@@ -19,7 +19,7 @@ do_table = [14.460, 14.220, 13.820, 13.440, 13.090, 12.740, 12.420, 12.110, 11.8
 def read_do(slave_addr, sensor_type):
     try:
         adc_raw = round(read_arduino(slave_addr, sensor_type)[1])
-        # print(adc_raw)
+        print(adc_raw)
         adc_voltage = adc_raw*reference/resolution
         temp = read_temp()
         rounded_temp = round(temp[1])
