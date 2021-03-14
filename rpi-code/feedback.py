@@ -86,6 +86,6 @@ if __name__ == "__main__":
     while True:
         try:
             aerator.check()
-            time.sleep(10)
+            time.sleep(60)
         except:
-            time.sleep(10)
+            time.sleep(60)
