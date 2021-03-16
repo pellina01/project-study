@@ -28,7 +28,7 @@ def read_do(slave_addr, sensor_type):
         temp = read_temp()
         rounded_temp = round(temp[1])
         print("adc raw: {}".format(adc_raw))
-        print("temp: {}".format(rounded_temp))
+        print("temp: {}".format(read_temp()))
         print("voltage: {}".format(adc_voltage))
         V_saturation = (temp[1] - cal2_t) * (cal1_v -
                                              cal2_v) / (cal1_t - cal2_t) + cal2_v
