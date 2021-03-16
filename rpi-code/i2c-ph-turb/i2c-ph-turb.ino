@@ -110,7 +110,7 @@ float ph()
   }
 
   float phValue = (float)avgValue * 5.0 / 1024 / 6; //convert the analog into millivolt
-  phValue = (13.63 * phValue - 19.68);              //convert the millivolt into pH value
+  phValue = (13.96 * phValue - 19.92);              //convert the millivolt into pH value
   return (phValue);
 }
 
