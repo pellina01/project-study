@@ -16,6 +16,7 @@ void setup()
   Serial.begin(9600);
   Serial.println("Ready"); //Test the serial monitor
   pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT); // if low, DO on. if High, pH on
 }
 void loop()
 {
@@ -82,6 +83,8 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi
 
 float ph()
 {
+  digitalWrite(12, HIGH);
+  delay(10)
   unsigned long int avgValue; //Store the average value of the sensor feedback
   float b;
   int buf[10], temp;
@@ -137,6 +140,8 @@ float turb()
 
 float doxy()
 {
+  digitalWrite(12, LOW);
+  delay(10)
   return (float)analogRead(A2);
   }
 
