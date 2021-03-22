@@ -1,7 +1,6 @@
-
+#include <Wire.h>
 #define SensorPinph 0   //pH meter Analog output to Arduino Analog Input 0
 #define SensorPinturb 1 //turb meter Analog output to Arduino Analog Input 0
-#include <Wire.h>
 #define I2C_SLAVE_ADDRESS 11
 
 String sensor;
