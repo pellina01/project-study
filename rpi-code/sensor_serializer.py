@@ -55,4 +55,4 @@ class sensor:
             self.disconnect()
         except Exception as e:
             self.logging.error(self.traceback.format_exc())
-            print(e)
+            print(self.traceback.format_exc())
