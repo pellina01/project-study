@@ -61,7 +61,7 @@ int ph_raw()
 {
     int accumulator = 0
     for(i = 1; i <= 10; i++){
-        accumulator += analogRead(SensorPinph)
+        accumulator += analogRead(SensorPinph);
     }
     return accumulator;
 }
