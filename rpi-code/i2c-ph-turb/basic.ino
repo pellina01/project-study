@@ -16,7 +16,6 @@ void setup()
   Serial.begin(9600);
   Serial.println("Ready"); //Test the serial monitor
   pinMode(13, OUTPUT);
-  pinMode(12, OUTPUT); // if low, DO on. if High, pH on
 }
 
 void requestEvent() // new code
@@ -47,6 +46,14 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
   {
     response = do_raw();
   }
+  if(request == "4") // if requested is on relay data
+  {
+    response = relay_on();
+  }
+  if(request == "5") // if requested is off relay data
+  {
+    response = relay_off();
+  }
 }
 
 
@@ -62,5 +69,17 @@ int tb_raw()
 {
   return analogRead(SensorPinDO);
 }
+float relay_on()
+{
+  digitalWrite(13, LOW);
+  return 1;
+}
+
+float relay_off()
+{
+  digitalWrite(13, HIGH);
+  return 0;
+}
+
 
 void loop(){}
