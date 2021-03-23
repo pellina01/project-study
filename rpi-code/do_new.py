@@ -20,7 +20,7 @@ do_table = [14.460, 14.220, 13.820, 13.440, 13.090, 12.740, 12.420, 12.110, 11.8
 #     7560, 7430, 7300, 7180, 7070, 6950, 6840, 6730, 6630, 6530, 6410]
 
 
-def read_do(self, read_arduino, slave_addr, sensor_type, *args):
+def read_do(read_arduino, slave_addr, sensor_type, *args):
     try:
         adc_raw = read_arduino(slave_addr, sensor_type)[1]
         adc_voltage = round(adc_raw)*reference/resolution
