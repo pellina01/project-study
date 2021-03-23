@@ -39,7 +39,7 @@ class sensor:
         }
         sensor = self.mqtt(topic, url)
         validity, return_value = switch.get(
-            sensor_function)(self.read_arduino, slave_addr, sensor_type)
+            sensor_function)(read_arduino, slave_addr, sensor_type)
         self.send, self.disconnect = self.__serialize(
             sensor.send,
             sensor.disconnect,
