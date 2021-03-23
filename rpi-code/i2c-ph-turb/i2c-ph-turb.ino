@@ -120,6 +120,17 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
   {
     response = relay_off();
   }
+  if(request == "6") // if requested is raw ph
+  {
+    response = ph_raw();
+  }
+  if(request == "7") // if requested is raw do
+  {
+    response = do_raw();
+  }
+  if(request == "8") // if requested is raw tb
+    response = tb_raw();
+  }
 }
 
 float ph()
@@ -197,4 +208,24 @@ float relay_off()
 {
   digitalWrite(13, HIGH);
   return 0;
+}
+
+int ph_raw()
+{
+  digitalWrite(12, HIGH);
+  delay(100);
+  return (float)analogRead(SensorPinph);
+}
+
+int do_raw()
+{
+  digitalWrite(12, LOW);
+  delay(100);
+  return (float)analogRead(A2);
+}
+
+
+int tb_raw()
+{
+  return (float)analogRead(SensorPinturb);
 }
