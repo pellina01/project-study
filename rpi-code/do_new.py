@@ -37,3 +37,4 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
 if __name__ == "__main__":
     from i2c import read_arduino
     print("dissolved oxygen raw: ", read_do(read_arduino, 11, 2))
+    print("temp: ", read_temp())
