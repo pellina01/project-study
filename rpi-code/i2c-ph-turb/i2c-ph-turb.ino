@@ -86,7 +86,7 @@ void loop()
 void requestEvent() // new code
 { // if request send from raspi, we will respond with "ek"
   char buffer[16]; // new code
-  sprintf(buffer, response);
+  dtostrf(response, 13, 2, buffer);
   Wire.write(buffer);
 }
 
@@ -125,7 +125,7 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
 float ph()
 {
   digitalWrite(12, HIGH);
-  delay(1000)
+  delay(1000);
   unsigned long int avgValue; //Store the average value of the sensor feedback
   float b;
   int buf[10], temp;
@@ -182,7 +182,7 @@ float turb()
 float doxy()
 {
   digitalWrite(12, LOW);
-  delay(1000)
+  delay(1000);
   return (float)analogRead(A2);
   }
 
