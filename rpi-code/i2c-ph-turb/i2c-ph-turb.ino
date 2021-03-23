@@ -85,8 +85,9 @@ void loop()
 
 void requestEvent() // new code
 { // if request send from raspi, we will respond with "ek"
-  char buffer[16]; // new code
-  dtostrf(response, 13, 2, buffer);
+  // char buffer[16]; // new code
+  // dtostrf(response, 13, 2, buffer);
+
   Wire.write(buffer);
 }
 
