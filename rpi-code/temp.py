@@ -6,7 +6,7 @@ def read_temp(*args):
         sensor = W1ThermSensor()
         temperature_in_celsius = sensor.get_temperature()
         del sensor
-        return "ok", temperature_in_celsius
+        return "ok", round(temperature_in_celsius,2)
     except Exception as e:
         return "error", e
 

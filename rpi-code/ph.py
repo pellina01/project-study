@@ -12,7 +12,7 @@ def read_ph(read_arduino, slave_addr, sensor_type, *args):
         for i in range(2,8):
             unit_summation += unit_list[i]
         unit_ave = unit_summation/6
-        return "ok", (A*unit_ave) - D
+        return "ok", round((A*unit_ave) - D, 2)
     except Exception as e:
         return "error", e
 
