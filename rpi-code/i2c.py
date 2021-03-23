@@ -1,5 +1,6 @@
 from smbus2 import SMBus
 import time
+import traceback
 MEMORY_ADDR = 0x00
 BYTE_LEN = 25
 BUS = 1
@@ -26,7 +27,7 @@ def read_arduino(self, slave_addr, sensor_type):
     except Exception as e:
         I2Cbus.close()
         print("failed to retrieve data from arduino...")
-        print(e)
+        print(traceback.format_exc())
         return "error", e
 
 
