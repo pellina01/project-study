@@ -11,7 +11,7 @@ def read_tb(read_arduino, slave_addr, sensor_type, *args):
             ntu = -1120.4 * pow(volt, 2) + (5742.3 * volt) - 4353.8
         return "ok", ntu
     except Exception as e:
-        print(self.traceback.format_exc())
+        print(traceback.format_exc())
 
 
 if __name__ == "__main__":
