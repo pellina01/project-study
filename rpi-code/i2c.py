@@ -31,5 +31,4 @@ def read_arduino(slave_addr, sensor_type):
 
 
 if __name__ == "__main__":
-    print(read_arduino(11, 1))
-    print(read_arduino(11, 2))
+    print(read_arduino(11, 6))
