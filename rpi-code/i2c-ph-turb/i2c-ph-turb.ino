@@ -4,7 +4,7 @@
 #define I2C_SLAVE_ADDRESS 11
 
 String sensor;
-char buffer[16]; // new code
+float response;
 
 void setup()
 {
@@ -85,6 +85,8 @@ void loop()
 
 void requestEvent() // new code
 { // if request send from raspi, we will respond with "ek"
+  char buffer[16]; // new code
+  sprintf(buffer, response);
   Wire.write(buffer);
 }
 
@@ -92,7 +94,6 @@ void requestEvent() // new code
 void receiveEvents(int numBytes) // if some data has been recieved from raspi (new code)
 {
   String request;
-  float response;
   while (Wire.available())
   {
     int number = Wire.read();
@@ -102,24 +103,23 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
   {
     response = ph();
   }
-  if (request == "2") // if requested is pH data
+  if (request == "2") // if requested is TB data
   {
     response = turb();
   }
-  if (request == "3") // if requested is pH data
+  if (request == "3") // if requested is DO data
   {
     response = doxy();
   }
   
-  if(request == "4") // if requested is pH data
+  if(request == "4") // if requested is on relay data
   {
     response = relay_on();
   }
-  if(request == "5") // if requested is pH data
+  if(request == "5") // if requested is off relay data
   {
     response = relay_off();
   }
-  dtostrf(response, 13, 2, buffer);
 }
 
 float ph()
