@@ -24,6 +24,7 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
     try:
         adc_raw = read_arduino(slave_addr, sensor_type)[1]
         adc_voltage = round(adc_raw)*reference/resolution
+        print("adc raw DO: ", adc_raw)
         print("mv: ", adc_voltage)
         temp = read_temp()
         rounded_temp = round(temp[1])
