@@ -12,6 +12,7 @@ def read_tb(read_arduino, slave_addr, sensor_type, *args):
         return "ok", ntu
     except Exception as e:
         print(traceback.format_exc())
+        return "error", e
 
 
 if __name__ == "__main__":
