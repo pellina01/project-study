@@ -2,7 +2,7 @@ A = 0.03209944751
 D = 0.6544198895
 
 
-def read_ph(read_arduino, slave_addr, sensor_type):
+def read_ph(self, read_arduino, slave_addr, sensor_type):
     try:
         unit_list = []
         for i in range(0,10):
