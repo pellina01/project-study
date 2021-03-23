@@ -2,10 +2,6 @@ class sensor:
     import logging
     import traceback
     import json
-    from temp import read_temp
-    from do_new import read_do
-    from tb import read_tb 
-    from ph import read_ph
     from mqtt import mqtt
 
 
@@ -28,11 +24,16 @@ class sensor:
 
     def __init__(self, url, sensor_parameters, read_arduino):
         
+        from temp import read_temp
+        from do_new import read_do
+        from tb import read_tb 
+        from ph import read_ph
+        
         switch = {
-            "read_ph": self.read_ph,
-            "read_do": self.read_do,
-            "read_tb": self.read_tb,
-            "read_temp": self.read_temp
+            "read_ph": read_ph,
+            "read_do": read_do,
+            "read_tb": read_tb,
+            "read_temp": read_temp
         }
 
         self.logging.basicConfig(filename="error.log")
