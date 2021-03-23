@@ -3,7 +3,7 @@ import time
 import json
 import logging
 import traceback
-from new_serializer import sensor
+from new_serializer import sensor1
 import logging
 import traceback
 from i2c import read_arduino
@@ -15,7 +15,7 @@ def main(raspi):
 
     sensor_list = []
     for sensor_listed in raspi["sensors"]:
-                sensor_list.append(sensor(raspi["mqtt_url"], sensor_listed, read_arduino))
+                sensor_list.append(sensor1(raspi["mqtt_url"], sensor_listed, read_arduino))
 
 
     try:
