@@ -36,7 +36,7 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
   }
   if(request == "1") // if requested is raw ph
   {
-    response = ph_raw();
+    response = ph_accumulated();
   }
   if(request == "2") // if requested is raw tb
   {
@@ -54,16 +54,24 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
   {
     response = relay_off();
   }
+  if(request == "6") // if requested is raw ph
+  {
+    response = ph_raw();
+  }
 }
 
 
-int ph_raw()
+int ph_accumulated()
 {
     int accumulator = 0;
     for(int i = 1; i <= 10; i++){
         accumulator += analogRead(SensorPinph);
     }
     return accumulator;
+}
+int ph_raw()
+{
+    return analogRead(SensorPinph);
 }
 int do_raw()
 {
