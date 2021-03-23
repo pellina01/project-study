@@ -1,4 +1,5 @@
 from temp import read_temp
+import traceback
 
 cal2_v = 234.375  # mv
 cal2_t = 30.25  # ℃
@@ -30,6 +31,7 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
         print("do" , round(adc_voltage * do_table[rounded_temp] / V_saturation, 2))
         return "ok", round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
     except Exception as e:
+        print(traceback.format_exc())
     	return "error", e
 
 if __name__ == "__main__":
