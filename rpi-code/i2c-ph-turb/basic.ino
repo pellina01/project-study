@@ -1,6 +1,7 @@
 #include <Wire.h>
 #define SensorPinph 0   //pH meter Analog output to Arduino Analog Input 0
-#define SensorPinturb 1 //turb meter Analog output to Arduino Analog Input 0
+#define SensorPinturb 1 //turb meter Analog output to Arduino Analog Input 1
+#define SensorPinDO 2 //turb meter Analog output to Arduino Analog Input 2
 #define I2C_SLAVE_ADDRESS 11
 
 String sensor;
@@ -51,21 +52,15 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
 
 int ph_raw()
 {
-  digitalWrite(12, HIGH);
-  delay(100);
   return analogRead(SensorPinph);
 }
 int do_raw()
 {
-  digitalWrite(12, HIGH);
-  delay(100);
-  return analogRead(SensorPinph);
+  return analogRead(SensorPinturb);
 }
 int tb_raw()
 {
-  digitalWrite(12, HIGH);
-  delay(100);
-  return analogRead(SensorPinph);
+  return analogRead(SensorPinDO);
 }
 
 void loop(){}
