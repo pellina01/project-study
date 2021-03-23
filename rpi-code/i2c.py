@@ -31,7 +31,7 @@ def read_arduino(slave_addr, sensor_type):
         return "error", e
 
 if __name__ == "__main__":
-    add= input("enter slave address: ")
-    st= input("enter sensor type: ")
+    add= int(input("enter slave address: "))
+    st= int(input("enter sensor type: "))
     print(read_arduino(add, st))
 
