@@ -1,7 +1,5 @@
-# import smbus2 as smbus
-
-
 from smbus2 import SMBus
+import time
 # sensor type 1 for ph , 2 for turbidity
 MEMORY_ADDR = 0x00
 BYTE_LEN = 25
@@ -20,6 +18,7 @@ def read_arduino(slave_addr, sensor_type):
         I2Cbus = SMBus(BUS)
         byte = convert_bytes_to_list(bytes(str(sensor_type), "utf-8"))
         I2Cbus.write_i2c_block_data(slave_addr, MEMORY_ADDR, byte)
+        time.sleep(5)
         response = I2Cbus.read_i2c_block_data(
             slave_addr, MEMORY_ADDR, BYTE_LEN)
         I2Cbus.close()
