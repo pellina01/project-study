@@ -7,6 +7,7 @@ import math
 import schedule
 import logging
 import traceback
+from i2c import read_arduino
 
 with open('/home/pi/project-study/rpi-code/config.json', 'r') as file:
     data = json.loads(file.read())
@@ -21,7 +22,7 @@ def main():
     logging.basicConfig(filename="error.log")
     try:
         for sensor_listed in raspi["sensors"]:
-            sensor(raspi["mqtt_url"], sensor_listed).Process()
+            sensor(raspi["mqtt_url"], sensor_listed, read_arduino).Process()
     except:
         print(traceback.format_exc())
         logging.error(traceback.format_exc())

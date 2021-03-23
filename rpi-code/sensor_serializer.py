@@ -2,7 +2,6 @@ class sensor:
     import logging
     import traceback
     import json
-    from i2c import read_arduino
     from temp import read_temp
     from do_new import read_do
     from tb import read_tb 
@@ -22,7 +21,7 @@ class sensor:
             mqtt_disconnect()
         return(send, disconnect)
 
-    def __init__(self, url, sensor_parameters):
+    def __init__(self, url, sensor_parameters, read_arduino):
         
 
         self.logging.basicConfig(filename="error.log")
@@ -39,7 +38,7 @@ class sensor:
         }
         sensor = self.mqtt(topic, url)
         validity, return_value = switch.get(
-            sensor_function)(self.read_arduino, slave_addr, sensor_type)
+            sensor_function)(read_arduino, slave_addr, sensor_type)
         self.send, self.disconnect = self.__serialize(
             sensor.send,
             sensor.disconnect,

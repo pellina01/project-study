@@ -6,13 +6,14 @@ import traceback
 from sensor_serializer import sensor
 import logging
 import traceback
+from i2c import read_arduino
 
 def main(raspi):
     logging.basicConfig(filename="error.log")
 
     try:
         for sensor_listed in raspi["sensors"]:
-            sensor(raspi["mqtt_url"], sensor_listed).Process()
+            sensor(raspi["mqtt_url"], sensor_listed, read_arduino).Process()
     except:
         print(traceback.format_exc())
         logging.error(traceback.format_exc())
