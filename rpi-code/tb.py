@@ -1,5 +1,5 @@
 
-def read_tb(read_arduino, slave_addr, sensor_type):
+def read_tb(read_arduino, slave_addr, sensor_type, *args):
     try:
         volt = read_arduino(slave_addr, sensor_type)[1] * 5 / 1024
         if volt < 2.5:
@@ -11,3 +11,8 @@ def read_tb(read_arduino, slave_addr, sensor_type):
         return "ok", ntu
     except Exception as e:
         return "error", e
+
+
+if __name__ == "__main__":
+    from i2c import read_arduino
+    print("turbidity raw: ", read_tb(read_arduino, 11, 3))

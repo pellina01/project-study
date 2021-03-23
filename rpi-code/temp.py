@@ -12,4 +12,4 @@ def read_temp(*args):
 
 
 if __name__ == "__main__":
-    print(read_temp())
+    print("temp (Celsius): ",read_temp())

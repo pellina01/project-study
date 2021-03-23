@@ -13,7 +13,7 @@ def convert_bytes_to_list(src):
     return convert
 
 
-def read_arduino(slave_addr, sensor_type):
+def read_arduino(self, slave_addr, sensor_type):
     try:
         I2Cbus = SMBus(BUS)
         byte = convert_bytes_to_list(bytes(str(sensor_type), "utf-8"))
@@ -30,6 +30,3 @@ def read_arduino(slave_addr, sensor_type):
         return "error", e
 
 
-if __name__ == "__main__":
-    print(read_arduino(11, 6))
-    print(read_arduino(11, 7))

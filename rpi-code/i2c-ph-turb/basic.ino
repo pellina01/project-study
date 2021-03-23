@@ -34,17 +34,17 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
     int number = Wire.read();
     request = (char)number;
   }
-  if(request == "1") // if requested is raw do
+  if(request == "1") // if requested is raw ph
   {
     response = ph_raw();
   }
-  if(request == "2") // if requested is raw do
+  if(request == "2") // if requested is raw tb
   {
-    response = do_raw();
+    response = tb_raw();
   }
   if(request == "3") // if requested is raw do
   {
-    response = tb_raw();
+    response = do_raw();
   }
 }
 
