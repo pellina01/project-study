@@ -24,6 +24,7 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
     try:
         adc_raw = read_arduino(slave_addr, sensor_type)[1]
         adc_voltage = round(adc_raw)*reference/resolution
+        print("mv: ", adc_voltage)
         temp = read_temp()
         rounded_temp = round(temp[1])
         V_saturation = (temp[1] - cal2_t) * (cal1_v -
@@ -36,5 +37,5 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
 
 if __name__ == "__main__":
     from i2c import read_arduino
-    print("dissolved oxygen raw: ", read_do(read_arduino, 11, 2))
+    print("dissolved oxygen: ", read_do(read_arduino, 11, 2))
     print("temp: ", read_temp())
