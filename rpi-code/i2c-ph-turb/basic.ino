@@ -4,7 +4,7 @@
 #define I2C_SLAVE_ADDRESS 11
 
 String sensor;
-float response;
+int response;
 
 void setup()
 {
@@ -34,14 +34,34 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
     int number = Wire.read();
     request = (char)number;
   }
-  if(request == "6") // if requested is raw do
+  if(request == "1") // if requested is raw do
   {
     response = ph_raw();
+  }
+  if(request == "2") // if requested is raw do
+  {
+    response = do_raw();
+  }
+  if(request == "3") // if requested is raw do
+  {
+    response = tb_raw();
   }
 }
 
 
 int ph_raw()
+{
+  digitalWrite(12, HIGH);
+  delay(100);
+  return analogRead(SensorPinph);
+}
+int do_raw()
+{
+  digitalWrite(12, HIGH);
+  delay(100);
+  return analogRead(SensorPinph);
+}
+int tb_raw()
 {
   digitalWrite(12, HIGH);
   delay(100);

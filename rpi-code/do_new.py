@@ -1,6 +1,4 @@
-from i2c import read_arduino
-from wire1 import read_value as read_temp
-import traceback
+from temp import read_temp
 
 cal2_v = 234.375  # mv
 cal2_t = 30.25  # ℃
@@ -21,22 +19,19 @@ do_table = [14.460, 14.220, 13.820, 13.440, 13.090, 12.740, 12.420, 12.110, 11.8
 #     7560, 7430, 7300, 7180, 7070, 6950, 6840, 6730, 6630, 6530, 6410]
 
 
-def read_do(slave_addr, sensor_type):
+def read_do(read_arduino, slave_addr, sensor_type):
     try:
         adc_raw = read_arduino(slave_addr, sensor_type)[1]
         adc_voltage = round(adc_raw)*reference/resolution
         temp = read_temp()
         rounded_temp = round(temp[1])
-        # print("adc raw: {}".format(adc_raw))
-        # print("temp: {}".format(read_temp()))
-        # print("voltage: {}".format(adc_voltage))
         V_saturation = (temp[1] - cal2_t) * (cal1_v -
                                              cal2_v) / (cal1_t - cal2_t) + cal2_v
         print("do" , round(adc_voltage * do_table[rounded_temp] / V_saturation, 2))
         return "ok", round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
     except Exception as e:
-    	print(traceback.format_exc())
     	return "error", e
 
 if __name__ == "__main__":
-	print(read_do(11,3))
+    from i2c import read_arduino
+    print(read_do(read_arduino, 11, 3))

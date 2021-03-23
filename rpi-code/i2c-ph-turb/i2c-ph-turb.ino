@@ -186,7 +186,7 @@ float turb()
   }
   else
   {
-    ntu = -1120.4 * square(volt1) + 5742.3 * volt1 - 4353.8;
+    ntu = -1120.4 * pow(volt1, 2) + 5742.3 * volt1 - 4353.8;
   }
   return ntu;
 }

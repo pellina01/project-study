@@ -1,8 +1,7 @@
 from w1thermsensor import W1ThermSensor
-import time
 
 
-def read_value(*args):
+def read_temp(*args):
     try:
         sensor = W1ThermSensor()
         temperature_in_celsius = sensor.get_temperature()
@@ -13,4 +12,4 @@ def read_value(*args):
 
 
 if __name__ == "__main__":
-    print(read_value())
+    print(read_temp())
