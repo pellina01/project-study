@@ -60,7 +60,7 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
 int ph_raw()
 {
     int accumulator = 0
-    for(i = 1; i < 10; i++){
+    for(i = 1; i <= 10; i++){
         accumulator += analogRead(SensorPinph)
     }
     return accumulator;
