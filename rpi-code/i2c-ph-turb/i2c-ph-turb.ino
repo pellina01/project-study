@@ -214,18 +214,18 @@ int ph_raw()
 {
   digitalWrite(12, HIGH);
   delay(100);
-  return (float)analogRead(SensorPinph);
+  return analogRead(SensorPinph);
 }
 
 int do_raw()
 {
   digitalWrite(12, LOW);
   delay(100);
-  return (float)analogRead(A2);
+  return analogRead(A2);
 }
 
 
 int tb_raw()
 {
-  return (float)analogRead(SensorPinturb);
+  return analogRead(SensorPinturb);
 }
