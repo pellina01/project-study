@@ -30,4 +30,6 @@ def read_arduino(slave_addr, sensor_type):
         print(traceback.format_exc())
         return "error", e
 
+if __name__ == "__main__":
+    print(read_arduino(11, 1))
 
