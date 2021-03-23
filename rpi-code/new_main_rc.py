@@ -2,7 +2,7 @@
 import time
 import json
 from mqtt import mqtt
-from sensor_serializer import sensor
+from new_sensor_serializer import sensor
 import math
 import schedule
 import logging

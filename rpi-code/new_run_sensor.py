@@ -3,7 +3,7 @@ import time
 import json
 import logging
 import traceback
-from sensor_serializer import sensor
+from new_sensor_serializer import sensor
 import logging
 import traceback
 from i2c import read_arduino
