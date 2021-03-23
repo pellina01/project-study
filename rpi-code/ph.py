@@ -1,5 +1,5 @@
-A = 0.03209944751
-D = 0.6544198895
+A = 0.042101
+D = 1.346884
 
 
 def read_ph(read_arduino, slave_addr, sensor_type, *args):
