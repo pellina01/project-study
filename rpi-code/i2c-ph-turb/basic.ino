@@ -58,6 +58,9 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
     case 8:
       response = dummy3();
       break;
+    case 9:
+      response = dummy4();
+      break;
   }
 
 }
@@ -99,7 +102,7 @@ int dummy3()
 {
   return 12345678912345678;
 }
-int dummy3()
+int dummy4()
 {
   return 1234567891234567891;
 }
