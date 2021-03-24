@@ -9,6 +9,7 @@ int response;
 
 void setup()
 {
+  Serial.begin(9600);
   Wire.begin(I2C_SLAVE_ADDRESS); // join i2c bus with address #11
   Wire.onRequest(requestEvent);  // register event
   Wire.onReceive(receiveEvents);
@@ -17,9 +18,11 @@ void setup()
 
 void requestEvent() // new code
 { 
+  Serial.println("response value: " + (String)response);
   char buffer [16];
   itoa(response, buffer, 10);
   Wire.write(buffer);
+  Serial.println("buffer value: " + (String)buffer);
 }
 
 
