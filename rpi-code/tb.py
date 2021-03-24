@@ -1,4 +1,4 @@
-
+import traceback
 
 def read_tb(read_arduino, slave_addr, sensor_type, *args):
     try:
@@ -10,8 +10,8 @@ def read_tb(read_arduino, slave_addr, sensor_type, *args):
         else:
             ntu = -1120.4 * pow(volt, 2) + (5742.3 * volt) - 4353.8
         return "ok", round(ntu,2)
-    except Exception as e:
-        return "error", e
+    except:
+        return "error", traceback.format_exc()
 
 
 if __name__ == "__main__":

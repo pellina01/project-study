@@ -1,5 +1,5 @@
 from w1thermsensor import W1ThermSensor
-
+import traceback
 
 def read_temp(*args):
     try:
@@ -7,8 +7,8 @@ def read_temp(*args):
         temperature_in_celsius = sensor.get_temperature()
         del sensor
         return "ok", round(temperature_in_celsius,2)
-    except Exception as e:
-        return "error", e
+    except:
+        return "error", traceback.format_exc()
 
 
 if __name__ == "__main__":

@@ -34,9 +34,9 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
                                              cal2_v) / (cal1_t - cal2_t) + cal2_v
         print("do" , round(adc_voltage * do_table[rounded_temp] / V_saturation, 2))
         return "ok", round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
-    except Exception as e:
+    except:
         print(traceback.format_exc())
-        return "error", e
+        return "error", traceback.format_exc()
 
 if __name__ == "__main__":
     from i2c import read_arduino
