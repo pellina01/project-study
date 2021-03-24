@@ -27,7 +27,8 @@ def read_arduino(slave_addr, sensor_type):
         response = I2Cbus.read_byte_data(slave_addr, MEMORY_ADDR)
 
         # I2Cbus.close()
-        return "ok", int(bytearray(response).decode("utf-8", "ignore"))
+        # return "ok", int(bytearray(response).decode("utf-8", "ignore"))
+        return "ok", response
     except Exception as e:
         I2Cbus.close()
         print("failed to retrieve data from arduino...")
