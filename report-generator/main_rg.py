@@ -75,6 +75,6 @@ if __name__ == "__main__":
             key, dbase(tz_corrector, key, data['cloud']['database'],
                        data['cloud']['username'], data['cloud']['password'],
                        data['cloud']['influxHost']), plt, mpl_dates)
-    reporter_host = data['cloud']['grafana']
+    reporter_host = data['cloud']['flask_url']
     app.run(host="0.0.0.0",port=5000, debug=True)
     # app.run(host='0.0.0.0', port=5000)
