@@ -17,7 +17,7 @@ void setup()
 
 void requestEvent() // new code
 { 
-  char buffer [4];
+  char buffer [16];
   itoa(response, buffer, 10);
   Wire.write(buffer);
 }
