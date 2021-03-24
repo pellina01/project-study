@@ -7,7 +7,6 @@ BUS = 1
 
 # sensor type 1 for ph , 2 for turbidity, 3 for DO
 
-I2Cbus = SMBus(BUS)
 
 def convert_bytes_to_list(src):
     convert = []
@@ -18,6 +17,7 @@ def convert_bytes_to_list(src):
 
 def read_arduino(slave_addr, sensor_type):
     try:
+        I2Cbus = SMBus(BUS)
         # byte = convert_bytes_to_list(bytes(str(sensor_type), "utf-8"))
         byte = int(sensor_type)
         # I2Cbus.write_i2c_block_data(slave_addr, MEMORY_ADDR, byte)
@@ -25,8 +25,7 @@ def read_arduino(slave_addr, sensor_type):
         response = I2Cbus.read_i2c_block_data(
             slave_addr, MEMORY_ADDR, BYTE_LEN)
         # response = I2Cbus.read_byte_data(slave_addr, MEMORY_ADDR)
-
-        # I2Cbus.close()
+        I2Cbus.close()
         return "ok", int(bytearray(response).decode("utf-8", "ignore"))
         # return "ok", response
     except Exception as e:
