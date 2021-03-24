@@ -88,13 +88,13 @@ int do_raw()
 }
 int relay_off()
 {
-  digitalWrite(13, LOW);
+  digitalWrite(13, LOW); //aerator turn off
   return 0;
 }
 
 int relay_on()
 {
-  digitalWrite(13, HIGH);
+  digitalWrite(13, HIGH); //aerator turn on
   return 1;
 }
 int dummy()
