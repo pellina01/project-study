@@ -6,7 +6,7 @@ def read_ph(read_arduino, slave_addr, sensor_type, *args):
     try:
         unit_list = []
         for i in range(0,10):
-            unit_list.append(read_arduino(slave_addr, 6)[1])
+            unit_list.append(read_arduino(slave_addr, sensor_type)[1])
         unit_list.sort()
         unit_summation = 0
         for i in range(2,8):

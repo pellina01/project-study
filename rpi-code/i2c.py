@@ -2,7 +2,7 @@ from smbus2 import SMBus
 import time
 import traceback
 MEMORY_ADDR = 0x00
-BYTE_LEN = 25
+BYTE_LEN = 4
 BUS = 1
 
 # sensor type 1 for ph , 2 for turbidity, 3 for DO

@@ -12,15 +12,12 @@ void setup()
   Wire.begin(I2C_SLAVE_ADDRESS); // join i2c bus with address #11
   Wire.onRequest(requestEvent);  // register event
   Wire.onReceive(receiveEvents);
-
-  Serial.begin(9600);
-  Serial.println("Ready"); //Test the serial monitor
   pinMode(13, OUTPUT);
 }
 
 void requestEvent() // new code
 { 
-  char buffer [16];
+  char buffer [4];
   itoa(response, buffer, 10);
   Wire.write(buffer);
 }
@@ -28,46 +25,42 @@ void requestEvent() // new code
 
 void receiveEvents(int numBytes) // if some data has been recieved from raspi (new code)
 {
-  String request;
+  int request;
   while (Wire.available())
   {
     int number = Wire.read();
-    request = (char)number;
+    request = number;
   }
 
   switch(request)
   {
-    case "1":
-      response = ph_accumulated();
+    case 1:
+      response = ph_raw();
       break;
-    case "2":
+    case 2:
       response = tb_raw();
       break;
-    case "3":
+    case 3:
       response = do_raw();
       break;
-    case "4":
+    case 4:
       response = relay_on();
       break;
-    case "5":
+    case 5:
       response = relay_off();
       break;
-    case "6":
-      response = ph_raw();
+    case 6:
+      response = dummy();
+      break;
+    case 7:
+      response = dummy2();
       break;
   }
 
 }
 
 
-int ph_accumulated()
-{
-    int accumulator = 0;
-    for(int i = 1; i <= 10; i++){
-        accumulator += analogRead(SensorPinph);
-    }
-    return accumulator;
-}
+
 int ph_raw()
 {
     return analogRead(SensorPinph);
@@ -91,6 +84,13 @@ int relay_on()
   digitalWrite(13, HIGH);
   return 1;
 }
-
+int dummy()
+{
+  return 1234;
+}
+int dummy2()
+{
+  return 12345678;
+}
 
 void loop(){}
