@@ -186,7 +186,7 @@ float turb()
   }
   else
   {
-    ntu = -1120.4 * pow(volt1, 2) + 5742.3 * volt1 - 4353.8;
+    ntu = -1120.4 * square(volt1) + 5742.3 * volt1 - 4353.8;
   }
   return ntu;
 }
@@ -198,17 +198,16 @@ float doxy()
   return (float)analogRead(A2);
   }
 
-
 float relay_on()
 {
-  digitalWrite(13, LOW);
-  return 1;
+  digitalWrite(13, HIGH);
+  return 0;
 }
 
 float relay_off()
 {
-  digitalWrite(13, HIGH);
-  return 0;
+  digitalWrite(13, LOW);
+  return 1;
 }
 
 int ph_raw()

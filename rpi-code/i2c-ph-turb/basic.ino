@@ -81,16 +81,16 @@ int tb_raw()
 {
   return analogRead(SensorPinDO);
 }
-float relay_on()
+int relay_off()
 {
   digitalWrite(13, LOW);
-  return 1;
+  return 0;
 }
 
-float relay_off()
+int relay_on()
 {
   digitalWrite(13, HIGH);
-  return 0;
+  return 1;
 }
 
 
