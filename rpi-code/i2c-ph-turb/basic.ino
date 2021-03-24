@@ -19,7 +19,7 @@ void requestEvent() // new code
 { 
   char buffer [16];
   itoa(response, buffer, 10);
-  Wire.write(buffer);
+  Wire.write(response);
 }
 
 
