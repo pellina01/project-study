@@ -100,7 +100,7 @@ int dummy2()
 }
 int dummy3()
 {
-  return 12345678912345678;
+  return 1234567812345678;
 }
 int dummy4()
 {
