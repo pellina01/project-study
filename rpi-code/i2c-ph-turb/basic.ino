@@ -55,6 +55,9 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
     case 7:
       response = dummy2();
       break;
+    case 8:
+      response = dummy3();
+      break;
   }
 
 }
