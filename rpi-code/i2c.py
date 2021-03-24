@@ -22,9 +22,9 @@ def read_arduino(slave_addr, sensor_type):
         byte = int(sensor_type)
         # I2Cbus.write_i2c_block_data(slave_addr, MEMORY_ADDR, byte)
         I2Cbus.write_byte_data(slave_addr, MEMORY_ADDR, byte)
-        # response = I2Cbus.read_i2c_block_data(
-        #     slave_addr, MEMORY_ADDR, BYTE_LEN)
-        response = I2Cbus.read_byte_data(slave_addr, MEMORY_ADDR)
+        response = I2Cbus.read_i2c_block_data(
+            slave_addr, MEMORY_ADDR, BYTE_LEN)
+        # response = I2Cbus.read_byte_data(slave_addr, MEMORY_ADDR)
 
         # I2Cbus.close()
         # return "ok", int(bytearray(response).decode("utf-8", "ignore"))
