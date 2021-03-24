@@ -34,30 +34,29 @@ void receiveEvents(int numBytes) // if some data has been recieved from raspi (n
     int number = Wire.read();
     request = (char)number;
   }
-  if(request == "1") // if requested is raw ph
+
+  switch(request)
   {
-    response = ph_accumulated();
+    case "1":
+      response = ph_accumulated();
+      break;
+    case "2":
+      response = tb_raw();
+      break;
+    case "3":
+      response = do_raw();
+      break;
+    case "4":
+      response = relay_on();
+      break;
+    case "5":
+      response = relay_off();
+      break;
+    case "6":
+      response = ph_raw();
+      break;
   }
-  if(request == "2") // if requested is raw tb
-  {
-    response = tb_raw();
-  }
-  if(request == "3") // if requested is raw do
-  {
-    response = do_raw();
-  }
-  if(request == "4") // if requested is on relay data
-  {
-    response = relay_on();
-  }
-  if(request == "5") // if requested is off relay data
-  {
-    response = relay_off();
-  }
-  if(request == "6") // if requested is raw ph
-  {
-    response = ph_raw();
-  }
+
 }
 
 
