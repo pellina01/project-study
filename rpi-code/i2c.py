@@ -19,7 +19,7 @@ def convert_bytes_to_list(src):
 def read_arduino(slave_addr, sensor_type):
     try:
         # byte = convert_bytes_to_list(bytes(str(sensor_type), "utf-8"))
-        byte = bytes(sensor_type)
+        byte = int(sensor_type)
         I2Cbus.write_i2c_block_data(slave_addr, MEMORY_ADDR, byte)
         response = I2Cbus.read_i2c_block_data(
             slave_addr, MEMORY_ADDR, BYTE_LEN)
