@@ -92,5 +92,13 @@ int dummy2()
 {
   return 12345678;
 }
+int dummy3()
+{
+  return 12345678912345678;
+}
+int dummy3()
+{
+  return 1234567891234567891;
+}
 
 void loop(){}
