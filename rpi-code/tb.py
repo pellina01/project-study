@@ -16,4 +16,4 @@ def read_tb(read_arduino, slave_addr, sensor_type, *args):
 
 if __name__ == "__main__":
     from i2c import read_arduino
-    print("turbidity raw: ", read_tb(read_arduino, 11, 3))
+    print("turbidity raw: ", read_tb(read_arduino, 11, 2))
