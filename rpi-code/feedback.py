@@ -38,7 +38,7 @@ class feedback:
                 self.mq_client.disconnect()
 
 
-        self.correction(not self.feedback_is_on) # aerator at relay normally closed 
+        self.correction(self.feedback_is_on) # aerator at relay normally closed 
         print("feedback status: " + str(self.feedback_is_on))
         print("sent: " + str(self.sent))
 
