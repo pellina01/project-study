@@ -23,7 +23,7 @@ def read_arduino(slave_addr, sensor_type):
             slave_addr, MEMORY_ADDR, BYTE_LEN)
         # response = I2Cbus.read_byte_data(slave_addr, MEMORY_ADDR)
         I2Cbus.close()
-        return "ok", int(bytearray(response).decode("unicode_escape", "ignore"))
+        return "ok", int(bytearray(response).decode("ascii", "ignore"))
         # return "ok", response
     except:
         I2Cbus.close()
