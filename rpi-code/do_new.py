@@ -28,7 +28,8 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
         print("adc raw DO: ", adc_raw)
         print("mv: ", adc_voltage)
         temp = read_temp()
-        rounded_temp = round(temp[1])
+        # rounded_temp = round(temp[1])
+        rounded_temp = 25
         V_saturation = (temp[1] - cal2_t) * (cal1_v -
                                              cal2_v) / (cal1_t - cal2_t) + cal2_v
         print("do" , round(adc_voltage * do_table[rounded_temp] / V_saturation, 2))
