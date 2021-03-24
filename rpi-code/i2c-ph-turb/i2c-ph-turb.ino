@@ -198,16 +198,17 @@ float doxy()
   return (float)analogRead(A2);
   }
 
+
 float relay_on()
 {
-  digitalWrite(13, HIGH);
-  return 0;
+  digitalWrite(13, LOW);
+  return 1;
 }
 
 float relay_off()
 {
-  digitalWrite(13, LOW);
-  return 1;
+  digitalWrite(13, HIGH);
+  return 0;
 }
 
 int ph_raw()
