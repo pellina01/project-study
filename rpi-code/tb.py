@@ -22,5 +22,7 @@ def read_tb(read_arduino, slave_addr, sensor_type, *args):
 
 if __name__ == "__main__":
     from i2c import read_arduino
-    tb = read_tb(read_arduino, 11, 2)
-    print("turbidity NTU: ", tb)
+    import time
+    while True:
+        print("turbidity NTU: ", read_tb(read_arduino, 11, 2))
+        time.sleep(1)
