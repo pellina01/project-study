@@ -15,4 +15,4 @@ while True:
 	print("----separator----")
 	print("temp: ", read_temp())
 	print("----separator----")
-	time.sleep(1)
+	time.sleep(5)
