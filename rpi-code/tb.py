@@ -25,4 +25,4 @@ if __name__ == "__main__":
     import time
     while True:
         print("turbidity NTU: ", read_tb(read_arduino, 11, 2))
-        time.sleep(1)
+        time.sleep(10)
