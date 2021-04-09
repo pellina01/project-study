@@ -10,7 +10,7 @@ def read_tb(read_arduino, slave_addr, sensor_type, *args):
         #     ntu = 3000.0
         # elif volt > 4.19:
         #     ntu = 10.0
-        # else:
+        # else: 
         ntu = -1120.4 * pow(volt, 2) + (5742.3 * volt) - 4353.8
 
         # ntu = 4999.25 - (1250 * volt)
