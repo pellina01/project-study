@@ -6,7 +6,7 @@ from i2c import read_arduino
 import time
 
 while True:
-	print("----newline----")
+	print("**************newline**************")
 	print("ph: ", read_ph(read_arduino, 11, 6))
 	print("----separator----")
 	print("tb: ", read_tb(read_arduino, 11, 2))
