@@ -20,4 +20,4 @@ def read_ph(read_arduino, slave_addr, sensor_type, *args):
 
 if __name__ == "__main__":
     from i2c import read_arduino
-    print("ph raw: ", read_ph(read_arduino, 11, 6))
+    print("ph raw: ", read_ph(read_arduino, 11, 1))
