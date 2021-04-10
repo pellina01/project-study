@@ -7,7 +7,7 @@ import time
 
 while True:
 	print("**************newline**************")
-	print("ph: ", read_ph(read_arduino, 11, 6))
+	print("ph: ", read_ph(read_arduino, 11, 1))
 	print("----separator----")
 	print("tb: ", read_tb(read_arduino, 11, 2))
 	print("----separator----")
