@@ -1,7 +1,12 @@
 import traceback
 
-A = (259/4500)
-D = (-6799/2250)
+x_raw1 = 88
+y_ph1 = 4
+x_raw2 = 138
+y_ph2 = 6.86
+
+m = (y_ph2 - y_ph1)/(x_raw2 - x_raw1)
+b = y_ph2 - (x_raw2 * m)
 
 def read_ph(read_arduino, slave_addr, sensor_type, *args):
     try:
@@ -13,7 +18,7 @@ def read_ph(read_arduino, slave_addr, sensor_type, *args):
         for i in range(2,8):
             unit_summation += unit_list[i]
         unit_ave = unit_summation/6
-        return "ok", round((A*unit_ave) + D, 2)
+        return "ok", round((m*unit_ave) + b, 2)
     except:
         return "error", traceback.format_exc()
 
