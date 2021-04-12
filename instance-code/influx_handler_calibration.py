@@ -6,9 +6,9 @@ class calibration_handler:
         import time
         from datetime import datetime
         switch = {
-        "do_calibrate" = 2629746,
-        "ph_calibrate" = 2629746,
-        "do_cap_replace" = 15778476
+        "do_calibrate" : 2629746,
+        "ph_calibrate" : 2629746,
+        "do_cap_replace" : 15778476
         } #7889231
         self.datetime = datetime
         self.time = time
