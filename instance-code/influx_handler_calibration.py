@@ -5,6 +5,11 @@ class calibration_handler:
         import traceback
         import time
         from datetime import datetime
+        switch = {
+        "do_calibrate" = 2629746,
+        "ph_calibrate" = 2629746,
+        "do_cap_replace" = 15778476
+        } #7889231
         self.datetime = datetime
         self.time = time
         self.topic = topic
@@ -29,6 +34,6 @@ class calibration_handler:
             },
             "fields":   {
                 "message": recieved_messege,
-                "next calibration date": self.datetime.fromtimestamp(self.time.time() + 7889231).strftime('%Y-%m-%d %H:%M:%S') # +3months
+                "next calibration date": self.datetime.fromtimestamp(self.time.time() + self.switch[self.topic]).strftime('%Y-%m-%d %H:%M:%S') # +3months
             }
         }]
