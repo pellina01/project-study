@@ -5,7 +5,7 @@ class calibration_handler:
         import traceback
         import time
         from datetime import datetime
-        switch = {
+        self.switch = {
         "do_calibrate" : 2629746,
         "ph_calibrate" : 2629746,
         "do_cap_replace" : 15778476
