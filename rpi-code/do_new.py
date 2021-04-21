@@ -2,10 +2,10 @@ from temp import read_temp
 import traceback
 
 #CAL1 High temperature point, CAL2 Low temperature point
-cal2_v = 10*(5000/1024)  # mv
-cal2_t = 28  # ℃
-cal1_v = 14*(5000/1024)  # mv
-cal1_t = 38.19  # ℃
+cal2_v = 36*(5000/1024)  # mv
+cal2_t = 28.5  # ℃
+cal1_v = 38*(5000/1024)  # mv
+cal1_t = 34.94  # ℃
 
 resolution = 1024  # level
 reference = 5000  # mv
