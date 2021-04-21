@@ -1,8 +1,8 @@
 import traceback
 
-x_raw1 = 88
+x_raw1 = 171 #unit
 y_ph1 = 4
-x_raw2 = 138
+x_raw2 = 228 #unit
 y_ph2 = 6.86
 
 m = (y_ph2 - y_ph1)/(x_raw2 - x_raw1)
