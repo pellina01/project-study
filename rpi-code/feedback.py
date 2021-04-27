@@ -5,9 +5,10 @@ class feedback:
     import logging
     import traceback
 
-    def __init__(self, mqtt_url, sensor_function, corrective_function, lower_limit, device_name):
+    def __init__(self, mqtt_url, sensor_function, corrective_function, turn_on_limit, turn_off_limit, device_name):
         self.device = device_name
-        self.lower_limit = lower_limit
+        self.turn_on_limit = turn_on_limit
+        self.turn_off_limit = turn_off_limit
         self.correction = corrective_function
         self.read_sensor_value = sensor_function
 
@@ -20,10 +21,11 @@ class feedback:
 
     def check(self):
         try:
-            if self.lower_limit < self.read_sensor_value()[1]:
-                self.feedback_is_on = False
-            else:
+        	current_reading = self.read_sensor_value()[1]
+            if  current_reading <= self.turn_on_limit:
                 self.feedback_is_on = True
+            elif current_reading > self.turn_off_limit:
+                self.feedback_is_on = False
         except:
             self.feedback_is_on = True
             self.logging.error(self.traceback.format_exc())
@@ -81,7 +83,7 @@ if __name__ == "__main__":
     switch = serialize(read_arduino, 11, 4, 5)
     sensor_function = sensor_func(read_do, read_arduino, 11, 3)
     aerator = feedback(raspi["mqtt_url"], sensor_function,
-                       switch, raspi["lower_limit"], "aerator")
+                       switch, raspi["turn_on_limit"], raspi["turn_off_limit"], "aerator")
                        
     while True:
         try:
