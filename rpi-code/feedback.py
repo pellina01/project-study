@@ -21,11 +21,11 @@ class feedback:
 
     def check(self):
         try:
-        	current_reading = self.read_sensor_value()[1]
+			current_reading = self.read_sensor_value()[1]
 			if current_reading <= self.turn_on_limit:
 				self.feedback_is_on = True
-            elif current_reading > self.turn_off_limit:
-                self.feedback_is_on = False
+			elif current_reading > self.turn_off_limit:
+				self.feedback_is_on = False
         except:
             self.feedback_is_on = True
             self.logging.error(self.traceback.format_exc())
