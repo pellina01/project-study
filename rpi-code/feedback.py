@@ -23,7 +23,7 @@ class feedback:
         try:
         	current_reading = self.read_sensor_value()[1]
 			if current_reading <= self.turn_on_limit:
-                self.feedback_is_on = True
+				self.feedback_is_on = True
             elif current_reading > self.turn_off_limit:
                 self.feedback_is_on = False
         except:
