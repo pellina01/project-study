@@ -7,7 +7,8 @@ import traceback
 from aggregator import aggregator
 import schedule
 
-with open('/home/ubuntu/project-study/instance-code/config.json', 'r') as file:
+#change directory. prev at: /home/ubuntu/project-study/instance-code/config.json
+with open('config.json', 'r') as file:
     data = json.loads(file.read())
 
 cloud = {}
