@@ -61,8 +61,8 @@ def api():
 
 
 if __name__ == "__main__":
-
-    with open('/home/ubuntu/project-study/report-generator/config.json', 'r') as file:
+    # open config.json. prev at: '/home/ubuntu/project-study/report-generator/config.json' using ubuntu
+    with open('config.json', 'r') as file:
         data = json.loads(file.read())
     sensors = {"ph": "pH", "tb": "turbidity",
                "temp": "temperature", "do": "dissolved oxygen"}
