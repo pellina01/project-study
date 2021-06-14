@@ -8,7 +8,8 @@ class chart:
         self.mpl_dates = mpl_dates
         self.dbase = dbase
         self.measurement = measurement
-        self.no_data = '/home/ubuntu/project-study/report-generator/static/images/no_data.png'
+        # change directory. prev at: /home/ubuntu/project-study/report-generator/static/images/no_data.png
+        self.no_data = 'static/images/no_data.png'
         self.image_link = self.no_data
         self.generated = False
 
@@ -27,10 +28,12 @@ class chart:
                 self.plt.title(self.measurement)
                 self.plt.ylabel('{} value'.format(self.measurement))
                 self.plt.xlabel('time')
+                #change directory. prev at: /home/ubuntu/project-study/report-generator/static/images/{}.png
                 self.plt.savefig(
-                    '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
+                    'static/images/{}.png'.format(
                         self.measurement), dpi=70)
-                self.image_link = '/home/ubuntu/project-study/report-generator/static/images/{}.png'.format(
+                #change directory. prev at: /home/ubuntu/project-study/report-generator/static/images/{}.png
+                self.image_link = 'static/images/{}.png'.format(
                     self.measurement)
                 self.plt.close()
             else:
