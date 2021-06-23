@@ -19,8 +19,8 @@ def read_ph(read_arduino, slave_addr, sensor_type, *args):
             unit_summation += unit_list[i]
         unit_ave = unit_summation/6
         ph = round((m*unit_ave) + b, 2)
-        if ph >= 12.0:
-            ph = 12
+        if ph >= 14.0:
+            ph = 14
         elif ph <= 0:
             ph = 0
         return "ok", ph 
