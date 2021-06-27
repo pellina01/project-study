@@ -2,10 +2,10 @@ from temp import read_temp
 import traceback
 
 #CAL1 High temperature point, CAL2 Low temperature point
-cal2_v = 40*(5000/1024)  # mv
-cal2_t = 27.06  # ℃
-cal1_v = 41*(5000/1024)  # mv
-cal1_t = 36.31  # ℃
+cal2_v = 19*(5000/1024)  # mv
+cal2_t = 28.12  # ℃
+cal1_v = 22*(5000/1024)  # mv
+cal1_t = 33.69  # ℃
 
 resolution = 1024  # level
 reference = 5000  # mv
@@ -43,8 +43,8 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
         adc_voltage = round(adc_raw)*reference/resolution
         print("adc raw DO: ", adc_raw)
         print("mv: ", adc_voltage)
-        temp =  round(temp[1])
-        rounded_temp = 25
+        temp = read_temp()
+        rounded_temp =  round(temp[1])
         V_saturation =  cal1_v + (35 * temp[1]) - (cal1_v  * 35);
         print("do" , round(adc_voltage * do_table[rounded_temp] / V_saturation, 2))
         return "ok", round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
