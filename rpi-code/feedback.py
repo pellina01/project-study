@@ -1,3 +1,10 @@
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+pin = 26
+
 class feedback:
 	from mqtt import mqtt
 	import json
@@ -22,12 +29,15 @@ class feedback:
 	def check(self):
 		try:
 			current_reading = self.read_sensor_value()[1]
-			if current_reading <= self.turn_on_limit:
+			if current_reading <= self.turn_on_limit and GPIO.input(pin):
 				self.feedback_is_on = True
-			elif current_reading > self.turn_off_limit:
+			else:
 				self.feedback_is_on = False
 		except:
-			self.feedback_is_on = True
+			if GPIO.input(pin):
+				self.feedback_is_on = True
+			else:
+				self.feedback_is_on = False
 			self.logging.error(self.traceback.format_exc())
 			print(self.traceback.format_exc())
 			
