@@ -61,3 +61,12 @@ class mqtt:
         if self.topic == "rpi":
             self.client.publish(
                 self.topic, self.json.dumps({"status": "connected"}))
+
+    def on_grid(self, status): #status is true if grid is on, false if not
+        if self.topic == "rpi":
+            if status:
+                msg = {"status": "note", "value": "using on-grid power"}
+            else:
+                msg = {"status": "note", "value":  "using battery power"}
+            self.client.publish(
+                self.topic, self.json.dumps(msg))

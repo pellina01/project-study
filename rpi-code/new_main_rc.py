@@ -9,6 +9,13 @@ import logging
 import traceback
 from i2c import read_arduino
 
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+pin = 19
+GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
 with open('/home/pi/project-study/rpi-code/config.json', 'r') as file:
     data = json.loads(file.read())
 
@@ -57,7 +64,18 @@ elif raspi["mode"] == "prod":
         print("done scheduling time at: ", t)
 
 rpi = mqtt("rpi", raspi["mqtt_url"])
+prev_status = False
+grid_is_ok = False
 
 while True:
     schedule.run_pending()
-    time.sleep(1)
+    prev_status = grid_is_ok
+    if GPIO.input(pin):
+        grid_is_ok = True
+    else:
+        grid_is_ok = False
+
+    if prev_status != grid_is_ok:
+        rpi.on_grid(grid_is_ok)
+
+    time.sleep(60)

@@ -25,8 +25,13 @@ def read_do(read_arduino, slave_addr, sensor_type, *args):
         rounded_temp = round(temp[1])
         V_saturation = (temp[1] - cal2_t) * (cal1_v -
                                              cal2_v) / (cal1_t - cal2_t) + cal2_v
-        print("do" , round(adc_voltage * do_table[rounded_temp] / V_saturation, 2))
-        return "ok", round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
+        do = round(adc_voltage * do_table[rounded_temp] / V_saturation, 2)
+        if do > 20:
+            do = 20
+        elif do < 0:
+            do = 0
+        print("do: ", do)
+        return "ok", do
     except:
         print(traceback.format_exc())
         return "error", traceback.format_exc()

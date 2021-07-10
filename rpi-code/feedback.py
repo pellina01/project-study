@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 pin = 26
+GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 class feedback:
 	from mqtt import mqtt
@@ -19,7 +19,7 @@ class feedback:
 		self.correction = corrective_function
 		self.read_sensor_value = sensor_function
 
-		self.logging.basicConfig(filename="error.log")
+		self.logging.basicConfig(filename="/home/pi/project-study/rpi-code/error.log")
 		self.feedback_is_on = False
 		self.sent = False
 		self.mq_client = self.mqtt(device_name, mqtt_url)
@@ -27,27 +27,22 @@ class feedback:
 		print("successful establishing connection with mqtt")
 
 	def check(self):
-		try:
-			current_reading = self.read_sensor_value()[1]
-			if current_reading <= self.turn_on_limit and GPIO.input(pin):
-				self.feedback_is_on = True
-			else:
-				self.feedback_is_on = False
-		except:
-			if GPIO.input(pin):
-				self.feedback_is_on = True
-			else:
-				self.feedback_is_on = False
-			self.logging.error(self.traceback.format_exc())
-			print(self.traceback.format_exc())
-			
-		finally:
-			if not self.sent or self.feedback_is_on != self.prev_status:
-				self.sent = False
-				self.prev_status = self.feedback_is_on
-				if self.mq_client.send(self.__feedback_serializer()):
-					self.sent = True
-				self.mq_client.disconnect()
+		handler = self.read_sensor_value()
+		current_reading = None
+		if handler[0] == "ok":
+			current_reading = handler[1]
+
+		if current_reading and current_reading <= self.turn_on_limit and GPIO.input(pin):
+			self.feedback_is_on = True
+		else:
+			self.feedback_is_on = False
+
+		if not self.sent or self.feedback_is_on != self.prev_status:
+			self.sent = False
+			self.prev_status = self.feedback_is_on
+			if self.mq_client.send(self.__feedback_serializer()):
+				self.sent = True
+			self.mq_client.disconnect()
 
 
 		self.correction(self.feedback_is_on) # aerator at relay normally closed 
